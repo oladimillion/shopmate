@@ -1,0 +1,31 @@
+div.pagination {
+  height: 50px;
+}
+
+div.pagination div.pagination__controls {
+  width: 240px;
+}
+
+div.pagination__controls span.pagination__text{
+  font-size: 16px;
+}
+
+
+div.pagination__controls select.page__number {
+  width: 50px;
+  height: 33px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+
+span.pagination__buttons button.pagination__button {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  margin: 0 5px;
+  background: #ddd;
+  border-radius: 50%;
+}
+
+

@@ -1,0 +1,20 @@
+div.newsletter {
+  padding: 5px;
+}
+div.newsletter div.subscribe__info {
+  margin-right: 10px;
+}
+
+form.newsletter__form span.form__input__wrapper {
+  margin-right: 10px;
+  max-height: 40px;
+}
+
+form.newsletter__form span.form__input__wrapper input.form_input {
+  color: #444;
+}
+
+
+
+
+

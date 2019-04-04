@@ -1,0 +1,5 @@
+@media only screen and (max-width: 1040px) {
+  section.catalogue .card__margin__right {
+    margin-right: 20px;
+  }
+}

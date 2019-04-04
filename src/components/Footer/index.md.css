@@ -1,0 +1,14 @@
+@media screen and (max-width: 950px) {
+  ul.footer__md__category__links {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  ul.footer__md__category__links li {
+    margin: 5px auto;
+  }
+
+  ul.footer__md__category__links li a {
+    font-size: 1.5rem !important;
+  }
+}
