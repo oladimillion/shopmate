@@ -1,0 +1,5 @@
+@media only screen and (max-width: 919px) {
+  ul.sm__level__links {
+    display: none;
+  }
+}

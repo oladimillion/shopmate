@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from "semantic-ui-react";
+import RoundButton from "../RoundButton";
 
 import "./index.css";
 import "./index.md.css";
@@ -20,14 +20,14 @@ class Pagination extends Component {
           </select>
           <span className="pagination__text">of 3</span>
           <span className="pagination__buttons">
-            <button 
-              className="pagination__button unset__properties">
-              <Icon name="angle left" />
-            </button>
-            <button 
-              className="pagination__button unset__properties text__center">
-              <Icon name="angle right" />
-            </button>
+            <RoundButton 
+              className="" 
+              icon="angle left" 
+            />
+            <RoundButton 
+              className="" 
+              icon="angle right" 
+            />
           </span>
         </div>
       </div>

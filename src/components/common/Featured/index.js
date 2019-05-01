@@ -8,7 +8,7 @@ import "./index.css";
 const Featured = () => {
   return (
     <div 
-      className="inner__container position__rel  margin__hori_auto featured">
+      className="inner__container position__rel  margin__hori__auto featured">
       <span className="bg__image ">
         <img src={FeaturedImage} alt="img" />
       </span>

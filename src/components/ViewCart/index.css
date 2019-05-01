@@ -1,0 +1,124 @@
+
+div.view__cart {
+}
+
+div.view__cart div.view__cart__inner {
+}
+
+
+div.view__cart .view__cart__price {
+  color: #000;
+  font-size: 1.7rem;
+}
+
+div.view__cart .view__cart__price__icon {
+  font-size: 1.5rem;
+}
+
+div.view__cart .view__cart__hori__padding {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+div.view__cart__inner header {
+  padding-top: 2.9rem;
+  padding-bottom: 2.8rem;
+  font-size: 1.7rem;
+}
+
+div.view__cart__inner header span.cart__title {
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+div.view__cart__inner header span.close__icon {
+  top: 20px;
+  right: 10px;
+  cursor: pointer;
+}
+
+div.view__cart__inner table {
+  height: calc(100% - 15rem);
+}
+
+div.view__cart__inner table tbody {
+  height: calc(100% - 2rem);
+  overflow: auto;
+}
+
+div.view__cart__inner table tr th,
+div.view__cart__inner table tr td {
+  margin: auto 8px;
+}
+
+div.view__cart__inner table tr th:first-child,
+div.view__cart__inner table tr td:first-child {
+  margin-left: 0;
+}
+
+div.view__cart__inner table tr th:last-child,
+div.view__cart__inner table tr td:last-child {
+  margin-right: 0;
+}
+
+table tr.table__column__label {
+  text-align: left;
+  font-size: 1.3rem;
+  padding-bottom: 1rem;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+}
+
+table tr.cart__item__list {
+  margin: 2px 0;
+  padding-top: 1.9rem;
+  font-size: 1.1rem;
+  color: #777;
+}
+
+table tr.cart__item__list td.quantity {
+  color: #000;
+  font-weight: 600;
+}
+
+tbody div.cart__photo {
+  width: 80px;
+  height: 80px;
+  border: 1px solid #ccc;
+  margin-right: 15px;
+  cursor: pointer;
+  padding: 3px;
+}
+
+tbody div.cart__info {
+  font-size: 0.9rem;
+}
+
+div.cart__info span.cart__item__name {
+  font-size: 1rem;
+  color: #444;
+}
+
+div.view__cart__inner footer.view__cart__footer {
+  margin-top: 12px;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  background-color: rgba(0,0,0,0.04);
+}
+
+
+footer.view__cart__footer .cart__footer__button {
+  font-size: 1.2rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
+  height: 40px;
+}
+
+footer.view__cart__footer .footer__button__shop {
+  color: #f62f5e;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+
+

@@ -11,20 +11,8 @@ aside.sidebar .cancel__icon {
   font-size: 0.7rem;
 }
 
-aside.sidebar .gray__color {
-  color: #777;
-}
-
-aside.sidebar .gray__bg {
-  background: #fafafa;;
-}
-
 aside.sidebar .gray__border__bottom {
   border-bottom: 1px solid #ccc;
-}
-
-aside.sidebar .white__bg {
-  background: #fff;
 }
 
 aside.sidebar .sidebar__padding {
@@ -52,15 +40,6 @@ div.filter__summary ul.filter__params li {
 
 aside.sidebar div.filter__panel {
   min-height: 200px;
-}
-
-div.filter__panel div.panel__section {
-  margin: 10px 0;
-  margin-top: 25px;
-}
-
-div.panel__section span.panel__title {
-  margin: 15px 0;
 }
 
 aside.sidebar div.sidebar__footer {

@@ -17,4 +17,12 @@
     margin: auto;
   }
 
+  form.newsletter__form span.form__input__wrapper {
+    width: 100%;
+  }
+
+  form.newsletter__form button.item__button {
+    margin: auto;
+  }
+
 }

@@ -18,14 +18,3 @@ div.pagination__controls select.page__number {
   outline: none;
 }
 
-
-span.pagination__buttons button.pagination__button {
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-  margin: 0 5px;
-  background: #ddd;
-  border-radius: 50%;
-}
-
-

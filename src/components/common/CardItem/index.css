@@ -32,7 +32,10 @@ div.card div.item__photo__hover {
 div.item__photo:hover div.item__photo__hover {
   height: 100%;
   z-index: 100;
-  transition: 0.4s;
+}
+
+div.item__photo__hover .quick__view {
+  width: 110px;
 }
 
 div.item__photo div.hover__content {
@@ -44,20 +47,6 @@ div.card span.item__title {
   margin: 15px 0;
   font-size: 1.2rem;
   font-weight: 600;
-}
-
-div.card span.item__price {
-  font-size: 1.3rem;
-  margin: 15px 0;
-  font-weight: 600;
-  color: #f62f5e;
-}
-
-div.card span.item__price i {
-  position: relative;
-  left: 7px;
-  top: -1px;
-  font-size: 1.1rem;
 }
 
 

@@ -16,6 +16,15 @@
     margin-right: 10px;
   }
 
+  header.navbar .md__search__input {
+    text-align: center;
+    margin: 10px auto;
+  }
+
+  header.navbar .md__search__input input {
+    background: #000;
+  }
+
   div.mobile__navbar input[type="checkbox"]{
     display: none;
   }
@@ -47,7 +56,11 @@
   }
 
   div.mobile__navbar input[type="checkbox"]:checked ~ div.dropdown__items {
-    height: 300px;
+    height: 340px;
+  }
+
+  div.dropdown__items div.links__search {
+    padding: 5px;
   }
 
   div.dropdown__items ul.items li {

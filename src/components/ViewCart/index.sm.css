@@ -1,0 +1,32 @@
+@media screen and (max-width: 620px) {
+
+  div.view__cart__inner {
+    width: 95% !important;
+  }
+
+  div.view__cart__inner .view__cart__hori__padding {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+
+  div.view__cart__inner header span.cart__title {
+    font-size: 1.3rem;
+  }
+
+  div.view__cart__inner table tr th.price,
+  div.view__cart__inner table tr td.price {
+    display: none;
+  }
+
+  div.view__cart__inner footer.view__cart__footer {
+    flex-flow: column;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+
+  footer.view__cart__footer .footer__button__shop {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+}

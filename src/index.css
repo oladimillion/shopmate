@@ -26,6 +26,15 @@ div#root {
   min-height: 100%;
 }
 
+.test {
+  border: 1px solid #000;
+  min-height: 200px;
+}
+
+main.main__wrapper {
+  min-height: calc(100vh - 398px);
+}
+
 .hide {
   display: none;
 }
@@ -78,11 +87,11 @@ div#root {
   align-items: center;
 }
 
-.margin__vert_auto {
+.margin__vert__auto {
   margin: auto 0;
 }
 
-.margin__hori_auto {
+.margin__hori__auto {
   margin: 0 auto;
 }
 
@@ -111,6 +120,10 @@ div#root {
   display: none;
 }
 
+.overflow__hidden {
+  overflow: hidden;
+}
+
 .bg__image {
   position: absolute;
   z-index: 0;
@@ -132,12 +145,32 @@ div#root {
   position: relative;
 }
 
+.position__abs {
+  position: absolute;
+}
+
+.position__fixed {
+  position: fixed;
+}
+
 .z-index10 {
   z-index: 10;
 }
 
 .list__style__none {
   list-style: none;
+}
+
+.inline__block {
+  display: inline-block;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  margin-bottom: 1rem;
+}
+
+.maring__none {
+  margin: 0;
 }
 
 .box__shadow__normal {
@@ -159,16 +192,9 @@ button.unset__properties {
   cursor: pointer;
   color: inherit;
 }
-button.unset__properties {
-  border: none;
-  background: transparent;
-  outline: none;
-  cursor: pointer;
-  color: inherit;
-}
 
 .item__button {
-  width: 91px;
+  min-width: 91px;
   height: 35px;
   border-radius: 24px;
   font-size: 14px;
@@ -178,15 +204,24 @@ button.unset__properties {
   line-height: 2.4;
   background-color: #f62f5e;
   color: #ffffff;
+  border: none;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.item__button:hover {
+  color: #fff;
 }
 
 .item__button__light {
   background-color: #ffffff;
   color: #f62f5e;
+  border: 1px solid #eee;
 }
 
-.item__button:hover {
-  color: #fff;
+.item__button__light:hover {
+  color: #f62f5e;
 }
 
 .input__icon {
@@ -220,7 +255,6 @@ button.unset__properties {
   background-color: rgba(255, 255, 255, 0.5);
   outline: none;
   letter-spacing: 0.9px;
-  
 }
 
 .category__links a {
@@ -242,5 +276,64 @@ button.unset__properties {
 
 .white__color {
   color: #fff;
+}
+
+.white__bg {
+  background: #fff;
+}
+
+.gray__color {
+  color: #777;
+}
+
+.red__color {
+  color: #f62f5e;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.gray__bg {
+  background: #fafafa;;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.outline__none i,
+.outline__none {
+  outline: none;
+}
+
+.tiny__info {
+  font-size: 0.9rem;
+}
+
+.reset__select__quantity__padding {
+  left: -8px;
+}
+
+.fadein__fadeout {
+  transition: visibility 0.5s, opacity 0.5s;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
 }
 

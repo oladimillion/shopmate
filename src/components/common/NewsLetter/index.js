@@ -8,7 +8,7 @@ import "./index.md.css";
 const NewsLetter = () => {
   return (
     <div 
-      className="inner__container position__rel  margin__hori_auto newsletter">
+      className="inner__container position__rel  margin__hori__auto newsletter">
       <div className="newsletter__inner flex newsletter__sm__flex__column">
         <div className="flex__one subscribe__info flex align__center sm__subscribe__info">
           <h3 className="">SUBSCRIBE FOR SHOP NEWS, UPDATES AND SPECIAL OFFERS</h3>
@@ -19,13 +19,14 @@ const NewsLetter = () => {
               <Icon name="envelope outline" />
             </span>
             <input 
+              autoComplete="off"
               className="item__input form_input"
               type="email" 
               name="subscribe"
               placeholder="Your e-mail here"
             />
           </span>
-          <button type="submit" className="item__button">
+          <button type="submit" className="item__button block">
             Subscribe
           </button>
         </form>

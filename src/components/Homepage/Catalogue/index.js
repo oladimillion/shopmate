@@ -9,7 +9,7 @@ import "./index.sm.css";
 
 const Catalogue = () => {
   return (
-    <section className="catalogue inner__container margin__hori_auto flex flex__wrap space__around">
+    <section className="catalogue inner__container margin__hori__auto flex flex__wrap space__around">
 
       <Sidebar />
 

@@ -4,7 +4,7 @@ import "./index.css";
 
 const RadioButton = (props) => {
   return (
-    <span className="radio__label flex">
+    <span className="radio__label flex flex__wrap align__center">
       <input 
         type="radio" 
         name={props.name} 

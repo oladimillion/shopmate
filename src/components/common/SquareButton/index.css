@@ -18,13 +18,13 @@ span.square__button:nth-child(5) {
 
 span.square__button label{
   background: #ddd;
-  width: 64px;
+  width: 50px;
   border-radius: 0px;
-  height: 30px;
+  height: 28px;
   text-align: center;
   color: #777;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 2;
   letter-spacing: 0.5px;
   cursor: pointer;
