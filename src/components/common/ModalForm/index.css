@@ -1,0 +1,45 @@
+.modal__form__small .modal__form__small__inner {
+  max-width: 400px;
+  min-height: 300px;
+  max-height: 90vh;
+  height: auto !important;
+  padding: 1rem 4rem;
+  overflow: auto;
+}
+
+.modal__form__small__inner footer.form__small__header {
+  letter-spacing: 1px;
+}
+
+.modal__form__small__inner header.form__small__header,
+.modal__form__small__inner footer.form__small__footer {
+  margin: 2rem 0;
+}
+
+header.form__small__header span.close__form__small {
+  top: -23px;
+  right: -40px;
+}
+
+div.main__input__wrapper {
+  margin: 1.5rem 0;
+}
+
+div.main__input__wrapper input.main__input {
+  padding: 1.2rem;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1.0rem;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+
+div.main__input__wrapper .modal__form__button {
+  font-size: 1.2rem;
+  height: 46px;
+  width: 150px;
+}
+

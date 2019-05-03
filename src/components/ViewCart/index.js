@@ -64,7 +64,7 @@ class ViewCart extends Component {
           <span 
             onClick={CloseModal}
             className="position__abs close__icon">
-            <Icon name="cancel" />
+            &#x000D7;
           </span>
         </header>
         <table className="block view__cart__hori__padding">

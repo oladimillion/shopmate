@@ -1,6 +1,7 @@
 import React from "react";
 import RadioLabel from "../../common/RadioLabel";
 import CheckboxLabel from "../../common/CheckboxLabel";
+import CheckoutInput from "../CheckoutInput";
 
 import "./index.css";
 import "./index.md.css";
@@ -81,27 +82,6 @@ const radioLabelData = [
   },
 ];
 
-const func = ()=>{};
-
-const DeliveryInput = (props) => {
-  return (
-    <React.Fragment>
-      <label className="delivery__label block gray__color bold" 
-        htmlFor={props.name}>
-        {props.label} <span className="required__sign">*</span>
-      </label>
-      <input 
-        onChange={props.onChange || func}
-        name={props.name}
-        value={props.value}
-        className="delivery__input block" 
-        id={props.name}
-        type="text" 
-      />
-    </React.Fragment>
-  )
-};
-
 const Delivery = () => {
   return (
     <div className="delivery">
@@ -112,17 +92,19 @@ const Delivery = () => {
               key={index}
               className="flex space__between flex__wrap section__level input__section">
               <span className="flex__one left__section">
-                <DeliveryInput 
+                <CheckoutInput 
                   label={leftData.label}
                   value=""
                   name={leftData.value}
+                  required={true}
                 />
               </span>
               <span className="flex__one right__section">
-                <DeliveryInput 
+                <CheckoutInput 
                   label={rightData.label}
                   value=""
                   name={rightData.value}
+                  required={true}
                 />
               </span>
             </div>

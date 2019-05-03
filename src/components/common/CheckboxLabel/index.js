@@ -2,22 +2,23 @@ import React from 'react';
 
 import "./index.css";
 
-const CheckboxLabel = (props) => {
+const CheckboxLabel = ({id, name, label, labelClassName, className, parentClassName}) => {
   return (
-    <span className="checkbox__label flex flex__wrap align__center">
+    <span className={`checkbox__label flex flex__wrap align__center ${parentClassName || ""}`}>
       <input 
         type="checkbox" 
-        name={props.name} 
-        id={props.id} 
+        name={name || ""} 
+        id={id || ""} 
         className="hide"
       />
       <label 
-        className={`block sky__blue position__rel checkbox ${props.className || ""}`} 
-        htmlFor={props.id}>
+        className={`block sky__blue position__rel checkbox ${className || ""}`} 
+        htmlFor={id}>
       </label>
       <label 
-        className={`gray__color ${props.labelClassName || ""}`} 
-        htmlFor={props.id}>{props.label}
+        className={`gray__color ${labelClassName || ""}`} 
+        htmlFor={id || ""}>
+        {label || ""}
       </label>
     </span>
   )

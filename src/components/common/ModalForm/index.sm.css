@@ -1,0 +1,20 @@
+@media  screen and (max-width: 500px) {
+
+  .modal__form__small__inner header.form__small__header,
+  .modal__form__small__inner footer.form__small__footer {
+    margin: 1rem 0;
+  }
+  .modal__form__small .modal__form__small__inner {
+    padding: 1rem 1rem;
+  }
+
+  header.form__small__header span.close__form__small {
+    top: -11px;
+    right: -4px;
+  }
+
+  footer.form__small__footer > p {
+    margin: 0.5rem auto;
+  }
+
+}

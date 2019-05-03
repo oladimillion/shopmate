@@ -165,8 +165,19 @@ main.main__wrapper {
   display: inline-block;
 }
 
+.cursor__pointer {
+  cursor: pointer;
+}
+
 h1,h2,h3,h4,h5,h6 {
   margin-bottom: 1rem;
+}
+
+span.close__icon {
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 4rem;
 }
 
 .maring__none {

@@ -1,20 +1,4 @@
 
-label.delivery__label {
-  margin-bottom: 0.3rem;
-}
-
-input.delivery__input {
-  width: 100%;
-  min-width: 260px;
-  border: 1px solid #ddd;
-  outline: none;
-  font-size: 1rem;
-  padding: 1rem;
-  border-radius: 4px;
-  color: #777;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
 
 div.delivery div.section__level {
   margin: 1.5rem 0;

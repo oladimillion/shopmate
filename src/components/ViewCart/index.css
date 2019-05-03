@@ -31,12 +31,6 @@ div.view__cart__inner header span.cart__title {
   font-weight: 600;
 }
 
-div.view__cart__inner header span.close__icon {
-  top: 20px;
-  right: 10px;
-  cursor: pointer;
-}
-
 div.view__cart__inner table {
   height: calc(100% - 15rem);
 }
@@ -108,10 +102,10 @@ div.view__cart__inner footer.view__cart__footer {
 
 
 footer.view__cart__footer .cart__footer__button {
-  font-size: 1.2rem;
   padding-left: 1.6rem;
   padding-right: 1.6rem;
   height: 40px;
+  line-height: 2.9;
 }
 
 footer.view__cart__footer .footer__button__shop {

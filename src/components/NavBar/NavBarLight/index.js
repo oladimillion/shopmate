@@ -20,13 +20,20 @@ const infoLinks = [
 ];
 
 
-const NavBarLight = ({ OpenViewCartModal }) => {
+const NavBarLight = ({ 
+  OpenLoginModal,
+  OpenRegisterModal,
+  OpenViewCartModal,
+}) => {
   return (
     <section className="navbar__light flex">
       <div className="inner__container navbar__inner">
         <ul className="flex space__between align__center margin__vert_auto full__width small__device__flex__col list__style__none">
           <li>
-            Hi! <button>Sign in</button> or <button>Register</button>
+            Hi! {" "}
+            <button onClick={OpenLoginModal}>Sign in</button>
+            {" "} or {" "}
+            <button onClick={OpenRegisterModal}>Register</button>
           </li>
           <li className="flex space__between info__links desktop__items">
             {

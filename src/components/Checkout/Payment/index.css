@@ -1,0 +1,35 @@
+
+div.payment div.payment__gap {
+  width: 20px;
+}
+
+div.payment .payment__part {
+  max-width: 50%;
+  min-width: 250px;
+}
+
+div.payment label.payment__option {
+  height: 180px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background: #eee;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+div.payment label.payment__part.active {
+  border: 1px solid #6eb2fb;
+  background: rgba(110,178,251,0.1);
+}
+
+label.payment__part span.payment__method__logos {
+  width: 250px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+label.payment__part span.payment__method__logos img {
+  width: 120px;
+  height: 50px;
+  object-fit: contain;
+}

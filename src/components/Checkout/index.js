@@ -13,7 +13,10 @@ import './index.md.css';
 class Checkout extends Component {
 
   state = {
-    step: 2,
+    step: 1,
+    payment: {
+      ccv: "",
+    },
   }
 
   renderStepComponent() {
@@ -21,7 +24,12 @@ class Checkout extends Component {
       case 4:
         return <Finish />;
       case 3:
-        return <Payment />;
+        return (
+          <Payment
+            payment={this.state.payment}
+            onChange={this.onChange}
+          />
+        );
       case 2:
         return <Confirmation />;
       case 1:
@@ -39,6 +47,21 @@ class Checkout extends Component {
       step = step < 4 ? step + 1 : 4;
     }
     this.setState({ step });
+  }
+
+  makePayment = () => {
+    console.log("payment completed");
+    this.changeStep(1);
+  }
+
+  mask = ({value, pattern, regex, max}) => {
+    const unmask = value.replace(/\D/g, "").substring(max);
+    console.log(unmask);
+    return unmask.replace(regex, pattern);
+  }
+
+  onChange = ({ name, level, value }) => {
+    this.setState({ [level]: {[name]: value}});
   }
 
   render() {
@@ -59,6 +82,8 @@ class Checkout extends Component {
           <Footer 
             className="checkout__padding" 
             changeStep={this.changeStep} 
+            makePayment={this.makePayment}
+            step={this.state.step}
           />
         </div>
       </div>

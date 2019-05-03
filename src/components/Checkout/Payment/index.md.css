@@ -1,0 +1,26 @@
+@media screen and (max-width: 800px) {
+
+  div.payment > div,
+  div.payment div.form__area > div {
+    flex-flow: column;
+  }
+
+  div.payment .payment__part {
+    width: 100%;
+    max-width: 100%;
+    margin: 1rem 0;
+  }
+
+}
+
+
+@media screen and (max-width: 1120px) {
+
+  div.payment div.card__date__ccv > div {
+    flex-flow: column;
+  }
+
+  div.payment div.card__date__ccv div.input__wrapper {
+    margin: 1rem 0;
+  }
+}

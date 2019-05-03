@@ -1,0 +1,15 @@
+
+div.finish div.finish__inner {
+  width: 250px;
+  text-align: center;
+}
+
+div.finish h1 {
+  font-size: 4rem;
+}
+
+div.finish .back__to__shop {
+  height: 50px;
+  line-height: 3;
+  font-size: 1.2rem;
+}

@@ -16,6 +16,8 @@ class NavBar extends Component {
     return (
       <header className="navbar">
         <NavBarLight
+          OpenLoginModal={this.props.OpenLoginModal} 
+          OpenRegisterModal={this.props.OpenRegisterModal} 
           OpenViewCartModal={this.props.OpenViewCartModal} 
         />
         <NavBarDark
@@ -30,6 +32,12 @@ export default connect(null,
   {
     OpenViewCartModal: () => {
       return actions.CreateAction(actions.SHOW_VIEW_CART_MODAL,);
+    },
+    OpenLoginModal: () => {
+      return actions.CreateAction(actions.SHOW_LOGIN_MODAL,);
+    },
+    OpenRegisterModal: () => {
+      return actions.CreateAction(actions.SHOW_REGISTER_MODAL,);
     },
   }
 )(NavBar);

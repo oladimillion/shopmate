@@ -8,6 +8,8 @@ import routes from "./routes";
 import NavBar from "./components/NavBar";
 import ViewCart from "./components/ViewCart";
 import Footer from "./components/Footer";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 import 'semantic-ui-css/semantic.min.css'
 
@@ -18,6 +20,8 @@ class App extends Component {
         <Router>
           <NavBar />
           <Route component={ViewCart} />
+          <Route component={Login} />
+          <Route component={Register} />
           <main className="main__wrapper">
             <Switch>
               {

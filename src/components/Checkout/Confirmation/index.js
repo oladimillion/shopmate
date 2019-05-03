@@ -1,5 +1,8 @@
 import React from "react";
+
 import "./index.css";
+import "./index.md.css";
+import "./index.sm.css";
 
 
 const tableData = [
@@ -43,7 +46,7 @@ const DeliverySection = (props) => {
 const Confirmation = () => {
   return (
     <div className="confirmation">
-      <div className="flex flex__wrap section__level">
+      <div className="flex flex__wrap section__level confirmation__flex__column">
         <div className="flex__two left__section">
           <h3 className="">Order summary</h3>
           <table className="block">
@@ -83,7 +86,7 @@ const Confirmation = () => {
           </table>
         </div>
         <div className="section__gap"></div>
-        <div className="flex__one">
+        <div className="flex__one right__section">
           <h3 className="">Delivery</h3>
           <DeliverySection 
             title="Address"
@@ -97,7 +100,7 @@ const Confirmation = () => {
       </div>
       <div 
         className="section__level flex flex__wrap space__between">
-        <div className="flex space__between flex__wrap flex__two">
+        <div className="flex space__between flex__wrap flex__two left__section confirmation__flex__column">
           <div 
             className="discount bold gray__color flex space__between align__center">
             <h3 className="margin__none">
@@ -106,7 +109,10 @@ const Confirmation = () => {
             <span>&#10003;</span>
           </div>
           <div className="overlap">
-            <span className="block gray__color bold">Subtotal</span>
+            <span 
+              className="block gray__color bold">
+              Subtotal
+            </span>
             <span className="block">&pound;368</span>
           </div>
           <div className="overlap">
@@ -115,7 +121,7 @@ const Confirmation = () => {
           </div>
         </div>
         <div className="section__gap"></div>
-        <div className="flex__one">
+        <div className="flex__one right__section">
           <div className="overlap">
             <span className="block gray__color bold">
               Grandtotal

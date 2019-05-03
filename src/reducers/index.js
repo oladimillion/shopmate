@@ -1,4 +1,6 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import LoginModal from "./loginModal";
+import RegisterModal from "./registerModal";
 import ViewCartModal from "./viewCartModal";
 
 
@@ -13,6 +15,8 @@ if (process.env.NODE_ENV === 'development') {
 
 
 const rootReducer = combineReducers({
+  LoginModal,
+  RegisterModal,
   ViewCartModal,
 })
 
