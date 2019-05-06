@@ -19,7 +19,7 @@ export const ModalFormInput = ({
     <div className="main__input__wrapper">
       <input 
         className="main__input text__center" 
-        autoComplete="false"
+        autoComplete="off"
         type={type || "text"} 
         required={true}
         placeholder={placeholder}
