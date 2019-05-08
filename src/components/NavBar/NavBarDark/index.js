@@ -25,10 +25,10 @@ const categoryLinks = [
   },
 ];
 
-const SearchInput = ({ className }) => {
+const SearchInput = ({ className, onSubmit, search, ...rest }) => {
   return (
     <div className={`navbar__search ${className || ""}`}>
-      <form>
+      <form onSubmit={onSubmit}>
         <span className="input__icon input__left__icon search__lens">
           <Icon name="search" />
         </span>
@@ -37,6 +37,8 @@ const SearchInput = ({ className }) => {
           className="item__input search__input"
           type="text" 
           name="search"
+          {...rest}
+          value={search}
           placeholder="search anything" 
         />
         <span className="input__icon input__right__icon cancel__icon">
@@ -47,7 +49,7 @@ const SearchInput = ({ className }) => {
   )
 };
 
-const NavBarDark = ({ OpenViewCartModal }) => {
+const NavBarDark = ({ OpenViewCartModal, ...rest }) => {
   return (
     <React.Fragment>
       <section className="navbar__dark flex desktop__items">
@@ -70,7 +72,7 @@ const NavBarDark = ({ OpenViewCartModal }) => {
               </ul>
             </div>
             <div className="flex">
-              <SearchInput />
+              <SearchInput {...rest} />
               <div className="margin__vert__auto">
                 <span 
                   onClick={OpenViewCartModal}
@@ -132,7 +134,10 @@ const NavBarDark = ({ OpenViewCartModal }) => {
                       })
                     } 
                   </ul>
-                  <SearchInput className="md__search__input" />
+                  <SearchInput 
+                    {...rest} 
+                    className="md__search__input" 
+                  />
                 </div>
               </div>
             </div>

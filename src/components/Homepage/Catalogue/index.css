@@ -1,10 +1,10 @@
-
-
-
 section.catalogue main.card__list {
   min-width: 300px;
 }
 
+section.catalogue main.card__list > span {
+  min-height: calc(100% - 50px);
+}
 
 
 

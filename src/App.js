@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <Provider store={store} >
         <Router>
-          <NavBar />
+          <Route component={NavBar} />
           <Route component={ViewCart} />
           <Route component={Login} />
           <Route component={Register} />

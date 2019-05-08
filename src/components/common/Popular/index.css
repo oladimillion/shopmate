@@ -2,6 +2,7 @@
 div.inner__container div.popular {
   scroll-behavior: smooth;
   transition: all 0.3s;
+  min-height: 200px;
 }
 
 div.popular {

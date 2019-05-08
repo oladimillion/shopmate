@@ -4,6 +4,7 @@ div.card {
   height: 350px;
   background-color: #ffffff;
   margin-bottom: 20px;
+  padding-top: 8px;
   /* margin-left: 20px; */
 }
 
@@ -44,7 +45,7 @@ div.item__photo div.hover__content {
 }
 
 div.card span.item__title {
-  margin: 15px 0;
+  margin: 13px 0;
   font-size: 1.2rem;
   font-weight: 600;
 }

@@ -184,6 +184,8 @@ class ViewItem extends Component {
         <Popular 
           cardClassName="card__style" 
           title="You may also like" 
+          {...this.props}
+          scrollDistance={342}
         />
         <HorizontalSpacing />
       </div>

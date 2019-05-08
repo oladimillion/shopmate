@@ -12,6 +12,13 @@ export default [
     path: "/",
   },
   {
+    component: Homepage,
+    name: "Home Page",
+    exact: true,
+    private: false,
+    path: "/search",
+  },
+  {
     component: Checkout,
     name: "Checkout",
     exact: true,
