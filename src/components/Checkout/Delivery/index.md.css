@@ -1,0 +1,14 @@
+@media screen and (max-width: 710px) {
+  div.section__level span.left__section {
+    padding-right: 0;
+  margin-bottom: 1.5rem;
+  }
+
+  div.section__level span.right__section {
+    padding-left: 0;
+  }
+
+  div.delivery div.section__level.input__section {
+    flex-flow: column;
+  }
+}

@@ -1,0 +1,7 @@
+@media only screen and (max-width: 623px) {
+  input.review__form__input,
+  textarea.review__form__input {
+    max-width: 100% !important;
+    width: 100%;
+  }
+}

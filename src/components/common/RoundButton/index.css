@@ -1,0 +1,10 @@
+button.round__button {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  margin: 0 5px;
+  background: #ddd !important;
+  color: #000;
+  border-radius: 50%;
+  padding-left: 4px;
+}

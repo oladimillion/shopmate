@@ -1,0 +1,6 @@
+
+@media only screen and (max-width: 600px) {
+  aside.sidebar.sm__sidebar {
+    margin-right: 0px !important;
+  }
+}

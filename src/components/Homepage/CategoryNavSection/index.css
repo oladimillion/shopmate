@@ -1,0 +1,39 @@
+section.category__nav__section {
+  height: auto;
+  min-height: 350px;
+  background: #000;
+  padding: 10px 3%;
+  overflow: hidden;
+}
+
+section.category__nav__section div.inner__category {
+  width: 90%;
+}
+
+div.inner__category h1.category__title,
+div.inner__category div{
+  z-index: 2;
+}
+
+
+div.inner__category h1.category__title {
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+}
+
+ul.category__item__links {
+  font-size: 1.3rem;
+  font-weight: 600;
+  min-width: 200px;
+}
+
+ul.category__item__links li {
+  margin: 10px 0;
+}
+
+ul.category__item__links li a {
+  color: #fff;
+}
+
+

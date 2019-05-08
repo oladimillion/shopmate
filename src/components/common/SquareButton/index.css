@@ -1,0 +1,39 @@
+span.square__button {
+  margin-right: 11.5px;
+  margin-bottom: 11.5px;
+}
+
+span.square__button:nth-child(3) {
+  margin-right: 0px;
+}
+
+span.square__button:nth-child(4) {
+  margin-bottom: 0px;
+}
+
+span.square__button:nth-child(5) {
+  margin-bottom: 0px;
+  margin-right: 0px;
+}
+
+span.square__button label{
+  background: #ddd;
+  width: 50px;
+  border-radius: 0px;
+  height: 28px;
+  text-align: center;
+  color: #777;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 2;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+span.square__button input[type="radio"]:checked + label {
+  background: #f62f5e;
+  color: #fff;
+  transition: all 0.3s;
+}

@@ -1,0 +1,56 @@
+section.catalogue aside.sidebar {
+  min-height: 300px;
+  width: 250px;
+  margin-right: 10px;
+  align-self: flex-start;
+  margin-bottom: 1rem;
+  margin-right: 3rem;
+}
+
+aside.sidebar .cancel__icon {
+  font-size: 0.7rem;
+}
+
+aside.sidebar .gray__border__bottom {
+  border-bottom: 1px solid #ccc;
+}
+
+aside.sidebar .sidebar__padding {
+  padding: 7%;
+}
+
+aside.sidebar .filter__title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+aside.sidebar div.filter__summary {
+  height: auto;
+  min-height: 120px;
+}
+
+div.filter__summary ul.filter__params {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+div.filter__summary ul.filter__params li {
+  margin: 5px 0;
+}
+
+aside.sidebar div.filter__panel {
+  min-height: 200px;
+}
+
+aside.sidebar div.sidebar__footer {
+  padding: 9% 13%;
+}
+
+div.sidebar__footer button.sidebar__footer__cancel {
+  color: #f62f5e;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+

@@ -1,0 +1,12 @@
+
+div.panel__section {
+  margin: 10px 0;
+  margin-top: 25px;
+}
+
+div.panel__section span.panel__title {
+  margin: 15px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+

@@ -1,0 +1,41 @@
+footer.footer {
+  min-height: 200px;
+  background: #2E2E2E;
+  color: #fff;
+  padding: 3%;
+}
+
+footer.footer .footer__vert__margin {
+  margin: 2rem auto;
+}
+
+ul.footer__category__links li a.link,
+ul.footer__social__links li a.link {
+  font-size: 2rem;
+  margin: 0 2rem;
+  font-weight: 600;
+}
+
+ul.footer__social__links li a.link {
+  color: #000;
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0 1rem;
+}
+
+ul.footer__social__links li a.link i.social__icon {
+  margin: auto;
+}
+ul.footer__final__links li {
+  margin: 0 0.3rem;
+}
+
+ul.footer__final__links li.dot {
+  font-size: 30px;
+  position: relative;
+  top: -9px;
+}

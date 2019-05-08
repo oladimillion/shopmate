@@ -1,0 +1,40 @@
+
+span.radio__label {
+  margin: 4px 0;
+}
+
+span.radio__label label.radio__label {
+  width: 16px;
+  height: 16px;
+  background: #bbb;
+  border-radius: 50%;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+span.radio__label input[type="radio"]:checked + label.radio__label {
+  background: #6eb2fb;
+}
+
+span.radio__label input[type="radio"]:checked + label.radio__label::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border: 1px solid #fff;
+  background: #fff;
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+span.radio__label label.label__value {
+  line-height: 1.1;
+  cursor: pointer;
+  user-select: none;
+}
+
+

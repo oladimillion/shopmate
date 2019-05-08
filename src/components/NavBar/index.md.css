@@ -1,0 +1,106 @@
+@media only screen and (max-width: 1000px) {
+
+  header.navbar .desktop__items {
+    display: none;
+  }
+
+  header.navbar .mobile__items {
+    display: flex;
+  }
+
+  header.navbar .flex__mobile {
+    flex-flow: column;
+  }
+
+  header.navbar div.mobile__navbar {
+    margin-right: 10px;
+  }
+
+  header.navbar .md__search__input {
+    text-align: center;
+    margin: 10px auto;
+  }
+
+  header.navbar .md__search__input input {
+    background: #000;
+  }
+
+  div.mobile__navbar input[type="checkbox"]{
+    display: none;
+  }
+
+  div.mobile__navbar input[type="checkbox"]:not(:checked) ~ label i::before {
+    content: "\F0C9";
+  }
+
+  div.mobile__navbar input[type="checkbox"]:checked ~ label i::before {
+    content: "\F00D";
+  }
+
+  div.mobile__navbar div.dropdown__items {
+    position: absolute;
+    left: 0;
+    top: 70px;
+    width: 100%;
+    overflow: hidden;
+    transition: all 0.3s;
+    z-index: 100;
+  }
+
+  div.dropdown__items > div {
+    z-index: 2;
+  }
+
+  div.mobile__navbar input[type="checkbox"]:not(:checked) ~ div.dropdown__items {
+    height: 0px;
+  }
+
+  div.mobile__navbar input[type="checkbox"]:checked ~ div.dropdown__items {
+    height: 340px;
+  }
+
+  div.dropdown__items div.links__search {
+    padding: 5px;
+  }
+
+  div.dropdown__items ul.items li {
+    margin: 27px 0px;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  div.dropdown__items ul.items li a {
+    color: #000;
+    text-shadow: 0 0 2px #eee;
+  }
+
+  div.dropdown__items ul.items li a:hover {
+    color: #eee;
+    text-shadow: 0 0 2px #000;
+  }
+
+  div.dropdown__items div.item__info {
+    width: 90%;
+  }
+
+  div.dropdown__items div.item__info span {
+    display: block;
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  div.dropdown__items div.item__info span:first-child {
+    font-size: 3rem;
+  }
+
+  div.dropdown__items div.flex__one {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  div.dropdown__items div.flex__two {
+    background: rgba(110, 178, 251, 0.8);
+  }
+
+}
+

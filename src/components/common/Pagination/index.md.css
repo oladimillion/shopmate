@@ -1,0 +1,13 @@
+@media screen and (max-width: 1040px) {
+  div.pagination.md__flex {
+    display: flex;
+  }
+
+  div.md__flex div.md__float__none {
+    float: none;
+  }
+
+  div.md__flex div.md__margin__hori__auto {
+    margin: 0 auto;
+  }
+}

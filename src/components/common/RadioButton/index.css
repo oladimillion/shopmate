@@ -1,0 +1,52 @@
+
+span.radio__button label {
+  width: 14px;
+  height: 14px;
+  background: #bbb;
+  border-radius: 50%;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+span.radio__button label.skyblue {
+  background: #6eb2fb;
+}
+
+span.radio__button label.aquamarine {
+  background: #00d3ca;
+}
+
+span.radio__button label.redpink {
+  background: #f62f5e;
+}
+
+span.radio__button label.red {
+  background: #fe5c07;
+}
+
+span.radio__button label.yellow {
+  background: #f8e71c;
+}
+
+span.radio__button label.green {
+  background: #7ed321;
+}
+
+span.radio__button label.purple {
+  background: #9013fe;
+}
+
+span.radio__button input[type="radio"]:checked + label::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  z-index: 10;
+  transition: all 0.3s;
+}
+
+

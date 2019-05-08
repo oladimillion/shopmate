@@ -1,0 +1,5 @@
+@media only screen and (max-width: 1040px) {
+  section.catalogue .card__list__sm__space__around {
+    justify-content: flex-start;
+  }
+}
