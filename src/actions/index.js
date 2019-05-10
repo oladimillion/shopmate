@@ -1,3 +1,5 @@
 export * from "./types";
 export * from "./createAction";
 export * from "./products";
+export * from "./departments";
+export * from "./categories";

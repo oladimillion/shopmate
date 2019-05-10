@@ -13,6 +13,10 @@ div.viewitem__photo ul.photo__thumbnails {
   width: 300px
 }
 
+ul.photo__thumbnails li:first-child {
+  margin-right: 10px;
+}
+
 ul.photo__thumbnails span.photo__sm {
   width: 80px;
   height: 80px;

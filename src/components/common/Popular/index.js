@@ -12,7 +12,7 @@ import "./index.css";
 class Popular extends Component {
 
   LIMIT = 6;
-  ran = false;
+  requestSent = false;
 
   componentDidMount() {
     this.getPopularProducts();
@@ -28,8 +28,8 @@ class Popular extends Component {
     let page = (Math.random() * 10 | 1);
     page = page < 1 ? 1 : page;
     const query = `?page=${page}&limit=${limit}`;
-    if(!popularProducts.count && !this.ran) {
-      this.ran = true;
+    if(!popularProducts.count && !this.requestSent) {
+      this.requestSent = true;
       this.props.getPopularProducts(query);
     }
   }

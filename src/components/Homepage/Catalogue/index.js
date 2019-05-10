@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import queryString from "query-string";
 
-import { getProducts, searchProducts } from "../../../actions";
+import { 
+  getProducts, 
+  searchProducts, 
+  getProductsByCategory,
+  getProductsByDepartment,
+} from "../../../actions";
 
 import CardItem from "../../common/CardItem"
 import Sidebar from "../../common/Sidebar";
@@ -16,7 +21,7 @@ import "./index.sm.css";
 class Catalogue extends Component {
 
   LIMIT = 6;
-  ran = false;
+  requestSent = false;
 
   componentDidMount() {
     const pageNumber = this.getPageNumber();
@@ -25,12 +30,12 @@ class Catalogue extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { allProduct } = this.props;
-    if (!this.ran) {
+    if (!this.requestSent) {
       this.getProducts(this.getPageNumber());
-      this.ran = true;
+      this.requestSent = true;
     }
-    if(!allProduct.isLoading && this.ran) {
-      this.ran = false;
+    if(!allProduct.isLoading && this.requestSent) {
+      this.requestSent = false;
     }
   }
 
@@ -49,15 +54,22 @@ class Catalogue extends Component {
 
   getProducts(pageNumber) {
     const query = this.getQuery(pageNumber);
+    const { category, department } = this.getQueryParams();
     const { path } = this.props.match;
-    if(path === "/search") {
-      this.props.searchProducts(query);
-    } else {
-      this.props.getProducts(query);
-    }
     this.setState({ 
       page: parseInt(pageNumber),
     });
+    if(path === "/search") {
+      this.props.searchProducts(query);
+    } else {
+      if(category) {
+        this.props.getProductsByCategory({query, category});
+      } else if(department) {
+        this.props.getProductsByDepartment({query, department});
+      } else {
+        this.props.getProducts(query);
+      }
+    }
   }
 
   gotoPage = (pageNumber) => {
@@ -68,26 +80,30 @@ class Catalogue extends Component {
     if(!allProduct.isLoading){
       this.props.history.push({
         pathname: path,
-        search: query,
+        search: query.replace(/limit=[\d]+&/, ""),
       });
+      this.requestSent = true;
       this.getProducts(pageNumber);
     }
   }
 
   getQuery(pageNumber) {
     const limit = this.LIMIT;
-    const query_string = this.getQueryString();
-    let query = `?page=${pageNumber}&limit=${limit}`;
+    const { query_string, category, department } = this.getQueryParams();
+    let query = `?${queryString.stringify({limit, page: pageNumber})}`;
     if(query_string) {
-      query = `${query}&query_string=${query_string}`;
+      query = `${query}&${queryString.stringify({query_string})}`;
+    } else if(category) {
+      query = `${query}&${queryString.stringify({department, category})}`;
+    } else if(department) {
+      query = `${query}&${queryString.stringify({department})}`;
     }
     return query;
   }
 
-  getQueryString() {
+  getQueryParams = () => {
     const { search } = this.props.location;
-    const q = queryString.parse(search);
-    return q.query_string;
+    return queryString.parse(search);
   }
 
   nextPage = () => {
@@ -112,7 +128,10 @@ class Catalogue extends Component {
     return (
       <section className="catalogue inner__container margin__hori__auto flex flex__wrap space__around">
 
-        <Sidebar />
+        <Sidebar 
+          {...this.props} 
+          getQueryParams={this.getQueryParams}
+        />
 
         <main 
           className="card__list flex__one">
@@ -152,5 +171,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getProducts,
   searchProducts,
+  getProductsByCategory,
+  getProductsByDepartment,
 })(Catalogue);
 

@@ -79,8 +79,12 @@ const Payment = (props) => {
           <div className="flex__one payment__part">
             <CheckoutInput 
               label="Cardholder's Name"
-              value=""
-              name="holder_name"
+              value={props.payment.holder_name}
+              onChange={(e) => props.onChange({
+                name: "holder_name",
+                level: "payment",
+                value: e.target.value,
+              })}
               required={true}
               icon="user"
             />
@@ -89,13 +93,18 @@ const Payment = (props) => {
           <div className="flex__one payment__part">
             <CheckoutInput 
               label="Card number"
-              value=""
-              type="number"
-              name="card_number"
+              value={props.payment.card_number}
+              onChange={(e) => props.onChange({
+                name: "card_number",
+                level: "payment",
+                value: e.target.value,
+                pattern: "$1 $2 $3 $4",
+                regex: /([\d]{4})([\d]{4})([\d]{4})([\d]{4})/,
+                max: 16,
+              })}
               required={true}
               title="credit card"
               icon="credit card outline"
-              pattern="^([\d]{4}\s[\d]{4}\s[\d]{4}\s[\d]{4})$"
               placeholder="**** **** **** ****"
             />
           </div>
@@ -106,8 +115,15 @@ const Payment = (props) => {
               <div className="input__wrapper">
                 <CheckoutInput 
                   label="Valid through"
-                  value=""
-                  name="valid_throug"
+                  value={props.payment.validity}
+                  onChange={(e) => props.onChange({
+                    name: "validity",
+                    level: "payment",
+                    value: e.target.value,
+                    pattern: "$1/$2",
+                    regex: /([\d]{2})([\d]{2})/,
+                    max: 4,
+                  })}
                   required={true}
                   icon="calendar alternate outline"
                   placeholder="MM/YY"
@@ -122,6 +138,9 @@ const Payment = (props) => {
                     name: "ccv",
                     level: "payment",
                     value: e.target.value,
+                    pattern: "$1",
+                    regex: /([\d]{3})/,
+                    max: 3,
                   })}
                   required={true}
                   icon="lock"
@@ -141,7 +160,7 @@ const Payment = (props) => {
       </div>
 
     </div>
-)
+  )
 }
 
 export default Payment;

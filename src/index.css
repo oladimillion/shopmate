@@ -75,6 +75,10 @@ main.main__wrapper {
   justify-content: space-between;
 }
 
+.justify__center {
+  justify-content: center;
+}
+
 .space__around {
   justify-content: space-around;
 }

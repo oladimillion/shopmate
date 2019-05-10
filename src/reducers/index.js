@@ -3,6 +3,8 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas';
 
 import products from "./products";
+import departments from "./departments";
+import categories from "./categories";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
 import ViewCartModal from "./viewCartModal";
@@ -25,6 +27,8 @@ const rootReducer = combineReducers({
   RegisterModal,
   ViewCartModal,
   ...products,
+  ...departments,
+  ...categories,
 })
 
 const store = createStore(

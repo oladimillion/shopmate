@@ -16,6 +16,9 @@ class Checkout extends Component {
     step: 1,
     payment: {
       ccv: "",
+      validity: "",
+      card_number: "",
+      holder_name: "",
     },
   }
 
@@ -51,17 +54,41 @@ class Checkout extends Component {
 
   makePayment = () => {
     console.log("payment completed");
+    console.log(this.state)
     this.changeStep(1);
   }
 
-  mask = ({value, pattern, regex, max}) => {
-    const unmask = value.replace(/\D/g, "").substring(max);
-    console.log(unmask);
-    return unmask.replace(regex, pattern);
+  unmask = ({value, max}) => {
+    return value.replace(/\D/g, '').substring(0, max);
   }
 
-  onChange = ({ name, level, value }) => {
-    this.setState({ [level]: {[name]: value}});
+  mask = ({value, pattern, regex, max}) => {
+    return this.unmask({value, max}).replace(regex, pattern);
+  }
+
+  onChange = (data) => {
+    this.setState(this.setLevelValues(data));
+    switch(data.name) {
+      case "ccv":
+      case "validity":
+      case "card_number":
+        this.setStateWithMaskValue(data);
+        break;
+      default: break;
+    }
+  }
+
+  setLevelValues = ({ name, level, value }) => {
+    return {[level]: {...this.state[level], [name]: value}};
+  }
+
+  setStateWithMaskValue = (data) => {
+    this.setState(
+      this.setLevelValues({
+        ...data, 
+        value: this.mask(data),
+      })
+    );
   }
 
   render() {

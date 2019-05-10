@@ -1,43 +1,57 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { Rating } from 'semantic-ui-react'
+import Moment from 'react-moment';
+
+import { addProductReview } from "../../../actions";
+
 import HorizontalSpacing from "../../common/HorizontalSpacing";
 import RoundButton from "../../common/RoundButton";
 
 import "./index.css";
 import "./index.sm.css";
 
-const dummyData = [
-  {
-    defaultRating: 1,
-    name: "Oladimeji Akande",
-  },
-  {
-    defaultRating: 5,
-    name: "Kola Idris",
-  },
-  {
-    defaultRating: 2,
-    name: "Donald Trump",
-  },
-  {
-    defaultRating: 3,
-    name: "Barack Obama",
-  },
-  {
-    defaultRating: 0,
-    name: "Mohameed Buhari",
-  },
-];
+
 
 class Review extends Component {
+
+  state = {
+    product_id: this.props.productId,
+    review: "",
+    rating: 0,
+  }
+
+  onChange = (data) => {
+    this.setState(data);
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault();
+    const { productReview, addProductReview } = this.props;
+    console.log(this.state)
+    if(productReview.isLoading) return;
+    addProductReview(this.state);
+  }
+
   render() {
+
+    const { productReview } = this.props;
+    const { review, rating } = this.state;
+
     return (
       <div className="review inner__container margin__hori__auto border__bottom">
         <HorizontalSpacing />
         <h2>Product Reviews</h2>
         <ul className="list__style__none review__list">
+          { 
+            !productReview.data.length && (
+              <li className="flex flex__wrap">
+                <h5>No review</h5>
+              </li>
+            ) 
+          }
           {
-            dummyData.map((data, index) => {
+            productReview.data.map((data, index) => {
               return (
                 <li key={index} className="flex flex__wrap">
                   <div className="reviewer">
@@ -45,7 +59,7 @@ class Review extends Component {
                       <Rating 
                         className="outline__none" 
                         maxRating={5} 
-                        defaultRating={data.defaultRating}
+                        defaultRating={data.rating}
                         icon='star' 
                         size='huge' 
                       />
@@ -56,18 +70,17 @@ class Review extends Component {
                         {data.name}
                       </span>
                       <span className="block review__timestamps">
-                        an hour ago
+                        <Moment fromNow>{data.created_on}</Moment>
                       </span>
                     </div>
                   </div>
                   {/* end of reviewer */}
                   <div className="review__detail flex__one">
                     <div className="review__text">
-                      Ipsum voluptatum possimus veniam id tempore Incidunt mollitia obcaecati quaerat 
-                      Consectetur hic eum corrupti dolore suscipit? Laudantium est obcaecati nam sit at Necessitatibus quis debitis magni quae voluptates! Eaque quasi.
+                      {data.review}
                     </div>
                     <br />
-                    <div className="review__reaction">
+                    <div className="review__reaction hide">
                       <div 
                         className="reaction__icons flex space__between">
                         <span className="flex">
@@ -98,7 +111,7 @@ class Review extends Component {
         <span className="border__bottom"></span>
         <HorizontalSpacing />
         <h2>Add a review</h2>
-        <form className="review__form">
+        <form onSubmit={this.onSubmit} className="review__form">
           <ul className="list__style__none">
             <li className="flex flex__wrap review__form__list">
               <label 
@@ -110,6 +123,7 @@ class Review extends Component {
                 <input 
                   type="text" 
                   id="text__input"
+                  disabled
                   className="review__form__input text__input" 
                 />
               </span>
@@ -124,6 +138,10 @@ class Review extends Component {
                 className="form__input__wrapper position__rel text__area__wrapper flex__one">
                 <textarea 
                   id="text__area"
+                  value={review}
+                  onChange={
+                    (e)=>this.onChange({review: e.target.value})
+                  }
                   className="review__form__input text__area">
                 </textarea>
                 <span className="tiny__info flex flex__wrap">
@@ -141,7 +159,10 @@ class Review extends Component {
                 <Rating 
                   className="outline__none" 
                   maxRating={5} 
-                  defaultRating={0}
+                  defaultRating={rating}
+                  onRate={
+                    (e,{rating})=>this.onChange({rating})
+                  }
                   icon='star' 
                   size='huge' 
                 />
@@ -168,4 +189,6 @@ class Review extends Component {
   }
 }
 
-export default Review;
+export default connect(null, {
+  addProductReview,
+})(Review);

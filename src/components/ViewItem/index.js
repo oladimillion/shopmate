@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Rating } from 'semantic-ui-react'
+
+import { getProductById, getProductReview } from "../../actions";
+import API from "../../api";
 
 import Review from "./Review";
 import HorizontalSpacing from "../common/HorizontalSpacing";
@@ -13,18 +17,9 @@ import AddFavourite from "../common/AddFavourite";
 import Popular from "../common/Popular";
 import { ItemButton } from "../common/ItemButtons";
 
-import shirtphoto1 from "../../assets/images/images-shirt12.png";
-import shirtphoto2 from "../../assets/images/images-shirt13.png";
-import shirtphoto3 from "../../assets/images/images-shirt14.png";
-
 import './index.css';
 import './index.md.css';
 
-const thumbnails = [
-  shirtphoto1,
-  shirtphoto2,
-  shirtphoto3,
-];
 
 const levelLinks = [
   {
@@ -60,7 +55,66 @@ const squareButtonList = [
 ];
 
 class ViewItem extends Component {
+
+  requestSent = false;
+
+  state = {
+    productImage: this.props.productById.data.image,
+  }
+
+  componentDidMount() {
+    this.getProductAndReview();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    this.getProductAndReview();
+  }
+
+  get getParams() {
+    return this.props.match.params.id;
+  }
+
+  getProductById = (id) => {
+    this.props.getProductById(id);
+  }
+
+  getProductReview = (id) => {
+    this.props.getProductReview(id);
+  }
+
+  getImageLink(imageName) {
+    return imageName ? `${API}/images/products/${imageName}` : "";
+  }
+
+  makeRequest() {
+    this.getProductById(this.getParams);
+    this.getProductReview(this.getParams);
+  }
+
+  getProductAndReview() {
+    const { productById } = this.props;
+    const { data } = productById;
+    if (!this.requestSent && 
+      (+this.getParams !== data.product_id)) {
+      this.makeRequest();
+      this.requestSent = true;
+      this.setState({ productImage: "" });
+    }
+    if(!productById.isLoading && this.requestSent) {
+      this.requestSent = false;
+    }
+  }
+
+  setProductImage = (imageName) => {
+    this.setState({ productImage: imageName });
+  }
+
   render() {
+
+    const { productById, productReview } = this.props;
+    const { data } = productById;
+    const { productImage } = this.state;
+
     return (
       <div className="viewitem">
         <HorizontalSpacing />
@@ -69,23 +123,38 @@ class ViewItem extends Component {
           <div className="flex__one viewitem__photo normal__padding">
             <div className="photo__top flex">
               <span className="photo__lg block margin__auto overflow__hidden">
-                <img className="object__fit" src={shirtphoto1} alt="photo1" />
+                <img 
+                  className="object__fit" 
+                  src={
+                    this.getImageLink(productImage || data.image)
+                  }
+                  alt="photo1" 
+                />
               </span>
             </div>
             <HorizontalSpacing />
             <HorizontalSpacing />
             <HorizontalSpacing />
-            <ul className="list__style__none photo__thumbnails flex space__between margin__hori__auto">
+            <ul className="list__style__none photo__thumbnails flex justify__center margin__hori__auto">
               {
-                thumbnails.map((data, index) => {
-                  return (
-                    <li key={index}>
-                      <span className="photo__sm block overflow__hidden">
-                        <img className="object__fit" src={data} alt={`item${index}`} />
-                      </span>
-                    </li>
-                  )
-                })
+                [data.image, data.image_2]
+                  .map((image, index) => {
+                    return (
+                      <li 
+                        key={index}
+                        onClick={
+                          (e)=>this.setProductImage(image)
+                        }>
+                        <span 
+                          className="photo__sm block overflow__hidden">
+                          <img className="object__fit" 
+                            src={this.getImageLink(image)} 
+                            alt={`item${image}`} 
+                          />
+                        </span>
+                      </li>
+                    )
+                  })
               }
             </ul>
           </div>
@@ -109,7 +178,7 @@ class ViewItem extends Component {
               <Rating 
                 className="outline__none" 
                 maxRating={5} 
-                defaultRating={3}
+                defaultRating={5}
                 icon='star' 
                 size='huge' 
               />
@@ -117,11 +186,11 @@ class ViewItem extends Component {
             <br/>
             <div className="item__name">
               <h2>
-                Super oversized T-Shirt With Raw Sleeve in Brown
+                {data.name}
               </h2>
             </div>
             <PriceCurrency 
-              price="100.99" 
+              price={data.price} 
               className="block viewitem__currency"
             />
             <PanelSection 
@@ -179,7 +248,10 @@ class ViewItem extends Component {
           </div>
           {/*end of viewitem__info*/}
         </div>
-        <Review />
+        <Review 
+          productId={+this.getParams}
+          productReview={productReview} 
+        />
         <HorizontalSpacing />
         <Popular 
           cardClassName="card__style" 
@@ -193,4 +265,14 @@ class ViewItem extends Component {
   }
 }
 
-export default ViewItem;
+const mapStateToProps = (state) => {
+  return {
+    productById: state.ProductById,
+    productReview: state.ProductReview,
+  }
+};
+
+export default connect(mapStateToProps, {
+  getProductById,
+  getProductReview,
+})(ViewItem);
