@@ -1,0 +1,17 @@
+
+
+div.delivery div.section__level {
+  margin: 1.5rem 0;
+}
+
+div.section__level span.left__section {
+  padding-right: 3%;
+}
+
+div.section__level span.right__section {
+  padding-left: 3%;
+}
+
+div.delivery__option .options__section {
+  min-width: 250px;
+}

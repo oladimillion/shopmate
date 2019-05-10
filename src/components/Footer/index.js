@@ -12,10 +12,6 @@ const categoryLinks = [
   },
   {
     path: "/",
-    name: "Women",
-  },
-  {
-    path: "/",
     name: "Men",
   },
   {

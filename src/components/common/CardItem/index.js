@@ -1,51 +1,52 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { Icon } from "semantic-ui-react";
 
-import shirtImg from "../../../assets/images/shirt.png";
+import PriceCurrency from "../PriceCurrency";
+import AddFavourite from "../../common/AddFavourite";
+import { ItemLink, ItemButton } from "../../common/ItemButtons";
+
+import API from "../../../api";
 
 import "./index.css";
 import "./index.md.css";
 import "./index.sm.css";
 
-const CardItem = ({ className }) => {
+
+
+const CardItem = ({ className, product }) => {
+  const { name, price, product_id, thumbnail } = product || {};
   return (
     <div className={`card position__rel box__shadow__normal card__margin__right card__sm__no__margin__right ${className || ""}`}>
-
       <div className="item__photo margin__auto block">
         <img 
           className="object__fit"
-          src={shirtImg} alt="shirtImg" 
+          src={`${API}/images/products/${thumbnail}`} 
+          alt="productImg" 
         />
         <div className="item__photo__hover flex">
           <div className="hover__content margin__auto flex flex__column space__between">
-            <span className="content__icon block text__center">
-              <button className="unset__properties">
-                <Icon name="heart outline" />
-              </button>
+            <span className="content__icon block margin__hori__auto">
+              <AddFavourite />
             </span>
             <span 
               className="block content__button margin__hori_auto">
-              <Link to="/" 
-                className="item__button block text__center">
-                Quick View
-              </Link> 
+              <ItemLink 
+                name="Quick View" 
+                to={`/${product_id}`} 
+                className="text__center quick__view"
+              />
             </span>
           </div>
         </div>
       </div>
-
       <span className="item__title block text__center">
-        Men's Knitwear Offers
+        { name ||  "" }
       </span>
-      <span className="item__price block text__center">
-        <Icon name="pound sign" />
-        3.99
-      </span>
+      <PriceCurrency
+        price={price} 
+        className="block text__center"
+      />
       <span className="block">
-        <button className="block item__button margin__hori_auto ">
-          Buy now
-        </button>
+        <ItemButton name="Buy now" className="margin__hori__auto" />
       </span>
     </div>
   )

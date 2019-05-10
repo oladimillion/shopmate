@@ -1,0 +1,92 @@
+
+header.checkout__header span.checkout__title {
+  font-size: 1.4rem;
+}
+
+header.checkout__header span.checkout__step {
+  margin-top: 50px;
+}
+
+span.checkout__step span.step::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: -3px;
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  border-radius: 100%;
+  border: 3px solid #fff;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+span.checkout__step span.step::after {
+  content: "";
+  position: absolute;
+  top: -27px;
+  left: 8px;
+  width: 123%;
+  min-width: 200px;
+  height: 14px;
+  background: #ddd;
+  transition: background 0.3s;
+  border-radius: 3px;
+  border: 3px solid #fff;
+  z-index: 1;
+}
+
+span.checkout__step span.step.step__confirmation::before {
+  left: 40px;
+}
+
+span.checkout__step span.step.step__confirmation::after {
+  left: 44px;
+}
+
+span.checkout__step span.step.step__confirmation::after {
+  width: 105%;
+}
+
+span.checkout__step span.step.step__payment::before {
+  left: 23px;
+}
+  
+span.checkout__step span.step.step__payment::after {
+  left: 27px;
+}
+
+span.checkout__step span.step.step__payment::after {
+  width: 105%;
+}
+
+span.checkout__step span.step:last-child::before,
+span.checkout__step span.step:last-child::after {
+  right: 0px;
+  left: auto;
+}
+
+span.checkout__step span.step:last-child::after {
+  display: none;
+}
+
+span.checkout__step span.step.current {
+  color: #f62f5e;
+  transition: color 0.3s;
+}
+
+span.checkout__step span.step.current::before {
+  background: #f62f5e;
+}
+
+span.checkout__step span.step.done {
+  color: #f62f5e;
+  transition: color 0.3s;
+}
+span.checkout__step span.step.done::after,
+span.checkout__step span.step.done::before {
+  background: #f62f5e;
+}
+
+
+

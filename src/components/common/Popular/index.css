@@ -1,8 +1,46 @@
-.popular div.popular__items {
+
+div.inner__container div.popular {
+  scroll-behavior: smooth;
+  transition: all 0.3s;
+  min-height: 200px;
+}
+
+div.popular {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+div.popular::-webkit-scrollbar { 
+  display: none;
+}
+
+div.popular div.popular__items {
   margin-right: 6rem;
+}
+
+.popular div.popular__items:last-child {
+  margin-right: 0px;
 }
 
 .card__width {
   width: 300px !important;
   height: 370px !important;
 }
+
+div.inner__container div.scroll {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+}
+
+div.inner__container div.scroll__left {
+  left: 1%;
+}
+
+div.inner__container div.scroll__right {
+  right: 1%;
+}
+
+
+

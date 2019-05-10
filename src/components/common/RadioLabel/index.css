@@ -4,12 +4,13 @@ span.radio__label {
 }
 
 span.radio__label label.radio__label {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   background: #bbb;
   border-radius: 50%;
   transition: all 0.3s;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 span.radio__label input[type="radio"]:checked + label.radio__label {
@@ -19,8 +20,8 @@ span.radio__label input[type="radio"]:checked + label.radio__label {
 span.radio__label input[type="radio"]:checked + label.radio__label::before {
   content: "";
   position: absolute;
-  top: 4px;
-  left: 4px;
+  top: 5px;
+  left: 5px;
   border: 1px solid #fff;
   background: #fff;
   border-radius: 50%;
@@ -31,7 +32,6 @@ span.radio__label input[type="radio"]:checked + label.radio__label::before {
 }
 
 span.radio__label label.label__value {
-  margin-left: 10px;
   line-height: 1.1;
   cursor: pointer;
   user-select: none;

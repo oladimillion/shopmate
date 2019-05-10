@@ -1,0 +1,8 @@
+.popular div.popular__items {
+  margin-right: 6rem;
+}
+
+.card__width {
+  width: 300px !important;
+  height: 370px !important;
+}

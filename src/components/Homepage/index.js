@@ -15,9 +15,13 @@ class Homepage extends Component {
         <HorizontalSpacing />
         <CategoryNavSection />
         <HorizontalSpacing />
-        <Catalogue />
+        <Catalogue {...this.props} />
         <HorizontalSpacing />
-        <Popular title="Most Popular" />
+        <Popular 
+          scrollDistance={392}
+          title="Most Popular" 
+          {...this.props} 
+        />
         <HorizontalSpacing />
         <Featured />
         <HorizontalSpacing />

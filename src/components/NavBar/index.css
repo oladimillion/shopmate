@@ -58,6 +58,7 @@ span.uk__flag img {
 span.cart__icon {
   position: relative;
   margin-right: 15px;
+  cursor: pointer;
 }
 
 li i.pound.sign {
@@ -72,11 +73,13 @@ span.cart__icon span.item__count {
   width: 20px;
   height: 20px;
   text-align: center;
+  font-weight: 600;
   background: red;
   border-radius: 50%;
   color: #fff;
   font-weight: 700;
   font-size: 10px;
+  line-height: 2;
 }
 
 span.cart__icon span.item__count__invert {
@@ -87,9 +90,9 @@ span.cart__icon span.item__count__invert {
 
 div.brand__name {
   color: #f62f5e;
-  font-size: 26px;
-  font-weight: 900;
   letter-spacing: 5px;
+  font-size: 27px;
+  font-weight: 800;
 }
 
 div.brand__name a {

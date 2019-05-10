@@ -1,0 +1,30 @@
+span.checkout__input {
+  width: inherit;
+}
+label.delivery__label {
+  margin-bottom: 0.3rem;
+}
+
+input.delivery__input {
+  width: 100%;
+  min-width: 230px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 1rem;
+  padding: 1rem;
+  padding-right: 2.5rem;
+  border-radius: 4px;
+  color: #777;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+input.delivery__input:focus {
+  border: 1px solid rgba(0,235,0,0.6);
+}
+
+span.checkout__input__icon {
+  top: 69%;
+  right: 10px;
+  transform: translateY(-50%);
+}

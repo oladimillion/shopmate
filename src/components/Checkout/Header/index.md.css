@@ -1,0 +1,5 @@
+@media screen and (max-width: 710px) {
+  header.checkout__header span.mobile__hidden {
+    display: none;
+  }
+}

@@ -1,0 +1,55 @@
+
+div.confirmation div.section__gap {
+  width: 50px;
+}
+
+div.confirmation div.left__section {
+  min-width: 250px;
+}
+
+div.confirmation div.right__section {
+  min-width: 250px;
+}
+
+div.confirmation div.left__section table th,
+div.confirmation div.left__section table td {
+  text-align: left;
+  padding: 0.9rem 0;
+}
+
+div.confirmation div.left__section table th.item,
+div.confirmation div.left__section table td.item {
+  min-width: 200px;
+}
+
+div.confirmation div.left__section table th.qty,
+div.confirmation div.left__section table th.price,
+div.confirmation div.left__section table td.qty,
+div.confirmation div.left__section table td.price {
+  width: 100px;
+}
+
+div.confirmation div.left__section table tbody {
+  min-height: 200px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+div.confirmation div.left__section table tbody tr:nth-child(2n+1) {
+  background: #eee;
+}
+
+div.confirmation div.left__section table tbody tr {
+  padding-left: 10px;
+}
+
+div.confirmation div.discount {
+  width: 190px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  padding: 0.5rem 1rem;
+}
+
+div.confirmation div.overlap {
+  width: 100px;
+}

@@ -1,0 +1,9 @@
+
+@media screen and (max-width: 700px) {
+  div.confirmation div.left__section table th.qty,
+  div.confirmation div.left__section table th.price,
+  div.confirmation div.left__section table td.qty,
+  div.confirmation div.left__section table td.price {
+    display: none;
+  }
+}

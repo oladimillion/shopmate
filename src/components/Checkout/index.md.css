@@ -1,0 +1,11 @@
+@media screen and (max-width: 710px) {
+  div.checkout {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  div.inner__checkout .checkout__padding {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

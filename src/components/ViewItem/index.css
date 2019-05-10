@@ -1,0 +1,101 @@
+
+div.viewitem__inner .normal__padding {
+  padding: 3%;
+}
+
+div.photo__top span.photo__lg {
+  width: 300px;
+  height: 300px;
+  padding: 2px;
+}
+
+div.viewitem__photo ul.photo__thumbnails {
+  width: 300px
+}
+
+ul.photo__thumbnails li:first-child {
+  margin-right: 10px;
+}
+
+ul.photo__thumbnails span.photo__sm {
+  width: 80px;
+  height: 80px;
+  padding: 2px;
+  border: 1px solid #eee;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+
+ul.photo__thumbnails span.photo__sm.selected,
+ul.photo__thumbnails span.photo__sm:hover {
+  border: 1px solid red;
+  transition: all 0.3s;
+}
+
+ul.level__links li.level__link {
+  margin-right: 25px;
+  font-size: 1.1rem;
+}
+
+ul.level__links li.level__link a {
+  color: #aaa;
+  font-weight: 600;
+}
+
+ul.level__links li.level__link::after {
+  content: ".";
+  color: #aaa;
+  font-size: 2rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 7px;
+  right: -16px;
+  border-radius: 50%;
+}
+
+ul.level__links li.level__link:last-child::after {
+  content: "";
+}
+
+.viewitem__currency {
+  font-size: 2rem !important;
+}
+
+.viewitem__currency i {
+  font-size: 1.7rem !important;
+}
+
+.viewitem__color__panel__width {
+  width: 180px;
+}
+
+.viewitem__size__panel__width {
+  width: 220px;
+}
+
+.viewitem__size__panel__width span.square__button {
+  margin-right: 12px;
+}
+
+.panel__title__style {
+  font-size: 1.5rem !important;
+}
+
+div.wish__list {
+  width: 300px;
+}
+
+div.wish__list .wish__list__button {
+  line-height: 0.1;
+  width: auto;
+  padding: 20px 30px;
+  font-size: 1.1rem;
+  line-height: 0.1;
+}
+
+.card__style {
+  width: 250px !important;
+  height: 350px !important;
+}
+
