@@ -49,7 +49,7 @@ const SearchInput = ({ className, onSubmit, search, ...rest }) => {
   )
 };
 
-const NavBarDark = ({ OpenViewCartModal, ...rest }) => {
+const NavBarDark = ({ openViewCartModal, ...rest }) => {
   return (
     <React.Fragment>
       <section className="navbar__dark flex desktop__items">
@@ -75,7 +75,7 @@ const NavBarDark = ({ OpenViewCartModal, ...rest }) => {
               <SearchInput {...rest} />
               <div className="margin__vert__auto">
                 <span 
-                  onClick={OpenViewCartModal}
+                  onClick={openViewCartModal}
                   className="cart__icon">
                   <Icon name="shopping cart" />
                   <span 

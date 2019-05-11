@@ -14,7 +14,7 @@ const Categories = (state=initState, action) => {
     case types.GET_CATEGORIES_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_CATEGORIES_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     default:
       return state;
   }

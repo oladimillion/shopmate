@@ -50,12 +50,12 @@ class NavBar extends Component {
     return (
       <header className="navbar">
         <NavBarLight
-          OpenLoginModal={this.props.OpenLoginModal} 
-          OpenRegisterModal={this.props.OpenRegisterModal} 
-          OpenViewCartModal={this.props.OpenViewCartModal} 
+          openLoginModal={this.props.openLoginModal} 
+          openRegisterModal={this.props.openRegisterModal} 
+          openViewCartModal={this.props.openViewCartModal} 
         />
         <NavBarDark
-          OpenViewCartModal={this.props.OpenViewCartModal} 
+          openViewCartModal={this.props.openViewCartModal} 
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           search={this.state.search}
@@ -73,14 +73,14 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, 
   {
-    OpenViewCartModal: () => {
-      return actions.CreateAction(actions.SHOW_VIEW_CART_MODAL,);
+    openViewCartModal: () => {
+      return actions.createAction(actions.SHOW_VIEW_CART_MODAL,);
     },
-    OpenLoginModal: () => {
-      return actions.CreateAction(actions.SHOW_LOGIN_MODAL,);
+    openLoginModal: () => {
+      return actions.createAction(actions.SHOW_LOGIN_MODAL,);
     },
-    OpenRegisterModal: () => {
-      return actions.CreateAction(actions.SHOW_REGISTER_MODAL,);
+    openRegisterModal: () => {
+      return actions.createAction(actions.SHOW_REGISTER_MODAL,);
     },
     searchProducts,
   }

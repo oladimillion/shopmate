@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
+import MessageAlert from "../common/MessageAlert";
 import ModalForm, { 
   ModalFormFooter,
   ModalFormInput,
@@ -13,9 +14,21 @@ import './index.css';
 class Register extends Component {
 
   state = {
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
+  }
+
+  requestSent = false;
+
+  componentDidUpdate() {
+    const { user, closeRegisterModal} = this.props;
+    if(!user.error && this.requestSent && !user.isLoading) {
+      this.requestSent = false;
+      this.setState({ name: "", email: "", password: "" });
+      closeRegisterModal();
+    }
   }
 
   onChange = (e) => {
@@ -24,23 +37,54 @@ class Register extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    const { user, signup, setErrorMessage } = this.props;
+    if(user.isLoading) return;
+    const { password, confirmPassword } = this.state;
+    if(password !== confirmPassword) {
+      setErrorMessage({
+        error: {
+          message: "Passwords do not match",
+        }
+      })
+      return;
+    }
+    this.requestSent = true;
+    signup(this.state);
   }
 
   openLoginModal = () => {
-    const { OpenLoginModal, CloseModal } = this.props;
-    CloseModal();
-    OpenLoginModal();
+    const { openLoginModal, closeRegisterModal, setErrorMessage } = this.props;
+    closeRegisterModal();
+    openLoginModal();
+    setErrorMessage(null);
+  }
+
+  closeRegisterModal = () => {
+    const { closeRegisterModal, setErrorMessage } = this.props;
+    closeRegisterModal();
+    setErrorMessage(null);
   }
 
   render() {
-    const { openModal, CloseModal } = this.props;
+    const { open, user } = this.props;
+    const { error, message } = user;
     return (
       <ModalForm
         title="Sign Up"
         onSubmit={this.onSubmit}
-        onCloseModal={CloseModal}
-        open={openModal}>
+        onCloseModal={this.closeRegisterModal}
+        open={open}>
+        <MessageAlert
+          message={error ? error.error.message : message}
+          hasError={!!error}
+        />
+        <ModalFormInput
+          type="name"
+          name="name"
+          value={this.state.name}
+          onChange={this.onChange}
+          placeholder="Name"
+        />
         <ModalFormInput
           type="email"
           name="email"
@@ -78,19 +122,24 @@ class Register extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    openModal: state.RegisterModal.openModal
+    open: state.RegisterModal.openModal,
+    user: state.User,
   }
 }
 
 export default connect(
   mapStateToProps, 
   {
-    CloseModal: () => {
-      return actions.CreateAction(actions.HIDE_REGISTER_MODAL);
+    closeRegisterModal: () => {
+      return actions.createAction(actions.HIDE_REGISTER_MODAL);
     },
-    OpenLoginModal: () => {
-      return actions.CreateAction(actions.SHOW_LOGIN_MODAL);
+    openLoginModal: () => {
+      return actions.createAction(actions.SHOW_LOGIN_MODAL);
     },
+    setErrorMessage: (data) => {
+      return actions.createAction(actions.USER_FAILURE, data);
+    },
+    signup: actions.signup, 
   }
 )(Register);
 

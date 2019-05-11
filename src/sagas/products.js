@@ -1,6 +1,7 @@
 import { put, takeLatest, call } from "redux-saga/effects";
 import * as types from "../actions/types";
 import * as requests from "../requests";
+import connectivityCheck from "../utils/connectivityCheck";
 
 
 
@@ -11,7 +12,7 @@ export function* getProductsByDepartmentAsync(action) {
     const { data } = yield call(requests.getProductsByDepartment, action.payload);
     yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_PRODUCTS_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_PRODUCTS_FAILURE));
   }
 }
 
@@ -21,7 +22,7 @@ export function* getProductsByCategoryAsync(action) {
     const { data } = yield call(requests.getProductsByCategory, action.payload);
     yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_PRODUCTS_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_PRODUCTS_FAILURE));
   }
 }
 
@@ -31,7 +32,7 @@ export function* getProductByIdAsync(action) {
     const { data } = yield call(requests.getProductById, action.payload);
     yield put({ type: types.GET_PRODUCT_BY_ID_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_PRODUCT_BY_ID_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_PRODUCT_BY_ID_FAILURE));
   }
 }
 
@@ -41,7 +42,7 @@ export function* getProductReviewAsync(action) {
     const { data } = yield call(requests.getProductReview, action.payload);
     yield put({ type: types.GET_PRODUCT_REVIEW_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_PRODUCT_REVIEW_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_PRODUCT_REVIEW_FAILURE));
   }
 }
 
@@ -51,7 +52,7 @@ export function* addProductReviewAsync(action) {
     const { data } = yield call(requests.addProductReview, action.payload);
     yield put({ type: types.ADD_PRODUCT_REVIEW_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.ADD_PRODUCT_REVIEW_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.ADD_PRODUCT_REVIEW_FAILURE));
   }
 }
 
@@ -61,7 +62,7 @@ export function* getProductsAsync(action) {
     const { data } = yield call(requests.getProducts, action.payload);
     yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_PRODUCTS_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_PRODUCTS_FAILURE));
   }
 }
 
@@ -71,7 +72,7 @@ export function* searchProductsAsync(action) {
     const { data } = yield call(requests.searchProducts, action.payload);
     yield put({ type: types.GET_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_PRODUCTS_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_PRODUCTS_FAILURE));
   }
 }
 
@@ -81,7 +82,7 @@ export function* getPopularProductsAsync(action) {
     const { data } = yield call(requests.getPopularProducts, action.payload);
     yield put({ type: types.GET_POPULAR_PRODUCTS_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_POPULAR_PRODUCTS_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_POPULAR_PRODUCTS_FAILURE));
   }
 }
 

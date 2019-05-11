@@ -31,8 +31,8 @@ class Catalogue extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { allProduct } = this.props;
     if (!this.requestSent) {
-      this.getProducts(this.getPageNumber());
       this.requestSent = true;
+      this.getProducts(this.getPageNumber());
     }
     if(!allProduct.isLoading && this.requestSent) {
       this.requestSent = false;
@@ -56,9 +56,6 @@ class Catalogue extends Component {
     const query = this.getQuery(pageNumber);
     const { category, department } = this.getQueryParams();
     const { path } = this.props.match;
-    this.setState({ 
-      page: parseInt(pageNumber),
-    });
     if(path === "/search") {
       this.props.searchProducts(query);
     } else {

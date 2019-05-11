@@ -1,7 +1,7 @@
-const CreateAction = (type, data) => {
+const createAction = (type, data) => {
   return {
-    type, data,
+    type, payload: data,
   }
 }
 
-export { CreateAction };
+export { createAction };

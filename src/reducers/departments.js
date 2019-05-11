@@ -14,7 +14,7 @@ const Departments = (state=initState, action) => {
     case types.GET_DEPARTMENTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_DEPARTMENTS_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     default:
       return state;
   }
