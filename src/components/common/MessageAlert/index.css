@@ -1,0 +1,12 @@
+
+div.message__alert {
+  font-size: 0.9rem;
+}
+
+div.message__alert.success {
+  color: green;
+}
+
+div.message__alert.failure {
+  color: red;
+}

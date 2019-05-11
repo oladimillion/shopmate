@@ -1,8 +1,7 @@
 import { put, takeLatest, call } from "redux-saga/effects";
 import * as types from "../actions/types";
 import * as requests from "../requests";
-
-
+import connectivityCheck from "../utils/connectivityCheck";
 
 
 export function* getCategoriesAsync(action) {
@@ -11,7 +10,7 @@ export function* getCategoriesAsync(action) {
     const { data } = yield call(requests.getCategories, action.payload);
     yield put({ type: types.GET_CATEGORIES_SUCCESS, payload: data });
   } catch (error) {
-    yield put({ type: types.GET_CATEGORIES_FAILURE, error: error.response.data });
+    yield put(connectivityCheck(error, types.GET_CATEGORIES_FAILURE));
   }
 }
 

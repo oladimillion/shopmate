@@ -51,7 +51,7 @@ const dummyData = [
 class ViewCart extends Component {
  
   render() {
-    const { openModal, CloseModal } = this.props;
+    const { openModal, closeModal } = this.props;
     return (
       <Modal 
         open={openModal}
@@ -62,7 +62,7 @@ class ViewCart extends Component {
             4 Item(s) In The Cart
           </span>
           <span 
-            onClick={CloseModal}
+            onClick={closeModal}
             className="position__abs close__icon">
             &#x000D7;
           </span>
@@ -140,13 +140,13 @@ class ViewCart extends Component {
           <ItemButton 
             name="Back to Shop"  
             className="cart__footer__button footer__button__shop" 
-            onClick={CloseModal}
+            onClick={closeModal}
           />
           <ItemLink 
             name="Checkout" 
             to="/checkout" 
             className="cart__footer__button" 
-            onClick={CloseModal}
+            onClick={closeModal}
           />
         </footer>
       </Modal>
@@ -163,8 +163,8 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps, 
   {
-    CloseModal: () => {
-      return actions.CreateAction(actions.HIDE_VIEW_CART_MODAL);
+    closeModal: () => {
+      return actions.createAction(actions.HIDE_VIEW_CART_MODAL);
     },
   }
 )(ViewCart);

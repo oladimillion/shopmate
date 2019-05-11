@@ -59,11 +59,33 @@ class Sidebar extends Component {
     });
   }
 
+  clearAll = () => {
+    this.removeFilter({
+      categoryId: null,
+      departmentId: null,
+    });
+    this.props.history.push({
+      pathname: "/",
+      search: "",
+    });
+  }
+
   getCategoryList (departmentId) {
     const { categories } = this.props;
     return categories.data.rows.filter((category) => {
       return category.department_id === departmentId;
     });
+  }
+
+  getQuery(){
+    const { departmentId, categoryId } = this.state;
+    if(categoryId) {
+      return `?${queryString.stringify({category: categoryId, department: departmentId})}`;
+    } else if(departmentId) {
+      return `?${queryString.stringify({department: departmentId})}`;
+    } else {
+      return "";
+    }
   }
 
   getSeletectedCategoryName = (categoryId) => {
@@ -82,6 +104,10 @@ class Sidebar extends Component {
     return department ? department.name : "";
   }
 
+  removeFilter = (data) => {
+    this.setState(data);
+  }
+
   selectCategory = (category) => {
     this.setState({
       categoryId: category.category_id,
@@ -93,23 +119,8 @@ class Sidebar extends Component {
     this.setState({ 
       categoryList, 
       categoryId: null,
-      departmentId: department.department_id 
+      departmentId: department.department_id
     });
-  }
-
-  getQuery(){
-    const { departmentId, categoryId } = this.state;
-    if(categoryId) {
-      return `?${queryString.stringify({category: categoryId, department: departmentId})}`;
-    } else if(departmentId) {
-      return `?${queryString.stringify({department: departmentId})}`;
-    } else {
-      return "";
-    }
-  }
-
-  removeFilter = (data) => {
-    this.setState(data);
   }
 
   submit = (e) => {
@@ -120,7 +131,7 @@ class Sidebar extends Component {
     this.props.history.push({
       pathname: "/",
       search: query,
-    })
+    });
   }
 
   render (){
@@ -144,7 +155,10 @@ class Sidebar extends Component {
                 <li>
                   <Icon 
                     onClick={
-                      (e)=>this.removeFilter({departmentId: null})
+                      (e)=>this.removeFilter({
+                        categoryId: null,
+                        departmentId: null,
+                      })
                     }
                     className="cancel__icon" 
                     name="cancel" 
@@ -176,7 +190,7 @@ class Sidebar extends Component {
             title="Color" 
             className="radio__button__set flex space__between">
             {
-              colorButtonList.map((colorData, index) =>{
+              colorButtonList.map((colorData, index) => {
                 return (
                   <RadioButton 
                     name="color__set"
@@ -192,7 +206,7 @@ class Sidebar extends Component {
             title="Size" 
             className="square__button__set flex flex__wrap">
             {
-              squareButtonList.map((squareData, index) =>{
+              squareButtonList.map((squareData, index) => {
                 return (
                   <SquareButton 
                     name="square__set"
@@ -208,7 +222,7 @@ class Sidebar extends Component {
             title="Department" 
             className="department__set block">
             {
-              departments.data.map((department, index) =>{
+              departments.data.map((department, index) => {
                 return (
                   <RadioLabel 
                     name="radio__label__set__department"
@@ -228,7 +242,7 @@ class Sidebar extends Component {
                 title="Category" 
                 className="department__set block">
                 {
-                  categoryList.map((category, index) =>{
+                  categoryList.map((category, index) => {
                     return (
                       <RadioLabel 
                         name="radio__label__set__category"
@@ -249,7 +263,7 @@ class Sidebar extends Component {
           <span className="block">
             <ItemButton onClick={this.submit} name="Apply" />
           </span>
-          <button className="sidebar__footer__cancel">
+          <button onClick={this.clearAll} className="sidebar__footer__cancel">
             <Icon className="cancel__icon" name="cancel" />
             <span>Clear All</span>
           </button>

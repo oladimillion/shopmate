@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
+import MessageAlert from "../common/MessageAlert";
 import ModalForm, { 
   ModalFormFooter,
   ModalFormCheckboxLabel,
@@ -19,6 +20,17 @@ class Login extends Component {
     password: "",
   }
 
+  requestSent = false;
+
+  componentDidUpdate() {
+    const { user, closeLoginModal} = this.props;
+    if(!user.error && this.requestSent && !user.isLoading) {
+      this.requestSent = false;
+      this.setState({ email: "", password: "" });
+      closeLoginModal();
+    }
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -28,24 +40,39 @@ class Login extends Component {
   }
 
   onSubmit = (e) => {
+    const { user, login } = this.props;
     e.preventDefault();
-    console.log(this.state);
+    if(user.isLoading) return;
+    this.requestSent = true;
+    login(this.state);
   }
 
   openRegisterModal = () => {
-    const { OpenRegisterModal, CloseModal } = this.props;
-    CloseModal();
-    OpenRegisterModal();
+    const { openRegisterModal, closeLoginModal, setErrorMessage } = this.props;
+    closeLoginModal();
+    openRegisterModal();
+    setErrorMessage(null);
+  }
+
+  closeLoginModal = () => {
+    const { closeLoginModal, setErrorMessage } = this.props;
+    setErrorMessage(null);
+    closeLoginModal();
   }
 
   render() {
-    const { openModal, CloseModal } = this.props;
+    const { open, user } = this.props;
+    const { error, message } = user;
     return (
       <ModalForm
         title="Sign In"
         onSubmit={this.onSubmit}
-        onCloseModal={CloseModal}
-        open={openModal}>
+        onCloseModal={this.closeLoginModal}
+        open={open}>
+        <MessageAlert
+          message={error ? error.error.message : message}
+          hasError={!!error}
+        />
         <ModalFormInput
           type="email"
           name="email"
@@ -86,18 +113,23 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    openModal: state.LoginModal.openModal
+    open: state.LoginModal.openModal,
+    user: state.User,
   }
 }
 
 export default connect(
   mapStateToProps, 
   {
-    CloseModal: () => {
-      return actions.CreateAction(actions.HIDE_LOGIN_MODAL);
+    closeLoginModal: () => {
+      return actions.createAction(actions.HIDE_LOGIN_MODAL);
     },
-    OpenRegisterModal: () => {
-      return actions.CreateAction(actions.SHOW_REGISTER_MODAL);
+    openRegisterModal: () => {
+      return actions.createAction(actions.SHOW_REGISTER_MODAL);
     },
+    setErrorMessage: (data) => {
+      return actions.createAction(actions.USER_FAILURE, data);
+    },
+    login: actions.login, 
   }
 )(Login);
