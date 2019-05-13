@@ -49,7 +49,7 @@ const SearchInput = ({ className, onSubmit, search, ...rest }) => {
   )
 };
 
-const NavBarDark = ({ openViewCartModal, ...rest }) => {
+const NavBarDark = ({ openViewCartModal, user, cartQuantity, ...rest }) => {
   return (
     <React.Fragment>
       <section className="navbar__dark flex desktop__items">
@@ -73,15 +73,21 @@ const NavBarDark = ({ openViewCartModal, ...rest }) => {
             </div>
             <div className="flex">
               <SearchInput {...rest} />
-              <div className="margin__vert__auto">
-                <span 
-                  onClick={openViewCartModal}
-                  className="cart__icon">
-                  <Icon name="shopping cart" />
-                  <span 
-                    className="item__count item__count__invert">6</span>
-                </span>
-              </div>
+              {
+                user.isAuth && (
+                  <div className="margin__vert__auto">
+                    <span 
+                      onClick={openViewCartModal}
+                      className="cart__icon">
+                      <Icon name="shopping cart" />
+                      <span 
+                         className="item__count item__count__invert">
+                         {cartQuantity}
+                      </span>
+                      </span>
+                    </div>
+                )
+              }
             </div>
           </div>
         </div>

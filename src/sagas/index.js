@@ -3,6 +3,7 @@ import productWatcherArray from "./products";
 import departmentWatcherArray from "./departments";
 import categoryWatcherArray from "./categories";
 import usersWatcherArray from "./users";
+import cartWatcherArray from "./cart";
 
 
 export default function* root() {
@@ -11,5 +12,6 @@ export default function* root() {
     ...departmentWatcherArray.map(departmentWatcher => fork(departmentWatcher)),
     ...categoryWatcherArray.map(categoryWatcher => fork(categoryWatcher)),
     ...usersWatcherArray.map(usersWatcher => fork(usersWatcher)),
+    ...cartWatcherArray.map(cartWatcher => fork(cartWatcher)),
   ])
 }

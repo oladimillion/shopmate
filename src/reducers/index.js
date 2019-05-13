@@ -11,6 +11,7 @@ import products from "./products";
 import departments from "./departments";
 import categories from "./categories";
 import users from "./users";
+import cart from "./cart";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
 import ViewCartModal from "./viewCartModal";
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
   ...departments,
   ...categories,
   ...users,
+  ...cart,
 })
 
 const store = createStore(
@@ -44,14 +46,14 @@ const store = createStore(
 )
 
 const customer = JSON.parse(localStorage.getItem("customer"));
-const { accessToken, expires } = queryString.parse(document.cookie);
+const { accessToken } = queryString.parse(document.cookie);
 
 if(customer && accessToken) {
   store.dispatch({ 
     type: types.USER_SUCCESS, 
     payload: { customer },
   });
-  setAuthDetail({ accessToken, customer, expires_in: expires });
+  setAuthDetail({ accessToken, customer });
 }
 
 axios.interceptors.response.use(response => {

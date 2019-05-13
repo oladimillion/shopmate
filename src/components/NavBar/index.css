@@ -36,13 +36,64 @@ section.navbar__light li button {
   outline: none;
 }
 
+button.user__option:hover div.user__option__dropdown {
+  display: block;
+}
+
+button.user__option div.user__option__dropdown {
+  display: none;
+  right: 0;
+  top: 17px;
+  z-index: 100;
+  background: #fff;
+  padding: 0 0.7rem;
+  width: 70px;
+  text-align: left;
+  box-shadow: 0 0 5px #aaa;
+  z-index: 100;
+  border-radius: 2px;
+}
+
+button.user__option div.user__option__dropdown::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: -19px;
+  right: 7px;
+  z-index: 10;
+  border-bottom: 10px solid #fff;
+  border-top: 10px solid transparent;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+}
+
+button.user__option div.user__option__dropdown::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  top: -13px;
+  right: 5px;
+  z-index: 1;
+  border-right: 11px solid transparent;
+  border-left: 11px solid transparent;
+  border-bottom: 11px solid rgba(0, 0, 0, 0.1);
+  background: transparent;
+}
+
+div.user__option__dropdown > a {
+  margin: 0.9rem 0;
+  font-size: 0.9rem;
+}
+
 header.navbar .info__links {
   width: 300px;
 }
 
 
-li.flag__cart div.space__between:nth-child(1) {
-  margin-right: 50px;
+li.flag__cart div.space__between:nth-child(2) {
+  margin-left: 50px;
 }
 
 li div.space__between span.uk__flag {
@@ -101,8 +152,11 @@ div.brand__name a {
 
 div.navbar__search {
   width: 280px;
-  margin-right: 40px;
   position: relative;
+}
+
+div.navbar__search + div {
+  margin-left: 40px;
 }
 
 input.search__input::-webkit-input-placeholder { /* Edge */

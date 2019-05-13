@@ -1,4 +1,5 @@
 import { put, takeLatest, call } from "redux-saga/effects";
+import toastr from "../utils/toastr";
 import * as types from "../actions/types";
 import * as requests from "../requests";
 import setAuthDetail from "../utils/setAuthDetail";
@@ -12,6 +13,7 @@ export function* loginAsync(action) {
     const { data } = yield call(requests.login, action.payload);
     const { customer } = data;
     setAuthDetail(data);
+    toastr.success(`Welcome ${customer.name}!`);
     yield put({ 
       type: types.USER_SUCCESS, 
       payload: {customer, message: "Login successful!"},
@@ -27,6 +29,7 @@ export function* signupAsync(action) {
     const { data } = yield call(requests.signup, action.payload);
     const { customer } = data;
     setAuthDetail(data);
+    toastr.success("Registration successful");
     yield put({ 
       type: types.USER_SUCCESS, 
       payload: {customer, message: "Registration successful!"},

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import queryString from "query-string";
 
-import { searchProducts } from "../../actions";
+import { searchProducts, logout } from "../../actions";
 import * as actions from "../../actions"
 
 import NavBarLight from "./NavBarLight";
@@ -27,6 +27,11 @@ class NavBar extends Component {
     }
   }
 
+  cartQuantity() {
+    const { data } = this.props.cart;
+    return data.length > 9 ? "9+" : data.length;
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -47,18 +52,25 @@ class NavBar extends Component {
 
 
   render() {
+    const cartQuantity = this.cartQuantity();
     return (
       <header className="navbar">
         <NavBarLight
           openLoginModal={this.props.openLoginModal} 
           openRegisterModal={this.props.openRegisterModal} 
           openViewCartModal={this.props.openViewCartModal} 
+          user={this.props.user}
+          cartQuantity={cartQuantity}
+          cart={this.props.cart}
+          logout={this.props.logout}
         />
         <NavBarDark
           openViewCartModal={this.props.openViewCartModal} 
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           search={this.state.search}
+          user={this.props.user}
+          cartQuantity={cartQuantity}
         />
       </header>
     );
@@ -68,6 +80,8 @@ class NavBar extends Component {
 const mapStateToProps = (state) => {
   return {
     allProduct: state.AllProduct,
+    user: state.User,
+    cart: state.Cart,
   }
 }
 
@@ -83,5 +97,6 @@ export default connect(mapStateToProps,
       return actions.createAction(actions.SHOW_REGISTER_MODAL,);
     },
     searchProducts,
+    logout,
   }
 )(NavBar);

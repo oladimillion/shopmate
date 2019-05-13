@@ -24,17 +24,58 @@ const NavBarLight = ({
   openLoginModal,
   openRegisterModal,
   openViewCartModal,
+  user,
+  logout,
+  cart,
+  cartQuantity,
 }) => {
   return (
     <section className="navbar__light flex">
       <div className="inner__container navbar__inner">
         <ul className="flex space__between align__center margin__vert_auto full__width small__device__flex__col list__style__none">
-          <li>
-            Hi! {" "}
-            <button onClick={openLoginModal}>Sign in</button>
-            {" "} or {" "}
-            <button onClick={openRegisterModal}>Register</button>
-          </li>
+          {
+            !user.isAuth && (
+              <li>
+                <span>Hi! {" "}</span>
+                <button 
+                  onClick={openLoginModal}>
+                  Sign in
+                </button>
+                {" "} or {" "}
+                <button 
+                  onClick={openRegisterModal}>
+                  Register
+                </button>
+              </li>
+            )
+          }
+          {
+            user.isAuth && (
+              <li>
+                <span>
+                  Welcome {" "}
+                </span>
+                <button 
+                  className="user__option capitalize position__rel">
+                  {user.customer.name}
+                  <div 
+                    className="user__option__dropdown position__abs">
+                    <Link 
+                      className="block" 
+                      to="/profile">
+                      Profile
+                    </Link>
+                    <Link 
+                      onClick={logout}
+                      className="block" 
+                      to="/">
+                      Logout
+                    </Link>
+                  </div>
+                </button>
+              </li>
+            )
+          }
           <li className="flex space__between info__links desktop__items">
             {
               infoLinks.map((data, index) => {
@@ -53,18 +94,22 @@ const NavBarLight = ({
                 &pound;GBP
               </span>
             </div>
-            <div className="flex space__between">
-              <span 
-                onClick={openViewCartModal}
-                className="cart__icon">
-                <Icon name="shopping cart" />
-                <span className="item__count">6</span>
-              </span>
-              <span>
-                Your bag: 
-                &pound;3.99
-              </span>
-            </div>
+            {
+              user.isAuth && (
+                <div className="flex space__between">
+                  <span 
+                    onClick={openViewCartModal}
+                    className="cart__icon">
+                    <Icon name="shopping cart" />
+                    <span className="item__count">{cartQuantity}</span>
+                  </span>
+                  <span>
+                    Your bag: &pound;
+                    <span>{cart.totalAmount}</span>
+                  </span>
+                </div>
+              )
+            }
           </li>
         </ul>
       </div>

@@ -1,57 +1,63 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
+import { 
+  getCart, 
+  getCartAmount, 
+  deleteCartItem,
+  updateCart,
+} from "../../actions";
 
 import * as actions from "../../actions";
+import API from "../../api";
 
 import SelectQuantity from "../common/SelectQuantity";
 import PriceCurrency from "../common/PriceCurrency";
 import Modal from "../common/Modal";
 import { ItemButton, ItemLink } from "../common/ItemButtons";
 
-import shirt from "../../assets/images/images-shirt12.png";
 
 import './index.css';
 import './index.md.css';
 import './index.sm.css';
 
-const dummyData = [
-  {
-    name: "Green T shirt 2016",
-    size: "S",
-    price: 1,
-    quatity: 1,
-  },
-  {
-    name: "Blue T shirt 2016",
-    size: "XXL",
-    price: 200,
-    quatity: 5,
-  },
-  {
-    name: "Red T shirt 2016",
-    size: "X",
-    price: 2,
-    quatity: 2,
-  },
-  {
-    name: "Green T shirt 2019",
-    size: "M",
-    price: 17,
-    quatity: 9,
-  },
-  {
-    name: "Green T shirt 2000",
-    size: "XL",
-    price: 20,
-    quatity: 90,
-  },
-]
+
 
 class ViewCart extends Component {
- 
+
+  componentDidMount() {
+    const { user, getCart, getCartAmount } = this.props;
+    const { customer_id } = user.customer
+    if(customer_id) {
+      Promise.all([
+        getCart({ cartId: customer_id }),
+        getCartAmount({ cartId: customer_id }),
+      ]);
+    }
+  }
+
+  getImageLink(imageName) {
+    return imageName ? `${API}/images/products/${imageName}` : "";
+  }
+
+  updateCart = (item, quantity) => {
+    const { cart, updateCart } = this.props;
+    if(cart.isLoading) return;
+    updateCart({...item, quantity});
+  }
+
+  removeItemFromCart = (item) => {
+    const { cart, deleteCartItem } = this.props;
+    if(cart.isLoading) return;
+    deleteCartItem(item);
+  }
+
   render() {
-    const { openModal, closeModal } = this.props;
+    const { 
+      openModal, 
+      closeModal,
+      cart,
+    } = this.props;
     return (
       <Modal 
         open={openModal}
@@ -59,7 +65,7 @@ class ViewCart extends Component {
         modalInnerClassName="view__cart__inner">
         <header className="position__rel view__cart__hori__padding">
           <span className="cart__title">
-            4 Item(s) In The Cart
+            {cart.data.length} Item(s) In The Cart
           </span>
           <span 
             onClick={closeModal}
@@ -72,25 +78,25 @@ class ViewCart extends Component {
             <tr 
               className="table__column__label flex space__between">
               <th className="item flex__two">Item</th>
-              <th className="size flex__one">Size</th>
+              <th className="size flex__one hide">Size</th>
               <th className="quantity flex__one">Quantity</th>
               <th className="price flex__one">Price</th>
             </tr>
           </thead>
           <tbody className="block">
             {
-              dummyData.map((data, index) => {
+              cart.data.map((data) => {
                 return (
                   <tr 
-                    key={index}
+                    key={data.item_id}
                     className="flex space__between cart__item__list">
                     <td className="item flex__two">
                       <div className="flex">
                         <div className="cart__photo overflow__hidden">
                           <img 
                             className="object__fit" 
-                            src={shirt} 
-                            alt={`item${index}`} 
+                            src={this.getImageLink(data.image)} 
+                            alt={data.image} 
                           />
                         </div>
                         <div 
@@ -99,10 +105,11 @@ class ViewCart extends Component {
                             {data.name}
                           </span>
                           <span className="block uppercase">
-                            MEN BK5628
+                            {data.attributes}
                           </span>
                           <span className="block">
                             <button 
+                              onClick={(e) => this.removeItemFromCart(data)}
                               className="cart__remove unset__properties">
                               <Icon 
                                 className="red__color" 
@@ -116,11 +123,16 @@ class ViewCart extends Component {
                       </div>
                     </td>
                     <td 
-                      className="size flex__one bold uppercase">
+                      className="size flex__one bold uppercase hide">
                       {data.size}
                     </td>
                     <td className="quantity flex__one">
-                      <SelectQuantity quantity={data.quatity} />
+                      <SelectQuantity 
+                        quantity={data.quantity} 
+                        onChange={
+                          (value)=>this.updateCart(data, value)
+                        }
+                      />
                     </td>
                     <td className="price flex__one">
                       <PriceCurrency 
@@ -156,7 +168,9 @@ class ViewCart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    openModal: state.ViewCartModal.openModal
+    openModal: state.ViewCartModal.openModal,
+    cart: state.Cart,
+    user: state.User,
   }
 }
 
@@ -166,5 +180,9 @@ export default connect(
     closeModal: () => {
       return actions.createAction(actions.HIDE_VIEW_CART_MODAL);
     },
+    getCart,
+    getCartAmount,
+    deleteCartItem,
+    updateCart,
   }
 )(ViewCart);
