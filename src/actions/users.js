@@ -1,3 +1,4 @@
+import toastr from "../utils/toastr";
 import * as types from './types';
 import setAuthDetail from "../utils/setAuthDetail";
 
@@ -11,12 +12,17 @@ export const signup = (payload) => ({
   payload,
 });
 
+
 export const logout = () => {
   setAuthDetail({});
+  toastr.success("Log out successful");
   return {
-    type: types.USER_SUCCESS,
-    payload: {},
-    message: "You are logged out successfully",
+    type: types.USER_LOGOUT,
+    payload: { 
+      isAuth: false, 
+      customer: {},
+      message: "",
+    },
   };
 }
 

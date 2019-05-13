@@ -6,22 +6,24 @@ const initState = {
   customer: {},
   error: null,
   message: "",
+  isAuth: false,
 };
 
 const User = (state=initState, action) => {
   switch (action.type) {
     case types.USER_SUCCESS:
-      const { customer, message } = action.payload;
       return { 
         ...state, 
         isLoading: false, 
-        customer, 
-        message,
+        isAuth: true, 
+        ...action.payload,
       };
     case types.USER_FAILURE:
       return { ...state, isLoading: false, error: action.payload, message: "" };
     case types.USER_LOADING:
       return { ...initState, isLoading: true, message: "Please wait..." };
+    case types.USER_LOGOUT:
+      return { ...initState };
     default:
       return state;
   }

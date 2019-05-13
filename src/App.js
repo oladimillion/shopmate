@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
+import "toastr/build/toastr.min.css";
 import 'semantic-ui-css/semantic.min.css'
 
 class App extends Component {

@@ -23,11 +23,23 @@ class Login extends Component {
   requestSent = false;
 
   componentDidUpdate() {
-    const { user, closeLoginModal} = this.props;
+    const {
+      user, 
+      closeLoginModal,
+      getCart,
+      getCartAmount 
+    } = this.props;
+    const { customer_id } = user.customer
     if(!user.error && this.requestSent && !user.isLoading) {
       this.requestSent = false;
       this.setState({ email: "", password: "" });
       closeLoginModal();
+      if(customer_id) {
+        Promise.all([
+          getCart({ cartId: customer_id }),
+          getCartAmount({ cartId: customer_id }),
+        ]);
+      }
     }
   }
 
@@ -131,5 +143,7 @@ export default connect(
       return actions.createAction(actions.USER_FAILURE, data);
     },
     login: actions.login, 
+    getCart: actions.getCart,
+    getCartAmount: actions.getCartAmount,
   }
 )(Login);

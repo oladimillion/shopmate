@@ -1,4 +1,5 @@
 import { put, takeLatest, call } from "redux-saga/effects";
+import toastr from "../utils/toastr";
 import * as types from "../actions/types";
 import * as requests from "../requests";
 import connectivityCheck from "../utils/connectivityCheck";
@@ -50,6 +51,7 @@ export function* addProductReviewAsync(action) {
   yield put({ type: types.ADD_PRODUCT_REVIEW_LOADING });
   try {
     const { data } = yield call(requests.addProductReview, action.payload);
+    toastr.success("Review added");
     yield put({ type: types.ADD_PRODUCT_REVIEW_SUCCESS, payload: data });
   } catch (error) {
     yield put(connectivityCheck(error, types.ADD_PRODUCT_REVIEW_FAILURE));

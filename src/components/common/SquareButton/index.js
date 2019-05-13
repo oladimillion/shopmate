@@ -2,6 +2,8 @@ import React from 'react';
 
 import "./index.css";
 
+const func = ()=>{};
+
 const SquareButton = (props) => {
   return (
     <span className="square__button">
@@ -12,6 +14,7 @@ const SquareButton = (props) => {
         className="hide"
       />
       <label 
+        onClick={props.onClick || func}
         className={`block position__rel ${props.className || ""}`} 
         htmlFor={props.id}>
         { props.label }

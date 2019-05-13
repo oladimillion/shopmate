@@ -21,6 +21,19 @@ class Review extends Component {
     rating: 0,
   }
 
+  requestSent = false;
+
+  componentDidUpdate() {
+    const { productReview } = this.props;
+    if(!productReview.isLoading && this.requestSent) {
+      this.requestSent = false;
+      this.setState({
+        rating: 0,
+        review: ""
+      });
+    }
+  }
+
   onChange = (data) => {
     this.setState(data);
   }
@@ -28,14 +41,14 @@ class Review extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { productReview, addProductReview } = this.props;
-    console.log(this.state)
     if(productReview.isLoading) return;
+    this.requestSent = true;
     addProductReview(this.state);
   }
 
   render() {
 
-    const { productReview } = this.props;
+    const { productReview, user } = this.props;
     const { review, rating } = this.state;
 
     return (
@@ -109,86 +122,99 @@ class Review extends Component {
         </ul>
         <HorizontalSpacing />
         <span className="border__bottom"></span>
-        <HorizontalSpacing />
-        <h2>Add a review</h2>
-        <form onSubmit={this.onSubmit} className="review__form">
-          <ul className="list__style__none">
-            <li className="flex flex__wrap review__form__list">
-              <label 
-                htmlFor="text__input" 
-                className="review__form__label">
-                Choose a nickname
-              </label>
-              <span className="form__input__wrapper flex__one">
-                <input 
-                  type="text" 
-                  id="text__input"
-                  disabled
-                  className="review__form__input text__input" 
-                />
-              </span>
-            </li>
-            <li className="flex flex__wrap review__form__list">
-              <label 
-                htmlFor="text__area"
-                className="review__form__label">
-                Your review
-              </label>
-              <span 
-                className="form__input__wrapper position__rel text__area__wrapper flex__one">
-                <textarea 
-                  id="text__area"
-                  value={review}
-                  onChange={
-                    (e)=>this.onChange({review: e.target.value})
-                  }
-                  className="review__form__input text__area">
-                </textarea>
-                <span className="tiny__info flex flex__wrap">
-                  <span>Your review must be at least 50 characters</span>
-                  <span className="red__color">Full review guideline</span>
-                </span>
-              </span>
-            </li>
-            <li className="flex flex__wrap review__form__list">
-              <label className="review__form__label">
-                Overall rating
-              </label>
-              <span 
-                className="form__input__wrapper position__rel flex__one">
-                <Rating 
-                  className="outline__none" 
-                  maxRating={5} 
-                  defaultRating={rating}
-                  onRate={
-                    (e,{rating})=>this.onChange({rating})
-                  }
-                  icon='star' 
-                  size='huge' 
-                />
-              </span>
-            </li>
-            <li className="flex flex__wrap review__form__list">
-              <label 
-                className="review__form__label">
-              </label>
-              <span 
-                className="form__input__wrapper position__rel">
-                <button 
-                  type="submit"
-                  className="item__button block review__submit__button">
-                  Submit
-                </button>
-              </span>
-            </li>
-          </ul>
-        </form>
+        {
+          user.isAuth &&(
+            <React.Fragment>
+              <HorizontalSpacing />
+              <h2>Add a review</h2>
+              <form onSubmit={this.onSubmit} className="review__form">
+                <ul className="list__style__none">
+                  <li className="flex flex__wrap review__form__list">
+                    <label 
+                      htmlFor="text__input" 
+                      className="review__form__label">
+                      Choose a nickname
+                    </label>
+                    <span className="form__input__wrapper flex__one">
+                      <input 
+                        type="text" 
+                        id="text__input"
+                        disabled
+                        value={user.customer.name}
+                        className="review__form__input text__input" 
+                      />
+                    </span>
+                  </li>
+                  <li className="flex flex__wrap review__form__list">
+                    <label 
+                      htmlFor="text__area"
+                      className="review__form__label">
+                      Your review
+                    </label>
+                    <span 
+                      className="form__input__wrapper position__rel text__area__wrapper flex__one">
+                      <textarea 
+                        id="text__area"
+                        value={review}
+                        onChange={
+                          (e)=>this.onChange({review: e.target.value})
+                        }
+                        className="review__form__input text__area">
+                      </textarea>
+                      <span className="tiny__info flex flex__wrap">
+                        <span>Your review must be at least 50 characters</span>
+                        <span className="red__color">Full review guideline</span>
+                      </span>
+                    </span>
+                  </li>
+                  <li className="flex flex__wrap review__form__list">
+                    <label className="review__form__label">
+                      Overall rating
+                    </label>
+                    <span 
+                      className="form__input__wrapper position__rel flex__one">
+                      <Rating 
+                        className="outline__none" 
+                        maxRating={5} 
+                        defaultRating={rating}
+                        onRate={
+                          (e,{rating})=>this.onChange({rating})
+                        }
+                        icon='star' 
+                        size='huge' 
+                      />
+                    </span>
+                  </li>
+                  <li className="flex flex__wrap review__form__list">
+                    <label 
+                      className="review__form__label">
+                    </label>
+                    <span 
+                      className="form__input__wrapper position__rel">
+                      <button 
+                        type="submit"
+                        className="item__button block review__submit__button">
+                        Submit
+                      </button>
+                    </span>
+                  </li>
+                </ul>
+              </form>
+            </React.Fragment>
+          )
+        }
         <HorizontalSpacing />
       </div>
     )
   }
 }
 
-export default connect(null, {
+const mapStateToProps = (state) => {
+  return {
+    user: state.User,
+  }
+}
+
+export default connect(mapStateToProps, {
   addProductReview,
 })(Review);

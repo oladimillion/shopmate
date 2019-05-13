@@ -23,10 +23,27 @@ class Register extends Component {
   requestSent = false;
 
   componentDidUpdate() {
-    const { user, closeRegisterModal} = this.props;
+    const { 
+      user, 
+      closeRegisterModal,
+      getCart,
+      getCartAmount 
+    } = this.props;
+    const { customer_id } = user.customer
     if(!user.error && this.requestSent && !user.isLoading) {
       this.requestSent = false;
-      this.setState({ name: "", email: "", password: "" });
+      this.setState({ 
+        name: "", 
+        email: "", 
+        password: "",
+        confirmPassword: "",
+      });
+      if(customer_id) {
+        Promise.all([
+          getCart({ cartId: customer_id }),
+          getCartAmount({ cartId: customer_id }),
+        ]);
+      }
       closeRegisterModal();
     }
   }
@@ -140,6 +157,8 @@ export default connect(
       return actions.createAction(actions.USER_FAILURE, data);
     },
     signup: actions.signup, 
+    getCart: actions.getCart,
+    getCartAmount: actions.getCartAmount,
   }
 )(Register);
 

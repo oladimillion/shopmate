@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Rating } from 'semantic-ui-react'
 
-import { getProductById, getProductReview } from "../../actions";
+import { getProductById, getProductReview, addCart } from "../../actions";
 import API from "../../api";
 
 import Review from "./Review";
@@ -54,12 +54,15 @@ const squareButtonList = [
   "XL",
 ];
 
+
 class ViewItem extends Component {
 
   requestSent = false;
 
   state = {
     productImage: this.props.productById.data.image,
+    size: "L",
+    color: "red",
   }
 
   componentDidMount() {
@@ -68,6 +71,18 @@ class ViewItem extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     this.getProductAndReview();
+  }
+
+  addCart = (item) => {
+    const { user, cart, addCart } = this.props;
+    const { customer_id } = user.customer;
+    const { size, color } = this.state;
+    if(cart.isLoading) return;
+    addCart({ 
+      cart_id: customer_id, 
+      attributes: `${size} ${color}`,
+      ...item
+    });
   }
 
   get getParams() {
@@ -93,9 +108,9 @@ class ViewItem extends Component {
 
   getProductAndReview() {
     const { productById } = this.props;
-    const { data } = productById;
+    const { data, error } = productById;
     if (!this.requestSent && 
-      (+this.getParams !== data.product_id)) {
+      (+this.getParams !== data.product_id) && !error) {
       this.makeRequest();
       this.requestSent = true;
       this.setState({ productImage: "" });
@@ -105,13 +120,17 @@ class ViewItem extends Component {
     }
   }
 
+  setAttribute = (data) => {
+    this.setState(data);
+  }
+
   setProductImage = (imageName) => {
     this.setState({ productImage: imageName });
   }
 
   render() {
 
-    const { productById, productReview } = this.props;
+    const { productById, productReview, user } = this.props;
     const { data } = productById;
     const { productImage } = this.state;
 
@@ -205,6 +224,7 @@ class ViewItem extends Component {
                       id={colorData}
                       className={colorData}
                       key={index}
+                      onClick={(e)=>this.setAttribute({color: colorData})}
                     />
                   )
                 })
@@ -222,6 +242,7 @@ class ViewItem extends Component {
                       id={squareData}
                       label={squareData}
                       key={index}
+                      onClick={(e)=>this.setAttribute({size: squareData})}
                     />
                   )
                 })
@@ -231,20 +252,25 @@ class ViewItem extends Component {
               title="Quatity" 
               titleClassName="panel__title__style"
               className="radio__button__set flex viewitem__size__panel__width position__rel reset__select__quantity__padding">
-              <SelectQuantity quantity="10" />
+              <SelectQuantity quantity="1" />
             </PanelSection>
             <br />
-            <div 
-              className="flex space__between flex__wrap wish__list">
-              <ItemButton 
-                name="Add to cart"
-                className="wish__list__button"
-              />
-              <AddFavourite 
-                iconClassName="red__color"
-                name="Add to Wish List"
-              />
-            </div>
+            {
+              user.isAuth && (
+                <div 
+                  className="flex space__between flex__wrap wish__list">
+                  <ItemButton 
+                    name="Add to cart"
+                    onClick={()=>this.addCart(data)}
+                    className="wish__list__button"
+                  />
+                  <AddFavourite 
+                    iconClassName="red__color"
+                    name="Add to Wish List"
+                  />
+                </div>
+              )
+            }
           </div>
           {/*end of viewitem__info*/}
         </div>
@@ -269,10 +295,13 @@ const mapStateToProps = (state) => {
   return {
     productById: state.ProductById,
     productReview: state.ProductReview,
+    user: state.User,
+    cart: state.Cart,
   }
 };
 
 export default connect(mapStateToProps, {
   getProductById,
   getProductReview,
+  addCart,
 })(ViewItem);
