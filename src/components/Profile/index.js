@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
+import { profile, address } from "../../actions";
+import * as actions from "../../actions";
+
 import CheckboxLabel from "../common/CheckboxLabel";
 import HorizontalSpacing from "../common/HorizontalSpacing";
 import HorizontalLine from "../common/HorizontalLine";
+import MessageAlert from "../common/MessageAlert";
 import { ItemButton } from "../common/ItemButtons";
 import ProfileForm from "./ProfileForm";
 import LabelInput from "../common/LabelInput";
@@ -41,13 +45,14 @@ class Profile extends Component {
   requestSent = false;
 
   componentDidMount() {
-    const { customer } = this.props.user;
+    const { setErrorMessage, user } = this.props;
+    const { customer } = user;
+    setErrorMessage(null);
     this.setState(customer);
   }
 
   componentDidUpdate() {
     const { customer, isLoading } = this.props.user;
-
     if(this.requestSent && !isLoading) {
       this.setState({
         ...customer, 
@@ -56,6 +61,14 @@ class Profile extends Component {
       });
       this.requestSent = false;
     }
+  }
+
+  formatErrorMessage (error) {
+    const { message, field } = error;
+    if(field) {
+      return message.replace("The field(s)", field);
+    }
+    return message;
   }
 
   onChange = (e) => {
@@ -68,12 +81,32 @@ class Profile extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state);
+    const { user, address, profile, setErrorMessage } = this.props;
+    const { showAddressForm, password, confirmPassword } = this.state;
+    if(user.isLoading) return;
+    if(password.trim() !== confirmPassword.trim()) {
+      setErrorMessage({
+        error: {
+          message: "Passwords do not match",
+        }
+      })
+      return;
+    }
+    this.requestSent = true;
+    if(showAddressForm) {
+      Promise.all([
+        address(this.state),
+        profile(this.state),
+      ]);
+    } else {
+      profile(this.state);
+    }
   }
 
   render() {
-    const { showAddressForm } = this.state;
-    const { shippingRegion } = this.props;
+    const { showAddressForm, shipping_region_id } = this.state;
+    const { shippingRegion, user } = this.props;
+    const { error, message } = user;
 
     return (
       <div className="profile">
@@ -114,7 +147,8 @@ class Profile extends Component {
                         <select 
                           onChange={this.onChange}
                           className="block shipping_region" 
-                          name="shipping_region_id">
+                          name="shipping_region_id"
+                          value={shipping_region_id}>
                           {
                             shippingRegion.map(region => {
                               return (
@@ -139,6 +173,10 @@ class Profile extends Component {
               )
             }
             <br />
+            <MessageAlert
+              message={error ? this.formatErrorMessage(error.error) : message}
+              hasError={!!error}
+            />
             <footer className="profile__padding gray__bg">
               <HorizontalSpacing />
               <div className="flex space__between flex__row__reverse ">
@@ -165,4 +203,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {})(Profile);
+export default connect(mapStateToProps, {
+  profile,
+  address,
+  setErrorMessage: (data) => {
+    return actions.createAction(actions.USER_FAILURE, data);
+  },
+})(Profile);

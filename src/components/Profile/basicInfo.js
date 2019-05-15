@@ -11,6 +11,7 @@ export default (state) => ([
       label: "Email",
       value: state.email || "",
       required: true,
+      type: "email",
     },
   ],
   [
@@ -19,12 +20,14 @@ export default (state) => ([
       label: "Password",
       value: state.password || "",
       required: false,
+      type: "password",
     },
     {
       name: "confirmPassword",
       label: "Confirm Password",
       value: state.confirmPassword || "",
       required: false,
+      type: "password",
     },
   ],
   [
@@ -49,8 +52,8 @@ export default (state) => ([
       required: false,
     },
     {
-      name: "none",
-      label: "none",
+      name: "",
+      label: "",
       value: "",
       required: false,
       hidden: true,

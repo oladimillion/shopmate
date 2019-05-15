@@ -21,7 +21,7 @@ const User = (state=initState, action) => {
     case types.USER_FAILURE:
       return { ...state, isLoading: false, error: action.payload, message: "" };
     case types.USER_LOADING:
-      return { ...initState, isLoading: true, message: "Please wait..." };
+      return { ...state, isLoading: true, error: null, message: "Please wait..." };
     case types.USER_LOGOUT:
       return { ...initState };
     default:

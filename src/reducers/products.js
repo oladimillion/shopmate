@@ -14,7 +14,7 @@ const AllProduct = (state=initState, action) => {
     case types.GET_PRODUCTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_PRODUCTS_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     default:
       return state;
   }
@@ -27,7 +27,7 @@ const ProductById = (state={ data: {}, ...initState }, action) => {
     case types.GET_PRODUCT_BY_ID_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_PRODUCT_BY_ID_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     default:
       return state;
   }
@@ -44,7 +44,7 @@ const ProductReview = (state={ data: [], ...initState }, action) => {
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_PRODUCT_REVIEW_LOADING:
     case types.ADD_PRODUCT_REVIEW_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     default:
       return state;
   }
@@ -57,7 +57,7 @@ const PopularProducts = (state=initState, action) => {
     case types.GET_POPULAR_PRODUCTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_POPULAR_PRODUCTS_LOADING:
-      return { ...state, isLoading: true };
+      return { ...state, isLoading: true, error: null };
     default:
       return state;
   }

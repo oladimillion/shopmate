@@ -7,9 +7,16 @@ import "./index.css";
 const func = ()=>{};
 
 const LabelInput = ({
-  name, required, label, onChange, 
-  value, type, placeholder, icon,
-  labelInputClassname, children
+  name,
+  required,
+  label,
+  onChange,
+  value,
+  type,
+  placeholder,
+  icon,
+  labelInputClassname,
+  children
 }) => {
   return (
     <span className={`position__rel checkout__input block ${labelInputClassname || ""}`}>

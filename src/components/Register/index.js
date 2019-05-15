@@ -57,7 +57,7 @@ class Register extends Component {
     const { user, signup, setErrorMessage } = this.props;
     if(user.isLoading) return;
     const { password, confirmPassword } = this.state;
-    if(password !== confirmPassword) {
+    if(password.trim() !== confirmPassword.trim()) {
       setErrorMessage({
         error: {
           message: "Passwords do not match",

@@ -5,7 +5,8 @@ import queryString from "query-string";
 
 import rootSaga from '../sagas';
 import * as types from "../actions/types";
-import setAuthDetail from "../utils/setAuthDetail";
+import setAuthToken from "../utils/setAuthToken";
+import saveUserData from "../utils/saveUserData";
 
 import products from "./products";
 import departments from "./departments";
@@ -55,9 +56,10 @@ if(accessToken) {
     type: types.USER_SUCCESS, 
     payload: { customer },
   });
-  setAuthDetail({ accessToken, customer });
+  setAuthToken({accessToken});
 } else {
-  setAuthDetail({});
+  setAuthToken({});
+  saveUserData({});
 }
 
 axios.interceptors.response.use(response => {

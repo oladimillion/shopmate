@@ -66,6 +66,10 @@ class ViewItem extends Component {
   }
 
   componentDidMount() {
+    if(!/[\d]+/.test(this.getParams)){
+      this.props.history.push("/");
+      return;
+    }
     this.getProductAndReview();
   }
 
