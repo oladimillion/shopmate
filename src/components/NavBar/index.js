@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import queryString from "query-string";
 
-import { searchProducts, logout } from "../../actions";
+import { searchProducts, logout, getShippingRegion } from "../../actions";
 import * as actions from "../../actions"
 
 import NavBarLight from "./NavBarLight";
@@ -20,7 +20,9 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    const { search } = this.props.location;
+    const { getShippingRegion, location } = this.props;
+    const { search } = location;
+    getShippingRegion();
     const q = queryString.parse(search);
     if(search){
       this.setState({ search: q.query_string || "" });
@@ -97,6 +99,7 @@ export default connect(mapStateToProps,
       return actions.createAction(actions.SHOW_REGISTER_MODAL,);
     },
     searchProducts,
+    getShippingRegion,
     logout,
   }
 )(NavBar);

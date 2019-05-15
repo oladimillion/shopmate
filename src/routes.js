@@ -1,6 +1,7 @@
 import Homepage from "./components/Homepage";
 import ViewItem from "./components/ViewItem";
 import Checkout from "./components/Checkout";
+import Profile from "./components/Profile";
 
 
 export default [
@@ -24,6 +25,13 @@ export default [
     exact: true,
     private: true,
     path: "/checkout",
+  },
+  {
+    component: Profile,
+    name: "Profile",
+    exact: true,
+    private: true,
+    path: "/profile",
   },
   {
     component: ViewItem,

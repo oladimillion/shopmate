@@ -1,11 +1,11 @@
 span.checkout__input {
   width: inherit;
 }
-label.delivery__label {
+label.label__input.label {
   margin-bottom: 0.3rem;
 }
 
-input.delivery__input {
+input.label__input {
   width: 100%;
   min-width: 230px;
   border: 1px solid #ddd;
@@ -19,11 +19,11 @@ input.delivery__input {
   letter-spacing: 1px;
 }
 
-input.delivery__input:focus {
+input.label__input__input:focus {
   border: 1px solid rgba(0,235,0,0.6);
 }
 
-span.checkout__input__icon {
+span.label__input__icon {
   top: 69%;
   right: 10px;
   transform: translateY(-50%);

@@ -51,6 +51,10 @@ main.main__wrapper {
   flex-flow: column;
 }
 
+.flex__row__reverse {
+  flex-flow: row-reverse;
+}
+
 .flex__wrap {
   flex-wrap: wrap;
 }
@@ -69,6 +73,10 @@ main.main__wrapper {
 
 .float__right {
   float: right;
+}
+
+.clear__fix {
+  clear: both;
 }
 
 .space__between {
