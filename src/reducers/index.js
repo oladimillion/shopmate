@@ -51,7 +51,7 @@ const store = createStore(
 const customer = JSON.parse(localStorage.getItem("customer"));
 const { accessToken } = queryString.parse(document.cookie);
 
-if(accessToken) {
+if(accessToken && customer) {
   store.dispatch({ 
     type: types.USER_SUCCESS, 
     payload: { customer },
