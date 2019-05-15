@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import RadioLabel from "../../common/RadioLabel";
-import CheckoutInput from "../CheckoutInput";
+import LabelInput from "../../common/LabelInput";
 import HorizontalSpacing from "../../common/HorizontalSpacing";
 
 import "./index.css";
@@ -77,7 +77,7 @@ const Payment = (props) => {
       <div className="form__area">
         <div className="flex flex__wrap">
           <div className="flex__one payment__part">
-            <CheckoutInput 
+            <LabelInput 
               label="Cardholder's Name"
               value={props.payment.holder_name}
               onChange={(e) => props.onChange({
@@ -91,7 +91,7 @@ const Payment = (props) => {
           </div>
           <div className="payment__gap"></div>
           <div className="flex__one payment__part">
-            <CheckoutInput 
+            <LabelInput 
               label="Card number"
               value={props.payment.card_number}
               onChange={(e) => props.onChange({
@@ -113,7 +113,7 @@ const Payment = (props) => {
           <div className="flex__one payment__part card__date__ccv">
             <div className="flex flex__wrap">
               <div className="input__wrapper">
-                <CheckoutInput 
+                <LabelInput 
                   label="Valid through"
                   value={props.payment.validity}
                   onChange={(e) => props.onChange({
@@ -131,7 +131,7 @@ const Payment = (props) => {
               </div>
               <div className="payment__gap"></div>
               <div className="input__wrapper">
-                <CheckoutInput 
+                <LabelInput 
                   label="CCV/CVC"
                   value={props.payment.ccv}
                   onChange={(e) => props.onChange({

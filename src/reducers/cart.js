@@ -25,9 +25,9 @@ const Cart = (state=initState, action) => {
         totalAmount: calcTotalAmount(action.payload),
       };
     case types.GET_CART_AMOUNT_SUCCESS:
-      return { ...state, isLoading: false, totalAmount: action.payload.total_amount };
+      return { ...state, isLoading: false, totalAmount: action.payload.total_amount || 0 };
     case types.GET_CART_SUCCESS:
-      return { ...state, isLoading: false, data: action.payload[0] };
+      return { ...state, isLoading: false, data: action.payload };
     case types.UPDATE_CART_SUCCESS:
       return { 
         ...state, 

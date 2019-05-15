@@ -16,12 +16,6 @@ div.inner__checkout main.checkout__main {
   min-height: 300px;
 }
 
-div.horizontal__line {
-  border-bottom: 2px solid #ddd;
-}
-
-
-
 div.checkout .section__level {
   margin: 1.5rem 0;
 }

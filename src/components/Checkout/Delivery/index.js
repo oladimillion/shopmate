@@ -1,10 +1,11 @@
 import React from "react";
 import RadioLabel from "../../common/RadioLabel";
 import CheckboxLabel from "../../common/CheckboxLabel";
-import CheckoutInput from "../CheckoutInput";
+import HorizontalLine from "../../common/HorizontalLine";
+import LabelInput from "../../common/LabelInput";
+import InputGroup, { InputWrapper } from "../../common/InputGroup";
 
 import "./index.css";
-import "./index.md.css";
 
 
 const deliveryData = [
@@ -88,26 +89,24 @@ const Delivery = () => {
       {
         deliveryData.map(([leftData, rightData], index) => {
           return (
-            <div 
-              key={index}
-              className="flex space__between flex__wrap section__level input__section">
-              <span className="flex__one left__section">
-                <CheckoutInput 
+            <InputGroup key={index}>
+              <InputWrapper wrapperClassname="left__section">
+                <LabelInput 
                   label={leftData.label}
-                  value=""
-                  name={leftData.value}
+                  value={rightData.value}
+                  name={leftData.name}
                   required={true}
                 />
-              </span>
-              <span className="flex__one right__section">
-                <CheckoutInput 
+              </InputWrapper>
+              <InputWrapper wrapperClassname="right__section">
+                <LabelInput 
                   label={rightData.label}
-                  value=""
-                  name={rightData.value}
+                  value={rightData.value}
+                  name={rightData.name}
                   required={true}
                 />
-              </span>
-            </div>
+              </InputWrapper>
+            </InputGroup>
           )
         })
       }
@@ -122,7 +121,7 @@ const Delivery = () => {
           label="My billing information is the same as my delivery information"
         />
       </div>
-      <div className="section__level horizontal__line"></div>
+      <HorizontalLine />
       <div className="section__level delivery__option">
         <h2 className="">Delivery options</h2>
         <div className="options__section flex flex__wrap space__between">

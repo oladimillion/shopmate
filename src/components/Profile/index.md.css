@@ -1,0 +1,10 @@
+@media screen and (max-width: 710px) {
+  div.profile .profile__padding {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  div.profile .md__hide__input {
+    display: none;
+  }
+}

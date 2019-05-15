@@ -5,13 +5,15 @@ import queryString from "query-string";
 
 import rootSaga from '../sagas';
 import * as types from "../actions/types";
-import setAuthDetail from "../utils/setAuthDetail";
+import setAuthToken from "../utils/setAuthToken";
+import saveUserData from "../utils/saveUserData";
 
 import products from "./products";
 import departments from "./departments";
 import categories from "./categories";
 import users from "./users";
 import cart from "./cart";
+import shippingRegion from "./shippingRegion";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
 import ViewCartModal from "./viewCartModal";
@@ -38,6 +40,7 @@ const rootReducer = combineReducers({
   ...categories,
   ...users,
   ...cart,
+  ...shippingRegion,
 })
 
 const store = createStore(
@@ -48,12 +51,15 @@ const store = createStore(
 const customer = JSON.parse(localStorage.getItem("customer"));
 const { accessToken } = queryString.parse(document.cookie);
 
-if(customer && accessToken) {
+if(accessToken) {
   store.dispatch({ 
     type: types.USER_SUCCESS, 
     payload: { customer },
   });
-  setAuthDetail({ accessToken, customer });
+  setAuthToken({accessToken});
+} else {
+  setAuthToken({});
+  saveUserData({});
 }
 
 axios.interceptors.response.use(response => {

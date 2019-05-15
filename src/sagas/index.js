@@ -4,6 +4,7 @@ import departmentWatcherArray from "./departments";
 import categoryWatcherArray from "./categories";
 import usersWatcherArray from "./users";
 import cartWatcherArray from "./cart";
+import shippingRegionWatcherArray from "./shippingRegion";
 
 
 export default function* root() {
@@ -13,5 +14,6 @@ export default function* root() {
     ...categoryWatcherArray.map(categoryWatcher => fork(categoryWatcher)),
     ...usersWatcherArray.map(usersWatcher => fork(usersWatcher)),
     ...cartWatcherArray.map(cartWatcher => fork(cartWatcher)),
+    ...shippingRegionWatcherArray.map(shippingRegionWatcher => fork(shippingRegionWatcher)),
   ])
 }
