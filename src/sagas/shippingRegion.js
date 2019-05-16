@@ -14,11 +14,26 @@ export function* getShippingRegionAsync(action) {
   }
 }
 
+export function* getShippingRegionByIdAsync(action) {
+  yield put({ type: types.GET_SHIPPING_REGION_BY_ID_LOADING });
+  try {
+    const { data } = yield call(requests.getShippingRegionById, action.payload);
+    yield put({ type: types.GET_SHIPPING_REGION_BY_ID_SUCCESS, payload: data });
+  } catch (error) {
+    yield put(connectivityCheck(error, types.GET_SHIPPING_REGION_BY_ID_FAILURE));
+  }
+}
+
 function* getShippingRegionWatcher() {
   yield takeLatest(types.GET_SHIPPING_REGION_REQUEST, getShippingRegionAsync);
 }
 
+function* getShippingRegionByIdWatcher() {
+  yield takeLatest(types.GET_SHIPPING_REGION_BY_ID_REQUEST, getShippingRegionByIdAsync);
+}
+
 export default [
   getShippingRegionWatcher,
+  getShippingRegionByIdWatcher,
 ];
 

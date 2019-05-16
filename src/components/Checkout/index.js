@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+
+import * as actions from "../../actions";
+import { getTax } from "../../actions";
+import formatErrorMessage from "../../utils/formatErrorMessage";
+
 import HorizontalSpacing from "../common/HorizontalSpacing";
+import MessageAlert from "../common/MessageAlert";
 import Header from "./Header";
 import Footer from "./Footer";
 import Delivery from "./Delivery";
@@ -20,6 +27,17 @@ class Checkout extends Component {
       card_number: "",
       holder_name: "",
     },
+    delivery: {
+      shipping_id: 0,
+      shipping_region_id: 0,
+    },
+    confirmation: {
+      tax_id: 0,
+    },
+  }
+
+  componentDidMount() {
+    this.props.getTax();
   }
 
   renderStepComponent() {
@@ -34,22 +52,53 @@ class Checkout extends Component {
           />
         );
       case 2:
-        return <Confirmation />;
+        return (
+          <Confirmation 
+            onChange={this.onChange}
+            delivery={this.state.delivery}
+            confirmation={this.state.confirmation}
+          />
+        );
       case 1:
       default:
-        return <Delivery />;
+        return (
+          <Delivery 
+            delivery={this.state.delivery}
+            onChange={this.onChange}
+          />
+        );
     }
   }
 
   changeStep = (dir) => {
-    let step = this.state.step;
+    let { step, delivery, confirmation } = this.state;
+    if(step === 1 && !delivery.shipping_id){
+      this.setErrorMessage("Please choose your shipping option");
+      return;
+    } else if(step === 2 && !confirmation.tax_id) {
+      this.setErrorMessage("Please choose a 'tax type'");
+      return;
+    }
     if(dir < 1) {
       step = step > 1 ? step - 1 : 1;
     }
     else {
       step = step < 4 ? step + 1 : 4;
     }
+    this.clearErrorMessage();
     this.setState({ step });
+  }
+
+  setErrorMessage(message) {
+    this.props.setErrorMessage({
+      error: {
+        message,
+      }
+    })
+  }
+
+  clearErrorMessage() {
+    this.props.setErrorMessage(null);
   }
 
   makePayment = () => {
@@ -67,14 +116,15 @@ class Checkout extends Component {
   }
 
   onChange = (data) => {
-    this.setState(this.setLevelValues(data));
     switch(data.name) {
       case "ccv":
       case "validity":
       case "card_number":
         this.setStateWithMaskValue(data);
         break;
-      default: break;
+      default: 
+        this.setState(this.setLevelValues(data));
+        break;
     }
   }
 
@@ -92,6 +142,9 @@ class Checkout extends Component {
   }
 
   render() {
+    console.log(this.state)
+    const { order } = this.props;
+    const { error, message } = order;
     return (
       <div className="checkout">
         <div className="inner__container margin__hori__auto inner__checkout white__bg">
@@ -106,6 +159,10 @@ class Checkout extends Component {
             { this.renderStepComponent() }
           </main>
           <HorizontalSpacing />
+          <MessageAlert
+            message={error ? formatErrorMessage(error.error) : message}
+            hasError={!!error}
+          />
           <Footer 
             className="checkout__padding" 
             changeStep={this.changeStep} 
@@ -118,4 +175,16 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return {
+    user: state.User,
+    order: state.Order,
+  }
+}
+
+export default connect(mapStateToProps, {
+  getTax,
+  setErrorMessage: (data) => {
+    return actions.createAction(actions.CREATE_ORDER_FAILURE, data);
+  },
+})(Checkout);

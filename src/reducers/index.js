@@ -12,7 +12,9 @@ import products from "./products";
 import departments from "./departments";
 import categories from "./categories";
 import users from "./users";
+import order from "./order";
 import cart from "./cart";
+import tax from "./tax";
 import shippingRegion from "./shippingRegion";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
@@ -41,6 +43,8 @@ const rootReducer = combineReducers({
   ...users,
   ...cart,
   ...shippingRegion,
+  ...order,
+  ...tax,
 })
 
 const store = createStore(
