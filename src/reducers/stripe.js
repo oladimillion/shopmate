@@ -1,32 +1,31 @@
-
 import * as types from "../actions/types";
 
 const initState = {
   isLoading: false,
-  data: [],
+  data: {},
   error: null,
 };
 
-const ShippingRegion = (state=initState, action) => {
+const StripeToken = (state=initState, action) => {
   switch (action.type) {
-    case types.GET_SHIPPING_REGION_SUCCESS:
+    case types.GEN_STRIPE_TOKEN_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };
-    case types.GET_SHIPPING_REGION_FAILURE:
+    case types.GEN_STRIPE_TOKEN_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    case types.GET_SHIPPING_REGION_LOADING:
+    case types.GEN_STRIPE_TOKEN_LOADING:
       return { ...state, isLoading: true, error: null };
     default:
       return state;
   }
 }
 
-const ShippingRegionById = (state=initState, action) => {
+const StripeCharge = (state=initState, action) => {
   switch (action.type) {
-    case types.GET_SHIPPING_REGION_BY_ID_SUCCESS:
+    case types.CREATE_STRIPE_CHARGE_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };
-    case types.GET_SHIPPING_REGION_BY_ID_FAILURE:
+    case types.CREATE_STRIPE_CHARGE_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
-    case types.GET_SHIPPING_REGION_BY_ID_LOADING:
+    case types.CREATE_STRIPE_CHARGE_LOADING:
       return { ...state, isLoading: true, error: null };
     default:
       return state;
@@ -34,6 +33,6 @@ const ShippingRegionById = (state=initState, action) => {
 }
 
 export default { 
-  ShippingRegion,
-  ShippingRegionById,
+  StripeToken,
+  StripeCharge,
 };

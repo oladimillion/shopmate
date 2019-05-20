@@ -1,1 +1,1 @@
-export const isLoggedIn = () => localStorage.getItem("customer");
+export const isLoggedIn = () => !!localStorage.getItem("customer");

@@ -36,73 +36,103 @@ section.navbar__light li button {
   outline: none;
 }
 
+li > span.welcome {
+  margin-right: 13px;
+}
+
 button.user__option:hover div.user__option__dropdown {
   display: block;
 }
 
 button.user__option div.user__option__dropdown {
-  display: none;
   right: 0;
-  top: 17px;
+  top: 24px;
   z-index: 100;
   background: #fff;
-  padding: 0 0.7rem;
-  width: 70px;
+  padding: 0.9rem;
+  padding-left: 0.5rem;
   text-align: left;
-  box-shadow: 0 0 5px #aaa;
+  border: 0.6px solid #ddd;
   z-index: 100;
   border-radius: 2px;
+  width: 79px;
+}
+
+button.user__option span.user__option__icon {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  right: 5px;
 }
 
 button.user__option div.user__option__dropdown::before {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 11px;
+  height: 11px;
   top: -19px;
-  right: 7px;
+  right: 9px;
   z-index: 10;
   border-bottom: 10px solid #fff;
   border-top: 10px solid transparent;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
 
 button.user__option div.user__option__dropdown::after {
   content: "";
   position: absolute;
-  width: 14px;
-  height: 14px;
-  top: -13px;
-  right: 5px;
+  width: 12px;
+  height: 12px;
+  top: -12px;
+  right: 7px;
   z-index: 1;
-  border-right: 11px solid transparent;
-  border-left: 11px solid transparent;
-  border-bottom: 11px solid rgba(0, 0, 0, 0.1);
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  border-bottom: 13px solid #ddd;
   background: transparent;
 }
 
 div.user__option__dropdown > a {
-  margin: 0.9rem 0;
-  font-size: 0.9rem;
+  margin: 1rem 0;
+  font-size: 0.8rem;
+  font-weight: normal;
+  letter-spacing: 0.9px;
+  color: #254565;
+}
+
+div.user__option__dropdown a:hover {
+  text-decoration: underline;
+}
+
+div.user__option__dropdown a:first-child {
+  margin-top: 0;
+}
+
+div.user__option__dropdown a:last-child {
+  margin-bottom: 0;
 }
 
 header.navbar .info__links {
   width: 300px;
 }
 
+li.flag__cart div.space__between:nth-child(1) {
+  align-items: center;
+}
 
 li.flag__cart div.space__between:nth-child(2) {
   margin-left: 50px;
 }
 
-li div.space__between span.uk__flag {
+li div.space__between span.state__flag {
   width: 31px;
+  height: 20px;
   display: block;
   margin-right: 10px;
 }
 
-span.uk__flag img {
+span.state__flag img {
   width: 100%;
 }
 

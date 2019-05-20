@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
-import UK_FLAG from "../../../assets/images/Flag_of_Britain.svg";
+import USA_FLAG from "../../../assets/images/usa-flag.svg";
 
 
 const infoLinks = [
@@ -29,6 +29,9 @@ const NavBarLight = ({
   cart,
   cartQuantity,
 }) => {
+
+  const [showUserOption, setUserOption] = useState(false);
+
   return (
     <section className="navbar__light flex">
       <div className="inner__container navbar__inner">
@@ -52,26 +55,45 @@ const NavBarLight = ({
           {
             user.isAuth && (
               <li>
-                <span>
+                <span className="inline__block welcome">
                   Welcome {" "}
                 </span>
                 <button 
+                  onClick={(e) => setUserOption((state) => !state)}
                   className="user__option capitalize position__rel">
-                  {user.customer.name}
-                  <div 
-                    className="user__option__dropdown position__abs">
-                    <Link 
-                      className="block" 
-                      to="/profile">
-                      Profile
-                    </Link>
-                    <Link 
-                      onClick={logout}
-                      className="block" 
-                      to="/">
-                      Logout
-                    </Link>
-                  </div>
+                  {user.customer.name}{" "}
+                  <span 
+                    className="user__option__icon inline__block">
+                    &#9661;
+                  </span>
+                  {
+                    showUserOption && (
+                      <div 
+                        className="user__option__dropdown position__abs">
+                        <Link 
+                          className="flex space__between" 
+                          to="/profile">
+                          <span className="option__icon">
+                            <Icon name="user outline" /> 
+                          </span>
+                          <span className="option__label">
+                            Profile
+                          </span>
+                        </Link>
+                        <Link 
+                          onClick={logout}
+                          className="flex space__between" 
+                          to="/">
+                          <span className="option__icon">
+                            <Icon name="sign-out" /> 
+                          </span>
+                          <span className="option__label">
+                            Logout
+                          </span>
+                        </Link>
+                      </div>
+                    )
+                  }
                 </button>
               </li>
             )
@@ -87,11 +109,11 @@ const NavBarLight = ({
           </li>
           <li className="flex flag__cart small__device__flex__col">
             <div className="flex space__between">
-              <span className="uk__flag">
-                <img src={UK_FLAG} alt="UK_FLAG" />
+              <span className="state__flag">
+                <img src={USA_FLAG} alt="USA_FLAG" />
               </span>
               <span>
-                &pound;GBP
+                &#x00024;USD
               </span>
             </div>
             {
@@ -104,7 +126,7 @@ const NavBarLight = ({
                     <span className="item__count">{cartQuantity}</span>
                   </span>
                   <span>
-                    Your bag: &pound;
+                    Your bag: &#x00024;
                     <span>{cart.totalAmount}</span>
                   </span>
                 </div>

@@ -5,3 +5,9 @@ export const getShippingRegion = (payload) => ({
   payload,
 });
 
+export const getShippingRegionById = (payload) => ({
+  type: types.GET_SHIPPING_REGION_BY_ID_REQUEST,
+  payload,
+});
+
+

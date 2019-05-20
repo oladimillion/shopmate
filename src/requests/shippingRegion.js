@@ -7,3 +7,7 @@ export const getShippingRegion = () => {
   return axios.get(`${basePath}`);
 };
 
+export const getShippingRegionById = (payload) => {
+  return axios.get(`${basePath}/${payload.shipping_region_id}`);
+};
+

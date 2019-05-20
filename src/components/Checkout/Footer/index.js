@@ -12,6 +12,9 @@ const Footer = (props) => {
       nextStep.name = "Pay";
       nextStep.func = props.makePayment;
       break;
+    case 2: 
+      nextStep.func = props.createOrder;
+      break;
     default: break;
   }
 

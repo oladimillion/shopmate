@@ -2,7 +2,7 @@ import React from 'react';
 import LabelInput from "../common/LabelInput";
 import InputGroup, { InputWrapper } from "../common/InputGroup";
 
-export default ({ title, inputDataArray, onChange, dataList, children }) => {
+export default ({ title, inputDataArray, onChange, children }) => {
   return (
     <div className=" profile__padding">
       <header className="section__level">
@@ -21,9 +21,8 @@ export default ({ title, inputDataArray, onChange, dataList, children }) => {
                     type={leftData.type}
                     onChange={onChange}
                     required={leftData.required}
-                    labelInputClassname={`${leftData.hidden ? "hidden md__hide__input" : ""}`}
+                    labelInputClassname={`${leftData.hidden ? "hidden md__hide" : ""}`}
                     hasDatalist={leftData.hasDatalist}
-                    dataList={dataList}
                   />
                 </InputWrapper>
                 <InputWrapper wrapperClassname="right__section">
@@ -34,7 +33,7 @@ export default ({ title, inputDataArray, onChange, dataList, children }) => {
                     type={rightData.type}
                     onChange={onChange}
                     required={rightData.required}
-                    labelInputClassname={`${rightData.hidden ? "hidden md__hide__input" : ""}`}
+                    labelInputClassname={`${rightData.hidden ? "hidden md__hide" : ""}`}
                   />
                 </InputWrapper>
               </InputGroup>

@@ -1,51 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import RadioLabel from "../../common/RadioLabel";
 import CheckboxLabel from "../../common/CheckboxLabel";
 import HorizontalLine from "../../common/HorizontalLine";
 import LabelInput from "../../common/LabelInput";
 import InputGroup, { InputWrapper } from "../../common/InputGroup";
 
+
+import deliveryInputData from "./deliveryInputData";
+
 import "./index.css";
 
-
-const deliveryData = [
-  [
-    {
-      name: "first_name",
-      label: "First name",
-      value: "",
-    },
-    {
-      name: "last_name",
-      label: "Last name",
-      value: "",
-    },
-  ],
-  [
-    {
-      name: "address",
-      label: "Address",
-      value: "",
-    },
-    {
-      name: "city",
-      label: "City",
-      value: "",
-    },
-  ],
-  [
-    {
-      name: "state",
-      label: "State",
-      value: "",
-    },
-    {
-      name: "zip_code",
-      label: "Zip code",
-      value: "",
-    },
-  ],
-];
 
 const Label = ({shippingType, duration}) => {
   return (
@@ -60,88 +24,140 @@ const Label = ({shippingType, duration}) => {
   )
 };
 
-const radioLabelData = [
-  {
-    name: "delivery__option",
-    id: "standard__shipping",
-    label: (
-      <Label 
-        shippingType={`Standard shipping: ${" "}`}
-        duration="(free, 2-3 business days)"
-      />
-    )
-  },
-  {
-    name: "delivery__option",
-    id: "express__shipping",
-    label: (
-      <Label 
-        shippingType={`Express shipping: ${" "}`}
-        duration="(&pound;23, 1-2 business days)"
-      />
-    ),
-  },
-];
 
-const Delivery = () => {
-  return (
-    <div className="delivery">
-      {
-        deliveryData.map(([leftData, rightData], index) => {
-          return (
-            <InputGroup key={index}>
+class Delivery extends Component {
+
+
+  onChange = (e) => {
+    this.props.onChange({
+      name: e.target.name,
+      level: "delivery",
+      value: e.target.value,
+    });
+  }
+
+  onCheck = ({shipping_id}) => {
+    this.props.onChange({
+      name: "shipping_id",
+      level: "delivery",
+      value: shipping_id,
+    });
+  }
+
+  shippingRegions(shippingRegionById) {
+    const re = /\([\D\d]+\)/;
+    return shippingRegionById.data.map((data) => {
+      return  {
+        name: "delivery__option",
+        id: data.shipping_id,
+        label: (
+          <Label 
+            shippingType={`${data.shipping_type.replace(re, "")}: ${" "}`}
+            duration={`${data.shipping_type.match(re)[0]}`}
+          />
+        )
+      }
+    })
+  }
+
+  render() {
+    const { shippingRegion, shippingRegionById, delivery } = this.props;
+    return (
+      <div className="delivery">
+        {
+          deliveryInputData(delivery).map(([leftData, rightData], index) => {
+            return (
+              <InputGroup key={index}>
+                <InputWrapper wrapperClassname="left__section">
+                  <LabelInput 
+                    label={leftData.label}
+                    value={leftData.value}
+                    name={leftData.name}
+                    onChange={this.onChange}
+                    required={leftData.required}
+                    labelInputClassname={`${leftData.hidden ? "hidden md__hide__input" : ""}`}
+                  />
+                </InputWrapper>
+                <InputWrapper wrapperClassname="right__section">
+                  <LabelInput 
+                    label={rightData.label}
+                    value={rightData.value}
+                    onChange={this.onChange}
+                    name={rightData.name}
+                    required={rightData.required}
+                    labelInputClassname={`${rightData.hidden ? "hidden md__hide" : ""}`}
+                  />
+                </InputWrapper>
+              </InputGroup>
+            )
+          })
+        }
+        <div className="section__level">
+          <CheckboxLabel 
+            name="billing__info__check"
+            id="billing__info__check"
+            label="My billing information is the same as my delivery information"
+          />
+        </div>
+        <HorizontalLine />
+        <div className="section__level delivery__option">
+          <h2 className="">Delivery options</h2>
+          <div className="section__level">
+            <InputGroup>
               <InputWrapper wrapperClassname="left__section">
                 <LabelInput 
-                  label={leftData.label}
-                  value={rightData.value}
-                  name={leftData.name}
-                  required={true}
-                />
+                  label="Shipping Region"
+                  name="shipping_region_id">
+                  <select 
+                    onChange={this.onChange}
+                    className="block shipping_region" 
+                    name="shipping_region_id"
+                    value={delivery.shipping_region_id}>
+                    {
+                      shippingRegion.data.map(region => {
+                        return (
+                          <option 
+                            key={region.shipping_region_id}
+                            value={region.shipping_region_id}>
+                            {region.shipping_region}
+                          </option>
+                        )
+                      })
+                    }
+                  </select>
+                </LabelInput>
               </InputWrapper>
               <InputWrapper wrapperClassname="right__section">
                 <LabelInput 
-                  label={rightData.label}
-                  value={rightData.value}
-                  name={rightData.name}
-                  required={true}
+                  name="uiiouio"
+                  labelInputClassname="hidden md__hide"
                 />
               </InputWrapper>
             </InputGroup>
-          )
-        })
-      }
-      <div className="section__level">
-        <span className="bold gray__color">Country: {" "}</span>
-        <span className="gray__color">United Kingdom</span>
-      </div>
-      <div className="section__level">
-        <CheckboxLabel 
-          name="billing__info__check"
-          id="billing__info__check"
-          label="My billing information is the same as my delivery information"
-        />
-      </div>
-      <HorizontalLine />
-      <div className="section__level delivery__option">
-        <h2 className="">Delivery options</h2>
-        <div className="options__section flex flex__wrap space__between">
-          {
-            radioLabelData.map((data, index) => {
-              return (
-                <RadioLabel 
-                  key={index}
-                  name={data.name}
-                  id={data.id}
-                  label={data.label}
-                  className="options__section"
-                />
-              )
-            })
-          }
+          </div>
+          <div className="options__section section__level flex flex__wrap">
+            {
+              this.shippingRegions(shippingRegionById)
+                .map((data, index) => {
+                  return (
+                    <RadioLabel 
+                      key={index}
+                      name={data.name}
+                      id={data.id}
+                      label={data.label}
+                      checked={delivery.shipping_id === data.id}
+                      onClick={(e)=>this.onCheck({shipping_id: data.id})}
+                      className="options__section"
+                    />
+                  )
+                })
+            }
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
+
 }
 
 export default Delivery;

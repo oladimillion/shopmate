@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { profile, address } from "../../actions";
 import * as actions from "../../actions";
+import formatErrorMessage from "../../utils/formatErrorMessage";
 
 import CheckboxLabel from "../common/CheckboxLabel";
 import HorizontalSpacing from "../common/HorizontalSpacing";
@@ -52,8 +53,8 @@ class Profile extends Component {
   }
 
   componentDidUpdate() {
-    const { customer, isLoading } = this.props.user;
-    if(this.requestSent && !isLoading) {
+    const { customer, isLoading, error } = this.props.user;
+    if(this.requestSent && !isLoading && !error) {
       this.setState({
         ...customer, 
         password: "",
@@ -61,14 +62,6 @@ class Profile extends Component {
       });
       this.requestSent = false;
     }
-  }
-
-  formatErrorMessage (error) {
-    const { message, field } = error;
-    if(field) {
-      return message.replace("The field(s)", field);
-    }
-    return message;
   }
 
   onChange = (e) => {
@@ -165,7 +158,7 @@ class Profile extends Component {
                     </InputWrapper>
                     <InputWrapper wrapperClassname="right__section">
                       <LabelInput 
-                        labelInputClassname="hidden md__hide__input"
+                        labelInputClassname="hidden md__hide"
                       />
                     </InputWrapper>
                   </InputGroup>
@@ -174,7 +167,7 @@ class Profile extends Component {
             }
             <br />
             <MessageAlert
-              message={error ? this.formatErrorMessage(error.error) : message}
+              message={error ? formatErrorMessage(error.error) : message}
               hasError={!!error}
             />
             <footer className="profile__padding gray__bg">

@@ -5,6 +5,9 @@ import categoryWatcherArray from "./categories";
 import usersWatcherArray from "./users";
 import cartWatcherArray from "./cart";
 import shippingRegionWatcherArray from "./shippingRegion";
+import orderWatcherArray from "./order";
+import taxWatcherArray from "./tax";
+import stripeWatcherArray from "./stripe";
 
 
 export default function* root() {
@@ -15,5 +18,8 @@ export default function* root() {
     ...usersWatcherArray.map(usersWatcher => fork(usersWatcher)),
     ...cartWatcherArray.map(cartWatcher => fork(cartWatcher)),
     ...shippingRegionWatcherArray.map(shippingRegionWatcher => fork(shippingRegionWatcher)),
+    ...orderWatcherArray.map(orderWatcher => fork(orderWatcher)),
+    ...taxWatcherArray.map(taxWatcher => fork(taxWatcher)),
+    ...stripeWatcherArray.map(stripeWatcher => fork(stripeWatcher)),
   ])
 }
