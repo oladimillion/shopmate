@@ -8,3 +8,4 @@ export * from "./cart";
 export * from "./shippingRegion";
 export * from "./order";
 export * from "./tax";
+export * from "./stripe";

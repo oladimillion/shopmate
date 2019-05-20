@@ -1,13 +1,10 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import RadioLabel from "../../common/RadioLabel";
 import CheckboxLabel from "../../common/CheckboxLabel";
 import HorizontalLine from "../../common/HorizontalLine";
 import LabelInput from "../../common/LabelInput";
 import InputGroup, { InputWrapper } from "../../common/InputGroup";
 
-import { getShippingRegionById } from "../../../actions";
-import * as actions from "../../../actions";
 
 import deliveryInputData from "./deliveryInputData";
 
@@ -30,46 +27,16 @@ const Label = ({shippingType, duration}) => {
 
 class Delivery extends Component {
 
-  state = {}
 
-  componentDidMount() {
-    const { delivery, user } = this.props;
-    const { customer } = user;
-    this.setState({
-      ...customer,
-      first_name: customer.name,
-      last_name: customer.name,
-      address: customer.address_1,
-      shipping_region_id: delivery.shipping_region_id || customer.shipping_region_id,
-      shipping_id: delivery.shipping_id,
-    }, ()=> {
-      this.props.getShippingRegionById(this.state);
+  onChange = (e) => {
+    this.props.onChange({
+      name: e.target.name,
+      level: "delivery",
+      value: e.target.value,
     });
   }
 
-  onChange = (e) => {
-    let { shipping_region_id } = this.state;
-    if(e.target.name === "shipping_region_id"){
-      shipping_region_id = e.target.value;
-      this.props.getShippingRegionById({shipping_region_id});
-      this.setState({shipping_region_id})
-      this.props.onChange({
-        name: "shipping_region_id",
-        level: "delivery",
-        value: shipping_region_id,
-      });
-    } else {
-      this.setState({[e.target.name]: e.target.value});
-      this.props.onChange({
-        name: e.target.name,
-        level: "delivery",
-        value: e.target.value,
-      });
-    }
-  }
-
   onCheck = ({shipping_id}) => {
-    this.setState({shipping_id});
     this.props.onChange({
       name: "shipping_id",
       level: "delivery",
@@ -79,7 +46,7 @@ class Delivery extends Component {
 
   shippingRegions(shippingRegionById) {
     const re = /\([\D\d]+\)/;
-    return shippingRegionById.map((data) => {
+    return shippingRegionById.data.map((data) => {
       return  {
         name: "delivery__option",
         id: data.shipping_id,
@@ -94,11 +61,11 @@ class Delivery extends Component {
   }
 
   render() {
-    const { shippingRegion, shippingRegionById } = this.props;
+    const { shippingRegion, shippingRegionById, delivery } = this.props;
     return (
       <div className="delivery">
         {
-          deliveryInputData(this.state).map(([leftData, rightData], index) => {
+          deliveryInputData(delivery).map(([leftData, rightData], index) => {
             return (
               <InputGroup key={index}>
                 <InputWrapper wrapperClassname="left__section">
@@ -107,6 +74,7 @@ class Delivery extends Component {
                     value={leftData.value}
                     name={leftData.name}
                     onChange={this.onChange}
+                    required={leftData.required}
                     labelInputClassname={`${leftData.hidden ? "hidden md__hide__input" : ""}`}
                   />
                 </InputWrapper>
@@ -116,6 +84,7 @@ class Delivery extends Component {
                     value={rightData.value}
                     onChange={this.onChange}
                     name={rightData.name}
+                    required={rightData.required}
                     labelInputClassname={`${rightData.hidden ? "hidden md__hide" : ""}`}
                   />
                 </InputWrapper>
@@ -143,9 +112,9 @@ class Delivery extends Component {
                     onChange={this.onChange}
                     className="block shipping_region" 
                     name="shipping_region_id"
-                    value={this.state.shipping_region_id}>
+                    value={delivery.shipping_region_id}>
                     {
-                      shippingRegion.map(region => {
+                      shippingRegion.data.map(region => {
                         return (
                           <option 
                             key={region.shipping_region_id}
@@ -176,7 +145,7 @@ class Delivery extends Component {
                       name={data.name}
                       id={data.id}
                       label={data.label}
-                      checked={this.state.shipping_id === data.id}
+                      checked={delivery.shipping_id === data.id}
                       onClick={(e)=>this.onCheck({shipping_id: data.id})}
                       className="options__section"
                     />
@@ -191,17 +160,4 @@ class Delivery extends Component {
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.User,
-    shippingRegion: state.ShippingRegion.data,
-    shippingRegionById: state.ShippingRegionById.data,
-  }
-}
-
-export default connect(mapStateToProps, {
-  getShippingRegionById,
-  setErrorMessage: (data) => {
-    return actions.createAction(actions.USER_FAILURE, data);
-  },
-})(Delivery);
+export default Delivery;

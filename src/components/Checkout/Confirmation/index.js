@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 import "./index.css";
 import "./index.md.css";
@@ -26,12 +25,22 @@ class Confirmation extends Component {
   getShippingDetail() {
     const { shippingRegionById, delivery } = this.props;
     const { shipping_id } = delivery;
-    const shippingDetail = shippingRegionById.find(data => data.shipping_id === shipping_id );
+    const shippingDetail = shippingRegionById.data.find(data => data.shipping_id === shipping_id );
     return shippingDetail || {};
   }
 
+  getAddressBody({delivery, customer}) {
+    return [
+      delivery.address || customer.address_1 || "",
+      delivery.city || customer.city || "",
+      delivery.country || customer.country || "",
+      delivery.postal_code || customer.postal_code || "",
+    ]
+      .filter(data => data !== "")
+      .join(", ") + ".";
+  }
+
   render() {
-    console.log(this.props)
     const re = /\([\D\d]+\)/;
     const { user, cart, delivery, tax, confirmation } = this.props;
     const { customer } = user;
@@ -83,12 +92,7 @@ class Confirmation extends Component {
             <h3 className="">Delivery</h3>
             <DeliverySection 
               title="Address"
-              body={`
-                ${delivery.address || customer.address_1}${", "}
-                ${delivery.city || customer.city}${", "}
-                ${delivery.country || customer.country}${", "}
-                ${delivery.postal_code || customer.postal_code}${". "}
-              `}
+              body={this.getAddressBody({delivery, customer})}
             />
             <DeliverySection 
               title="Delivery options"
@@ -114,7 +118,7 @@ class Confirmation extends Component {
                 value={confirmation.tax_id}>
                 <option disabled value={0}>Select tax type</option>
                 {
-                  tax.map((data) => {
+                  tax.data.map((data) => {
                     return (
                       <option 
                         key={data.tax_id} 
@@ -160,14 +164,5 @@ class Confirmation extends Component {
 
 }
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.User,
-    cart: state.Cart,
-    tax: state.Tax.data,
-    shippingRegionById: state.ShippingRegionById.data,
-  }
-}
 
-export default connect(mapStateToProps, {
-})(Confirmation);
+export default Confirmation;

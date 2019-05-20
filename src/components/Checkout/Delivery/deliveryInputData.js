@@ -43,10 +43,10 @@ export default (state) => {
         value: state.country || "",
       },
       {
-        name: "",
-        label: "",
-        value: "",
-        hidden: true,
+        name: "description",
+        label: "Description",
+        value: state.description || "",
+        required: true,
       },
     ],
   ];

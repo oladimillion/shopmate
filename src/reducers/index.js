@@ -15,6 +15,7 @@ import users from "./users";
 import order from "./order";
 import cart from "./cart";
 import tax from "./tax";
+import stripe from "./stripe";
 import shippingRegion from "./shippingRegion";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
   ...shippingRegion,
   ...order,
   ...tax,
+  ...stripe,
 })
 
 const store = createStore(

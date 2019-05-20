@@ -53,8 +53,8 @@ class Profile extends Component {
   }
 
   componentDidUpdate() {
-    const { customer, isLoading } = this.props.user;
-    if(this.requestSent && !isLoading) {
+    const { customer, isLoading, error } = this.props.user;
+    if(this.requestSent && !isLoading && !error) {
       this.setState({
         ...customer, 
         password: "",
