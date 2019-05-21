@@ -117,6 +117,7 @@ class Delivery extends Component {
                       shippingRegion.data.map(region => {
                         return (
                           <option 
+                            disabled={region.shipping_region_id === 1}
                             key={region.shipping_region_id}
                             value={region.shipping_region_id}>
                             {region.shipping_region}

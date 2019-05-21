@@ -55,14 +55,22 @@ const store = createStore(
 )
 
 const customer = JSON.parse(localStorage.getItem("customer"));
-const { accessToken } = queryString.parse(document.cookie);
+const cookie = document.cookie;
+let token = "";
 
-if(accessToken && customer) {
+if(cookie) {
+  cookie.split(";").forEach(data => {
+    const { accessToken } = queryString.parse(data);
+    if(accessToken) token = accessToken;
+  })
+}
+
+if(token && customer) {
   store.dispatch({ 
     type: types.USER_SUCCESS, 
     payload: { customer },
   });
-  setAuthToken({accessToken});
+  setAuthToken({accessToken: token});
 } else {
   setAuthToken({});
   saveUserData({});

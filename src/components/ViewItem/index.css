@@ -1,4 +1,8 @@
 
+div.viewitem .loader__height {
+  height: 400px;
+}
+
 div.viewitem__inner .normal__padding {
   padding: 3%;
 }

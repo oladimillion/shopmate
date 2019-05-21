@@ -13,6 +13,7 @@ import { ItemButton } from "../common/ItemButtons";
 import ProfileForm from "./ProfileForm";
 import LabelInput from "../common/LabelInput";
 import InputGroup, { InputWrapper } from "../common/InputGroup";
+import Loader from "../common/Loader";
 
 import basicInfo from "./basicInfo";
 import addressInfo from "./addressInfo";
@@ -170,6 +171,9 @@ class Profile extends Component {
               message={error ? formatErrorMessage(error.error) : message}
               hasError={!!error}
             />
+            {
+              user.isLoading && <Loader />
+            }
             <footer className="profile__padding gray__bg">
               <HorizontalSpacing />
               <div className="flex space__between flex__row__reverse ">

@@ -14,6 +14,7 @@ import API from "../../api";
 import SelectQuantity from "../common/SelectQuantity";
 import PriceCurrency from "../common/PriceCurrency";
 import Modal from "../common/Modal";
+import Loader from "../common/Loader";
 import { ItemButton, ItemLink } from "../common/ItemButtons";
 
 
@@ -67,6 +68,7 @@ class ViewCart extends Component {
           <span className="cart__title">
             {cart.data.length} Item(s) In The Cart
           </span>
+          { cart.isLoading && <Loader /> }
           <span 
             onClick={closeModal}
             className="position__abs close__icon">
