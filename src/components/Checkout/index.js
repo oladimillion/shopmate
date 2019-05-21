@@ -13,6 +13,7 @@ import formatErrorMessage from "../../utils/formatErrorMessage";
 
 import HorizontalSpacing from "../common/HorizontalSpacing";
 import MessageAlert from "../common/MessageAlert";
+import Loader from "../common/Loader";
 import Header from "./Header";
 import Footer from "./Footer";
 import Delivery from "./Delivery";
@@ -356,6 +357,7 @@ class Checkout extends Component {
   render() {
     const error = this.getError();
     const message = this.getMessage();
+    const isLoading = this.isLoading();
     return (
       <div className="checkout">
         <div className="inner__container margin__hori__auto inner__checkout white__bg">
@@ -369,6 +371,7 @@ class Checkout extends Component {
           <main className="checkout__main checkout__padding">
             { this.renderStepComponent() }
           </main>
+          { isLoading && <Loader /> }
           <HorizontalSpacing />
           <MessageAlert
             message={error ? formatErrorMessage(error.error) : message}

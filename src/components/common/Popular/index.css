@@ -5,6 +5,10 @@ div.inner__container div.popular {
   min-height: 200px;
 }
 
+div.inner__container .popular__loader__height {
+  height: 200px !important;
+}
+
 div.popular {
   -ms-overflow-style: none;
   scrollbar-width: none;

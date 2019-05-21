@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import queryString from "query-string";
 
@@ -12,6 +12,7 @@ import {
 import CardItem from "../../common/CardItem"
 import Sidebar from "../../common/Sidebar";
 import Pagination from "../../common/Pagination";
+import Loader from "../../common/Loader";
 
 import "./index.css";
 import "./index.md.css";
@@ -132,19 +133,36 @@ class Catalogue extends Component {
 
         <main 
           className="card__list flex__one">
-          <span 
-            className="flex flex__wrap space__between card__list__md__flex__start card__list__sm__space__around">
+          <Fragment>
             {
-              allProduct.rows.map((product, index) => {
-                return (
-                  <CardItem 
-                    key={index}
-                    product={product}
-                  />
+              allProduct.isLoading ? 
+                (
+                  <Loader className="loader__height" />
+                ) :
+                (
+                  <span 
+                    className="flex flex__wrap space__between card__list__md__flex__start card__list__sm__space__around">
+                    {
+                      !allProduct.count && 
+                        (
+                          <h3 className="text__center flex__one">No item to display</h3>
+                        )
+                    }
+                    {
+                      allProduct.data.map((product, index) => {
+                        return (
+                          <CardItem 
+                            key={index}
+                            product={product}
+                          />
+                        )
+                      })
+                    }
+                  </span>
+
                 )
-              })
             }
-          </span>
+          </Fragment>
           <Pagination 
             page={this.getPageNumber()} 
             pageCount={this.getPageCount()}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
 import queryString from "query-string";
@@ -9,6 +9,7 @@ import RadioButton from "../../common/RadioButton";
 import SquareButton from "../../common/SquareButton";
 import RadioLabel from "../../common/RadioLabel";
 import PanelSection from "../../common/PanelSection";
+import Loader from "../../common/Loader";
 import { ItemButton } from "../../common/ItemButtons";
 
 import './index.css';
@@ -48,7 +49,7 @@ class Sidebar extends Component {
       this.props.getDepartments();
     }
 
-    if(!categories.data.length) {
+    if(!categories.count) {
       this.props.getCategories();
     }
 
@@ -72,7 +73,7 @@ class Sidebar extends Component {
 
   getCategoryList (departmentId) {
     const { categories } = this.props;
-    return categories.data.rows.filter((category) => {
+    return categories.data.filter((category) => {
       return category.department_id === departmentId;
     });
   }
@@ -90,7 +91,7 @@ class Sidebar extends Component {
 
   getSeletectedCategoryName = (categoryId) => {
     const { categories } = this.props;
-    const category = categories.data.rows.find((category) => {
+    const category = categories.data.find((category) => {
       return category.category_id === categoryId;
     });
     return category ? category.name : "";
@@ -136,7 +137,7 @@ class Sidebar extends Component {
 
   render (){
 
-    const { departments, allProduct } = this.props;
+    const { departments, categories, allProduct } = this.props;
     const { categoryId, departmentId } = this.state;
 
     const categoryName = this.getSeletectedCategoryName(categoryId);
@@ -222,18 +223,28 @@ class Sidebar extends Component {
             title="Department" 
             className="department__set block">
             {
-              departments.data.map((department, index) => {
-                return (
-                  <RadioLabel 
-                    name="radio__label__set__department"
-                    id={department.name}
-                    label={department.name}
-                    key={index}
-                    checked={departmentId === department.department_id}
-                    onClick={(e) => this.selectDepartment(department)}
-                  />
+              (departments.isLoading || categories.isLoading) ? 
+                (
+                  <Loader />
+                ) : 
+                (
+                  <Fragment>
+                    {
+                      departments.data.map((department, index) => {
+                        return (
+                          <RadioLabel 
+                            name="radio__label__set__department"
+                            id={department.name}
+                            label={department.name}
+                            key={index}
+                            checked={departmentId === department.department_id}
+                            onClick={(e) => this.selectDepartment(department)}
+                          />
+                        )
+                      })
+                    }
+                  </Fragment>
                 )
-              })
             }
           </PanelSection>
           {

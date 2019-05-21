@@ -7,6 +7,7 @@ import { addProductReview } from "../../../actions";
 
 import HorizontalSpacing from "../../common/HorizontalSpacing";
 import RoundButton from "../../common/RoundButton";
+import Loader from "../../common/Loader";
 
 import "./index.css";
 import "./index.sm.css";
@@ -57,7 +58,7 @@ class Review extends Component {
         <h2>Product Reviews</h2>
         <ul className="list__style__none review__list">
           { 
-            !productReview.data.length && (
+            !productReview.data.length && !productReview.isLoading &&  (
               <li className="flex flex__wrap">
                 <h5>No review</h5>
               </li>
@@ -122,6 +123,9 @@ class Review extends Component {
         </ul>
         <HorizontalSpacing />
         <span className="border__bottom"></span>
+        {
+          productReview.isLoading && <Loader />
+        }
         {
           user.isAuth &&(
             <React.Fragment>

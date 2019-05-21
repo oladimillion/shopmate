@@ -15,6 +15,8 @@ const Order = (state=initState, action) => {
       return { ...state, isLoading: false, error: action.payload };
     case types.CREATE_ORDER_LOADING:
       return { ...state, isLoading: true, error: null };
+    case types.USER_LOGOUT:
+      return { ...initState };
     default:
       return state;
   }

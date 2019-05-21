@@ -16,6 +16,7 @@ import SelectQuantity from "../common/SelectQuantity";
 import AddFavourite from "../common/AddFavourite";
 import Popular from "../common/Popular";
 import { ItemButton } from "../common/ItemButtons";
+import Loader from "../common/Loader";
 
 import './index.css';
 import './index.md.css';
@@ -118,6 +119,7 @@ class ViewItem extends Component {
       this.makeRequest();
       this.requestSent = true;
       this.setState({ productImage: "" });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     if(!productById.isLoading && this.requestSent) {
       this.requestSent = false;
@@ -141,143 +143,151 @@ class ViewItem extends Component {
     return (
       <div className="viewitem">
         <HorizontalSpacing />
-        <div 
-          className="viewitem__inner inner__container margin__hori__auto flex flex__wrap space__between white__bg">
-          <div className="flex__one viewitem__photo normal__padding">
-            <div className="photo__top flex">
-              <span className="photo__lg block margin__auto overflow__hidden">
-                <img 
-                  className="object__fit" 
-                  src={
-                    this.getImageLink(productImage || data.image)
-                  }
-                  alt="photo1" 
-                />
-              </span>
-            </div>
-            <HorizontalSpacing />
-            <HorizontalSpacing />
-            <HorizontalSpacing />
-            <ul className="list__style__none photo__thumbnails flex justify__center margin__hori__auto">
-              {
-                [data.image, data.image_2]
-                  .map((image, index) => {
-                    return (
-                      <li 
-                        key={index}
-                        onClick={
-                          (e)=>this.setProductImage(image)
-                        }>
-                        <span 
-                          className="photo__sm block overflow__hidden">
-                          <img className="object__fit" 
-                            src={this.getImageLink(image)} 
-                            alt={`item${image}`} 
-                          />
-                        </span>
-                      </li>
-                    )
-                  })
-              }
-            </ul>
-          </div>
-          {/*end of viewitem__photo*/}
-          <div className="flex__one normal__padding viewitem__info">
-            <div className="level__links__wrapper">
-              <ul className="list__style__none flex level__links sm__level__links">
-                {
-                  levelLinks.map(({name, path}) => {
-                    return(
-                      <li key={name} className="level__link position__rel">
-                        <Link to={path}>{name}</Link>
-                      </li>
-                    )
-                  })
-                }
-              </ul>
-            </div>
-            <br/>
-            <div className="rating__wrapper">
-              <Rating 
-                className="outline__none" 
-                maxRating={5} 
-                defaultRating={5}
-                icon='star' 
-                size='huge' 
-              />
-            </div>
-            <br/>
-            <div className="item__name">
-              <h2>
-                {data.name}
-              </h2>
-            </div>
-            <PriceCurrency 
-              price={data.price} 
-              className="block viewitem__currency"
-            />
-            <PanelSection 
-              title="Color" 
-              titleClassName="panel__title__style"
-              className="radio__button__set flex space__between viewitem__color__panel__width">
-              {
-                colorButtonList.map((colorData, index) => {
-                  return (
-                    <RadioButton 
-                      name="color__set"
-                      id={colorData}
-                      className={colorData}
-                      key={index}
-                      onClick={(e)=>this.setAttribute({color: colorData})}
-                    />
-                  )
-                })
-              }
-            </PanelSection>
-            <PanelSection 
-              title="Size" 
-              titleClassName="panel__title__style"
-              className="radio__button__set flex viewitem__size__panel__width">
-              {
-                squareButtonList.map((squareData, index) => {
-                  return (
-                    <SquareButton 
-                      name="square__set"
-                      id={squareData}
-                      label={squareData}
-                      key={index}
-                      onClick={(e)=>this.setAttribute({size: squareData})}
-                    />
-                  )
-                })
-              }
-            </PanelSection>
-            <PanelSection 
-              title="Quatity" 
-              titleClassName="panel__title__style"
-              className="radio__button__set flex viewitem__size__panel__width position__rel reset__select__quantity__padding">
-              <SelectQuantity quantity="1" />
-            </PanelSection>
-            <br />
-            {
-              user.isAuth && (
-                <div 
-                  className="flex space__between flex__wrap wish__list">
-                  <ItemButton 
-                    name="Add to cart"
-                    onClick={()=>this.addCart(data)}
-                    className="wish__list__button"
-                  />
-                  <AddFavourite 
-                    iconClassName="red__color"
-                    name="Add to Wish List"
-                  />
+        {
+          productById.isLoading  ?
+            (
+              <Loader className="loader__height" />
+            ) :
+            (
+              <div 
+                className="viewitem__inner inner__container margin__hori__auto flex flex__wrap space__between white__bg">
+                <div className="flex__one viewitem__photo normal__padding">
+                  <div className="photo__top flex">
+                    <span className="photo__lg block margin__auto overflow__hidden">
+                      <img 
+                        className="object__fit" 
+                        src={
+                          this.getImageLink(productImage || data.image)
+                        }
+                        alt="photo1" 
+                      />
+                    </span>
+                  </div>
+                  <HorizontalSpacing />
+                  <HorizontalSpacing />
+                  <HorizontalSpacing />
+                  <ul className="list__style__none photo__thumbnails flex justify__center margin__hori__auto">
+                    {
+                      [data.image, data.image_2]
+                        .map((image, index) => {
+                          return (
+                            <li 
+                              key={index}
+                              onClick={
+                                (e)=>this.setProductImage(image)
+                              }>
+                              <span 
+                                className="photo__sm block overflow__hidden">
+                                <img className="object__fit" 
+                                  src={this.getImageLink(image)} 
+                                  alt={`item${image}`} 
+                                />
+                              </span>
+                            </li>
+                          )
+                        })
+                    }
+                  </ul>
                 </div>
-              )
-            }
-          </div>
-          {/*end of viewitem__info*/}
-        </div>
+                {/*end of viewitem__photo*/}
+                <div className="flex__one normal__padding viewitem__info">
+                  <div className="level__links__wrapper">
+                    <ul className="list__style__none flex level__links sm__level__links">
+                      {
+                        levelLinks.map(({name, path}) => {
+                          return(
+                            <li key={name} className="level__link position__rel">
+                              <Link to={path}>{name}</Link>
+                            </li>
+                          )
+                        })
+                      }
+                    </ul>
+                  </div>
+                  <br/>
+                  <div className="rating__wrapper">
+                    <Rating 
+                      className="outline__none" 
+                      maxRating={5} 
+                      defaultRating={5}
+                      icon='star' 
+                      size='huge' 
+                    />
+                  </div>
+                  <br/>
+                  <div className="item__name">
+                    <h2>
+                      {data.name}
+                    </h2>
+                  </div>
+                  <PriceCurrency 
+                    price={data.price} 
+                    className="block viewitem__currency"
+                  />
+                  <PanelSection 
+                    title="Color" 
+                    titleClassName="panel__title__style"
+                    className="radio__button__set flex space__between viewitem__color__panel__width">
+                    {
+                      colorButtonList.map((colorData, index) => {
+                        return (
+                          <RadioButton 
+                            name="color__set"
+                            id={colorData}
+                            className={colorData}
+                            key={index}
+                            onClick={(e)=>this.setAttribute({color: colorData})}
+                          />
+                        )
+                      })
+                    }
+                  </PanelSection>
+                  <PanelSection 
+                    title="Size" 
+                    titleClassName="panel__title__style"
+                    className="radio__button__set flex viewitem__size__panel__width">
+                    {
+                      squareButtonList.map((squareData, index) => {
+                        return (
+                          <SquareButton 
+                            name="square__set"
+                            id={squareData}
+                            label={squareData}
+                            key={index}
+                            onClick={(e)=>this.setAttribute({size: squareData})}
+                          />
+                        )
+                      })
+                    }
+                  </PanelSection>
+                  <PanelSection 
+                    title="Quatity" 
+                    titleClassName="panel__title__style"
+                    className="radio__button__set flex viewitem__size__panel__width position__rel reset__select__quantity__padding">
+                    <SelectQuantity quantity="1" />
+                  </PanelSection>
+                  <br />
+                  {
+                    user.isAuth && (
+                      <div 
+                        className="flex space__between flex__wrap wish__list">
+                        <ItemButton 
+                          name="Add to cart"
+                          onClick={()=>this.addCart(data)}
+                          className="wish__list__button"
+                        />
+                        <AddFavourite 
+                          iconClassName="red__color"
+                          name="Add to Wish List"
+                        />
+                      </div>
+                    )
+                  }
+                </div>
+                {/*end of viewitem__info*/}
+              </div>
+            )
+        }
         <Review 
           productId={+this.getParams}
           productReview={productReview} 

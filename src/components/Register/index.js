@@ -7,6 +7,7 @@ import ModalForm, {
   ModalFormInput,
   ModalFormButton,
 } from "../common/ModalForm";
+import Loader from "../common/Loader";
 import * as actions from "../../actions";
 
 import './index.css';
@@ -91,6 +92,11 @@ class Register extends Component {
         onSubmit={this.onSubmit}
         onCloseModal={this.closeRegisterModal}
         open={open}>
+        {
+          user.isLoading && (
+            <Loader />
+          )
+        }
         <MessageAlert
           message={error ? error.error.message : message}
           hasError={!!error}

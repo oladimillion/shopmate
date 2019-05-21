@@ -14,6 +14,8 @@ const StripeToken = (state=initState, action) => {
       return { ...state, isLoading: false, error: action.payload };
     case types.GEN_STRIPE_TOKEN_LOADING:
       return { ...state, isLoading: true, error: null };
+    case types.USER_LOGOUT:
+      return { ...initState };
     default:
       return state;
   }
@@ -27,6 +29,8 @@ const StripeCharge = (state=initState, action) => {
       return { ...state, isLoading: false, error: action.payload };
     case types.CREATE_STRIPE_CHARGE_LOADING:
       return { ...state, isLoading: true, error: null };
+    case types.USER_LOGOUT:
+      return { ...initState };
     default:
       return state;
   }

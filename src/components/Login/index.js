@@ -8,6 +8,7 @@ import ModalForm, {
   ModalFormInput,
   ModalFormButton,
 } from "../common/ModalForm";
+import Loader from "../common/Loader";
 import * as actions from "../../actions";
 
 import './index.css';
@@ -81,6 +82,11 @@ class Login extends Component {
         onSubmit={this.onSubmit}
         onCloseModal={this.closeLoginModal}
         open={open}>
+        {
+          user.isLoading && (
+            <Loader />
+          )
+        }
         <MessageAlert
           message={error ? error.error.message : message}
           hasError={!!error}

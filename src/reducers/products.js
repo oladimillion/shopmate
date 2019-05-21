@@ -3,14 +3,15 @@ import * as types from "../actions/types";
 const initState = {
   isLoading: false,
   count: 0,
-  rows: [],
+  data: [],
   error: null,
 }
 
 const AllProduct = (state=initState, action) => {
   switch (action.type) {
     case types.GET_PRODUCTS_SUCCESS:
-      return { ...state, isLoading: false, ...action.payload };
+      const { rows, count } = action.payload;
+      return { ...state, isLoading: false, count, data: rows };
     case types.GET_PRODUCTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_PRODUCTS_LOADING:
@@ -20,7 +21,7 @@ const AllProduct = (state=initState, action) => {
   }
 }
 
-const ProductById = (state={ data: {}, ...initState }, action) => {
+const ProductById = (state={ ...initState, data: {} }, action) => {
   switch (action.type) {
     case types.GET_PRODUCT_BY_ID_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };
@@ -33,7 +34,7 @@ const ProductById = (state={ data: {}, ...initState }, action) => {
   }
 }
 
-const ProductReview = (state={ data: [], ...initState }, action) => {
+const ProductReview = (state=initState, action) => {
   switch (action.type) {
     case types.ADD_PRODUCT_REVIEW_SUCCESS:
       return { ...state, isLoading: false, data: [ ...action.payload, ...state.data ] };
@@ -53,7 +54,8 @@ const ProductReview = (state={ data: [], ...initState }, action) => {
 const PopularProducts = (state=initState, action) => {
   switch (action.type) {
     case types.GET_POPULAR_PRODUCTS_SUCCESS:
-      return { ...state, isLoading: false, ...action.payload };
+      const { rows, count } = action.payload;
+      return { ...state, isLoading: false, count, data: rows };
     case types.GET_POPULAR_PRODUCTS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
     case types.GET_POPULAR_PRODUCTS_LOADING:
