@@ -1,3 +1,11 @@
+/**
+ * address field/input details
+ *
+ * @name default
+ * @function
+ * @param {object} state
+ * @returns {array}
+ */
 export default (state) => {
   return [
     [

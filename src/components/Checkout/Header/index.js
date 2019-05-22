@@ -3,6 +3,12 @@ import React from "react";
 import "./index.css";
 import "./index.md.css";
 
+/**
+ * changes header step indicator level based step's value
+ *
+ * @name headerData
+ * @variable
+ */
 const headerData = [
   {
     name: "Delivery",
@@ -41,6 +47,15 @@ const headerData = [
   },
 ];
 
+/**
+ * Header component
+ *
+ * @name Header
+ * @function
+ * @param {number} {step - current checkout step/level
+ * @param {string} className}
+ * @returns {jsx}
+ */
 const Header = ({ step, className }) => {
   return (
     <header className={`checkout__header ${className}`}>

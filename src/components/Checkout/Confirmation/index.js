@@ -5,6 +5,14 @@ import "./index.md.css";
 import "./index.sm.css";
 
 
+/**
+ * delivery subsection
+ *
+ * @name DeliverySection
+ * @function
+ * @param {object} props
+ * @returns {jsx}
+ */
 const DeliverySection = (props) => {
   return (
     <div className="delivery__summary section__level">
@@ -20,8 +28,22 @@ const DeliverySection = (props) => {
   )
 };
 
+/**
+ * Confirmation component
+ * @name Confirmation
+ * @class
+ *
+ * @extends {Component}
+ */
 class Confirmation extends Component {
 
+  /**
+   * get shipping detail using shipping id
+   *
+   * @name getShippingDetail
+   * @function
+   * @returns {object} shipping detail
+   */
   getShippingDetail() {
     const { shippingRegionById, delivery } = this.props;
     const { shipping_id } = delivery;
@@ -29,6 +51,15 @@ class Confirmation extends Component {
     return shippingDetail || {};
   }
 
+  /**
+   * converts address details to string
+   *
+   * @name getAddressBody
+   * @function
+   * @param {object} {delivery
+   * @param {object} customer}
+   * @returns {string}
+   */
   getAddressBody({delivery, customer}) {
     return [
       delivery.address || customer.address_1 || "",
@@ -40,6 +71,13 @@ class Confirmation extends Component {
       .join(", ") + ".";
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const re = /\([\D\d]+\)/;
     const { user, cart, delivery, tax, confirmation } = this.props;

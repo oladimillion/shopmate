@@ -1,5 +1,11 @@
 import toastr from "toastr";
 
+/**
+ * toastr customisation
+ *
+ * @name options
+ * @object
+ */
 toastr.options = {
   closeButton: true,
   newestOnTop: true,

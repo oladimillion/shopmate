@@ -3,6 +3,13 @@ import * as types from "../actions/types";
 import * as requests from "../requests";
 
 
+/**
+ * generate stripe token async
+ *
+ * @name  genStripeTokenAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* genStripeTokenAsync(action) {
   yield put({ type: types.GEN_STRIPE_TOKEN_LOADING });
   try {
@@ -13,6 +20,13 @@ export function* genStripeTokenAsync(action) {
   }
 }
 
+/**
+ * create stripe charge async
+ *
+ * @name  createStripeChargeAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* createStripeChargeAsync(action) {
   yield put({ type: types.CREATE_STRIPE_CHARGE_LOADING });
   try {
@@ -23,10 +37,22 @@ export function* createStripeChargeAsync(action) {
   }
 }
 
+/**
+ * generate stripe token action watcher
+ *
+ * @name  genStripeTokenWatcher 
+ * @function
+ */
 function* genStripeTokenWatcher() {
   yield takeLatest(types.GEN_STRIPE_TOKEN_REQUEST, genStripeTokenAsync);
 }
 
+/**
+ * create stipe charge action watcher
+ *
+ * @name  createStripeChargeWatcher 
+ * @function
+ */
 function* createStripeChargeWatcher() {
   yield takeLatest(types.CREATE_STRIPE_CHARGE_REQUEST, createStripeChargeAsync);
 }

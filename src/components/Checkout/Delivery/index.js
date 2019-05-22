@@ -11,6 +11,15 @@ import deliveryInputData from "./deliveryInputData";
 import "./index.css";
 
 
+/**
+ * Label component
+ *
+ * @name Label
+ * @function
+ * @param {string} {shippingType
+ * @param {string} duration}
+ * @returns {jsx}
+ */
 const Label = ({shippingType, duration}) => {
   return (
     <React.Fragment>
@@ -28,6 +37,13 @@ const Label = ({shippingType, duration}) => {
 class Delivery extends Component {
 
 
+  /**
+   * set the state with inputed values
+   *
+   * @name onChange
+   * @function
+   * @param {object} e
+   */
   onChange = (e) => {
     this.props.onChange({
       name: e.target.name,
@@ -36,6 +52,13 @@ class Delivery extends Component {
     });
   }
 
+  /**
+   * set the state with the checkbox value 
+   *
+   * @name onCheck
+   * @function
+   * @param {object} {shipping_id}
+   */
   onCheck = ({shipping_id}) => {
     this.props.onChange({
       name: "shipping_id",
@@ -44,6 +67,14 @@ class Delivery extends Component {
     });
   }
 
+  /**
+   * create array of objects containing shipping regions
+   *
+   * @name shippingRegions
+   * @function
+   * @param {object} shippingRegionById
+   * @returns {array}
+   */
   shippingRegions(shippingRegionById) {
     const re = /\([\D\d]+\)/;
     return shippingRegionById.data.map((data) => {
@@ -60,6 +91,13 @@ class Delivery extends Component {
     })
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const { shippingRegion, shippingRegionById, delivery } = this.props;
     return (

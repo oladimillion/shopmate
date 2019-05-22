@@ -9,7 +9,7 @@ export default (state) => ([
     },
     {
       name: "address_2",
-      label: "Address One",
+      label: "Address Two",
       value: state.address_2 || "",
       required: false,
     },

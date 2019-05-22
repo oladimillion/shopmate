@@ -10,6 +10,12 @@ import taxWatcherArray from "./tax";
 import stripeWatcherArray from "./stripe";
 
 
+/**
+ * saga root
+ *
+ * @name root
+ * @function
+ */
 export default function* root() {
   yield all([
     ...productWatcherArray.map(productWatcher => fork(productWatcher)),

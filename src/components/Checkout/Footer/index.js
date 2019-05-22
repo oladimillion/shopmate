@@ -3,6 +3,14 @@ import { ItemButton } from "../../common/ItemButtons";
 
 import "./index.css";
 
+/**
+ * Footer component
+ *
+ * @name Footer
+ * @function
+ * @param {object} props
+ * @returns {jsx}
+ */
 const Footer = (props) => {
 
   const nextStep = { name: "Next Step", func: props.changeStep };

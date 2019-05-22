@@ -24,6 +24,13 @@ import Finish from "./Finish";
 import './index.css';
 import './index.md.css';
 
+/**
+ * Checkout component
+ * @name Checkout
+ * @class
+ *
+ * @extends {Component}
+ */
 class Checkout extends Component {
 
   state = {
@@ -48,6 +55,12 @@ class Checkout extends Component {
   createStripeChargeRequestSent = false;
   
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     const { user, cart } = this.props;
     if(!cart.data.length) {
@@ -71,6 +84,12 @@ class Checkout extends Component {
     this.props.getTax();
   }
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   */
   componentDidUpdate() {
     const { 
       stripeToken,
@@ -108,6 +127,13 @@ class Checkout extends Component {
     }
   }
 
+  /**
+   * Makes request to stripe charge endpoint
+   *
+   * @name createStripeCharge
+   * @function
+   * @param {object} payload
+   */
   createStripeCharge(payload) {
     if(this.isLoading()) {
       return;
@@ -116,6 +142,12 @@ class Checkout extends Component {
     this.props.createStripeCharge(payload);
   }
 
+  /**
+   * Makes request to create order endpoint
+   *
+   * @name createOrder
+   * @function
+   */
   createOrder = () => {
     if(this.isLoading()) {
       return;
@@ -134,6 +166,13 @@ class Checkout extends Component {
     });
   }
 
+  /**
+   * Renders checkout children based on the step's value
+   *
+   * @name renderStepComponent
+   * @function
+   * @returns {jsx}
+   */
   renderStepComponent = () => {
     switch(this.state.step) {
       case 4:
@@ -168,6 +207,13 @@ class Checkout extends Component {
     }
   }
 
+  /**
+   * Changes the steps value in the state
+   *
+   * @name changeStep
+   * @function
+   * @param {number} dir - prev or next (direction)
+   */
   changeStep = (dir) => {
     if(this.isLoading()) {
       return;
@@ -186,6 +232,13 @@ class Checkout extends Component {
     this.setState({ step });
   }
 
+  /**
+   * dispatch error message to the store
+   *
+   * @name setErrorMessage
+   * @function
+   * @param {string} message
+   */
   setErrorMessage(message) {
     this.props.setErrorMessage({
       error: {
@@ -194,10 +247,22 @@ class Checkout extends Component {
     })
   }
 
+  /**
+   * clears error message from the store
+   *
+   * @name clearErrorMessage
+   * @function
+   */
   clearErrorMessage() {
     this.props.setErrorMessage(null);
   }
 
+  /**
+   * Makes request to the generate stripe token endpoint
+   *
+   * @name makePayment
+   * @function
+   */
   makePayment = () => {
     if(!this.validPaymentData() || this.isLoading()) {
       return;
@@ -207,6 +272,13 @@ class Checkout extends Component {
     this.props.genStripeToken(payload);
   }
 
+  /**
+   * encoded card info into url-search-params value
+   *
+   * @name urlFormEncoded
+   * @function
+   * @returns {string}
+   */
   urlFormEncoded() {
     const { payment } = this.state;
     const validity = this.unmask({value: payment.validity});
@@ -226,6 +298,15 @@ class Checkout extends Component {
       }).join("&");
   }
 
+  /**
+   * remove patterns added to a value
+   *
+   * @name unmask
+   * @function
+   * @param {string} {value
+   * @param {number} max}
+   * @returns {string} unmasked value
+   */
   unmask = ({value, max}) => {
     if(max){
       return value.replace(/\D/g, '').substring(0, max);
@@ -233,10 +314,28 @@ class Checkout extends Component {
     return value.replace(/\D/g, '');
   }
 
+  /**
+   * add pattern to a value
+   *
+   * @name mask
+   * @function
+   * @param {string} {value
+   * @param {string} pattern
+   * @param {RegExp} regex
+   * @param {number} max}
+   * @returns {string} masked value
+   */
   mask = ({value, pattern, regex, max}) => {
     return this.unmask({value, max}).replace(regex, pattern);
   }
 
+  /**
+   * Update the state
+   *
+   * @name onChange
+   * @function
+   * @param {object} data
+   */
   onChange = (data) => {
     switch(data.name) {
       case "ccv":
@@ -256,6 +355,13 @@ class Checkout extends Component {
     }
   }
 
+  /**
+   * Payment data validation regex
+   *
+   * @name paymentRegex
+   * @function
+   * @returns {object}
+   */
   paymentRegex = () => {
     return {
       validity: /([\d]{2})([\d]{2})/,
@@ -264,6 +370,13 @@ class Checkout extends Component {
     }
   }
 
+  /**
+   * Validates delivery section data
+   *
+   * @name validDeliveryData
+   * @function
+   * @returns {boolean}
+   */
   validDeliveryData() {
     let { delivery } = this.state;
     let errors = [];
@@ -282,6 +395,13 @@ class Checkout extends Component {
     return true;
   }
 
+  /**
+   * Validates payment section data
+   *
+   * @name validPaymentData
+   * @function
+   * @returns {boolean}
+   */
   validPaymentData() {
     let fields = [];
     const { payment } = this.state;
@@ -307,10 +427,27 @@ class Checkout extends Component {
     return true;
   }
 
+  /**
+   * modifies hierachy of objects
+   *
+   * @name setLevelValues
+   * @function
+   * @param {string} {name
+   * @param {string} level
+   * @param {string} value}
+   * @returns {object}
+   */
   setLevelValues = ({ name, level, value }) => {
     return {[level]: {...this.state[level], [name]: value}};
   }
 
+  /**
+   * updates state with modified object hierachy
+   *
+   * @name setStateWithMaskValue
+   * @function
+   * @param {object} 
+   */
   setStateWithMaskValue = (data) => {
     this.setState(
       this.setLevelValues({
@@ -320,16 +457,37 @@ class Checkout extends Component {
     );
   }
 
+  /**
+   * collating success messages from different store 
+   *
+   * @name getMessage
+   * @function
+   * @returns {string}
+   */
   getMessage() {
     const { order, stripeToken, stripeCharge } = this.props;
     return order.message || stripeToken.message || stripeCharge.message;
   }
 
+  /**
+   * collating error messages from different store 
+   *
+   * @name getMessage
+   * @function
+   * @returns {string}
+   */
   getError() {
     const { order, stripeToken, stripeCharge } = this.props;
     return order.error || stripeToken.error || stripeCharge.error;
   }
 
+  /**
+   * collating loading state from different store 
+   *
+   * @name isLoading
+   * @function
+   * @returns {boolean}
+   */
   isLoading () {
     const {
       user,
@@ -354,6 +512,13 @@ class Checkout extends Component {
   }
 
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const error = this.getError();
     const message = this.getMessage();

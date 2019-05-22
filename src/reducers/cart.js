@@ -15,6 +15,15 @@ const calcTotalAmount = (data) => {
   }, 0).toFixed(2);
 }
 
+/**
+ * Cart store
+ *
+ * @name Cart
+ * @function
+ * @param {object} state - initial state
+ * @param {object} action - type and payload
+ * @returns {object} new state
+ */
 const Cart = (state=initState, action) => {
   switch (action.type) {
     case types.ADD_CART_SUCCESS:
