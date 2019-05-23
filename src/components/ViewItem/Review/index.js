@@ -14,6 +14,13 @@ import "./index.sm.css";
 
 
 
+/**
+ * Review
+ * @name Review
+ * @class
+ *
+ * @extends {Component}
+ */
 class Review extends Component {
 
   state = {
@@ -24,6 +31,12 @@ class Review extends Component {
 
   requestSent = false;
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   */
   componentDidUpdate() {
     const { productReview } = this.props;
     if(!productReview.isLoading && this.requestSent) {
@@ -35,10 +48,24 @@ class Review extends Component {
     }
   }
 
+  /**
+   * update state with form input data
+   *
+   * @name onChange
+   * @function
+   * @param {object} data
+   */
   onChange = (data) => {
     this.setState(data);
   }
 
+  /**
+   * makes request to add review endpoint
+   *
+   * @name onSubmit
+   * @function
+   * @param {object} e
+   */
   onSubmit = (e) => {
     e.preventDefault();
     const { productReview, addProductReview } = this.props;
@@ -47,6 +74,13 @@ class Review extends Component {
     addProductReview(this.state);
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
 
     const { productReview, user } = this.props;

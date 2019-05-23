@@ -442,7 +442,7 @@ class Checkout extends Component {
   }
 
   /**
-   * updates state with modified object hierachy
+   * updates state with modified object hierarchy
    *
    * @name setStateWithMaskValue
    * @function

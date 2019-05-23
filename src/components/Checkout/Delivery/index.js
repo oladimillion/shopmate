@@ -16,8 +16,8 @@ import "./index.css";
  *
  * @name Label
  * @function
- * @param {string} {shippingType
- * @param {string} duration}
+ * @prop {string} shippingType
+ * @prop {string} duration
  * @returns {jsx}
  */
 const Label = ({shippingType, duration}) => {

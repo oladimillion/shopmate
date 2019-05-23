@@ -2,6 +2,14 @@ import React from "react";
 
 import "./index.css";
 
+/**
+ * Loader
+ *
+ * @name Loader
+ * @function
+ * @prop {string} className
+ * @returns {jsx}
+ */
 const Loader = ({ className }) => {
   return (
     <div 

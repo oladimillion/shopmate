@@ -52,8 +52,8 @@ const headerData = [
  *
  * @name Header
  * @function
- * @param {number} {step - current checkout step/level
- * @param {string} className}
+ * @prop {number} step - current checkout step/level
+ * @prop {string} className
  * @returns {jsx}
  */
 const Header = ({ step, className }) => {

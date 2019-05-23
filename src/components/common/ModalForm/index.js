@@ -8,13 +8,19 @@ import "./index.sm.css";
 
 const func = () => {};
 
-export const ModalFormInput = ({
-  placeholder,
-  name,
-  value,
-  onChange,
-  type,
-}) => {
+/**
+ * ModalFormInput
+ *
+ * @name ModalFormInput
+ * @function
+ * @prop {string} placeholder
+ * @prop {string} name
+ * @prop {string} value
+ * @prop {function} onChange
+ * @prop {string} type
+ * @returns {jsx}
+ */
+export const ModalFormInput = ({ placeholder, name, value, onChange, type}) => {
   return (
     <div className="main__input__wrapper">
       <input 
@@ -31,9 +37,15 @@ export const ModalFormInput = ({
   )
 };
 
-export const ModalFormButton = ({
-  name,
-}) => {
+/**
+ * ModalFormButton
+ *
+ * @name ModalFormButton
+ * @function
+ * @prop {string} {name}
+ * @returns {jsx}
+ */
+export const ModalFormButton = ({ name }) => {
   return (
     <div className="main__input__wrapper flex">
       <ItemButton 
@@ -45,13 +57,19 @@ export const ModalFormButton = ({
   )
 };
 
-export const ModalFormCheckboxLabel = ({ 
-  onChange,
-  id,
-  label,
-  value,
-  name,
-}) => {
+/**
+ * ModalFormCheckboxLabel
+ *
+ * @name ModalFormCheckboxLabel
+ * @function
+ * @prop {function} {onChange
+ * @prop {string} id
+ * @prop {string} label
+ * @prop {string} value
+ * @prop {string} name}
+ * @returns {jsx}
+ */
+export const ModalFormCheckboxLabel = ({ onChange, id, label, value, name }) => {
   return (
     <div className="main__input__wrapper flex">
       <CheckboxLabel 
@@ -67,6 +85,14 @@ export const ModalFormCheckboxLabel = ({
   )
 };
 
+/**
+ * ModalFormFooter
+ *
+ * @name ModalFormFooter
+ * @function
+ * @prop {jsx} {children}
+ * @returns {jsx}
+ */
 export const ModalFormFooter = ({ children }) => {
   return (
     <footer 
@@ -76,13 +102,19 @@ export const ModalFormFooter = ({ children }) => {
   )
 };
 
-const ModalForm = ({
-  title, 
-  open, 
-  onCloseModal, 
-  onSubmit, 
-  children,
-}) => {
+/**
+ * ModalForm
+ *
+ * @name ModalForm
+ * @function
+ * @prop {string} {title
+ * @prop {boolean} open
+ * @prop {function} onCloseModal
+ * @prop {functino} onSubmit
+ * @prop {jsx} children}
+ * @returns {jsx}
+ */
+const ModalForm = ({ title, open, onCloseModal, onSubmit, children }) => {
   return (
     <Modal 
       open={open}

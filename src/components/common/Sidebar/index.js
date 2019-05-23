@@ -42,6 +42,12 @@ class Sidebar extends Component {
     categoryId: null,
   }
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     const { departments, categories, getQueryParams } = this.props;
 
@@ -60,6 +66,12 @@ class Sidebar extends Component {
     });
   }
 
+  /**
+   * clears category id and deparment id from the state
+   *
+   * @name clearAll
+   * @function
+   */
   clearAll = () => {
     this.removeFilter({
       categoryId: null,
@@ -71,6 +83,14 @@ class Sidebar extends Component {
     });
   }
 
+  /**
+   * get category list based on department id
+   *
+   * @name getCategoryList
+   * @function
+   * @param {number} departmentId
+   * @returns {array} category
+   */
   getCategoryList (departmentId) {
     const { categories } = this.props;
     return categories.data.filter((category) => {
@@ -78,6 +98,13 @@ class Sidebar extends Component {
     });
   }
 
+  /**
+   * create url params from department id and category id
+   *
+   * @name getQuery
+   * @function
+   * @returns {string} url params
+   */
   getQuery(){
     const { departmentId, categoryId } = this.state;
     if(categoryId) {
@@ -89,6 +116,14 @@ class Sidebar extends Component {
     }
   }
 
+  /**
+   * gets category name based on the provided category id
+   *
+   * @name getSeletectedCategoryName
+   * @function
+   * @param {number} categoryId
+   * @returns {string } category name
+   */
   getSeletectedCategoryName = (categoryId) => {
     const { categories } = this.props;
     const category = categories.data.find((category) => {
@@ -97,6 +132,14 @@ class Sidebar extends Component {
     return category ? category.name : "";
   }
 
+  /**
+   * gets department name based on the provided department id
+   *
+   * @name getSeletectedDepartmentName
+   * @function
+   * @param {number} departmentId
+   * @returns {string } department name
+   */
   getSeletectedDepartmentName = (departmentId) => {
     const { departments } = this.props;
     const department = departments.data.find((department) => {
@@ -105,16 +148,37 @@ class Sidebar extends Component {
     return department ? department.name : "";
   }
 
+  /**
+   * removes category id or department id from the state
+   *
+   * @name removeFilter
+   * @function
+   * @param {object} data
+   */
   removeFilter = (data) => {
     this.setState(data);
   }
 
+  /**
+   * update state with category id
+   *
+   * @name selectCategory
+   * @function
+   * @param {object} category
+   */
   selectCategory = (category) => {
     this.setState({
       categoryId: category.category_id,
     });
   }
 
+  /**
+   * update state with department id
+   *
+   * @name selectDepartment
+   * @function
+   * @param {object} department
+   */
   selectDepartment = (department) => {
     const categoryList = this.getCategoryList(department.department_id);
     this.setState({ 
@@ -124,6 +188,13 @@ class Sidebar extends Component {
     });
   }
 
+  /**
+   * redirects to the root path with the provided query params
+   *
+   * @name submit
+   * @function
+   * @param {object} e
+   */
   submit = (e) => {
     const { allProduct } = this.props;
     const query = this.getQuery();
@@ -135,6 +206,13 @@ class Sidebar extends Component {
     });
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render (){
 
     const { departments, categories, allProduct } = this.props;

@@ -13,12 +13,25 @@ import './index.md.css';
 import './index.sm.css';
 
 
+/**
+ * NavBar
+ * @name NavBar
+ * @class
+ *
+ * @extends {Component}
+ */
 class NavBar extends Component {
 
   state = {
     search: "",
   }
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     const { getShippingRegion, location } = this.props;
     const { search } = location;
@@ -29,15 +42,36 @@ class NavBar extends Component {
     }
   }
 
+  /**
+   * calculate the number of item in the cart
+   *
+   * @name cartQuantity
+   * @function
+   * @returns {number}
+   */
   cartQuantity() {
     const { data } = this.props.cart;
     return data.length > 9 ? "9+" : data.length;
   }
 
+  /**
+   * update state with search input data
+   *
+   * @name onChange
+   * @function
+   * @param {object} e
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * makes request to search product endpoint
+   *
+   * @name onSubmit
+   * @function
+   * @param {object} e
+   */
   onSubmit = (e) => {
     e.preventDefault();
     const { search } = this.state;
@@ -52,7 +86,13 @@ class NavBar extends Component {
     }
   }
 
-
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const cartQuantity = this.cartQuantity();
     return (

@@ -6,6 +6,23 @@ import "./index.css";
 
 const func = ()=>{};
 
+/**
+ * LabelInput
+ *
+ * @name LabelInput
+ * @function
+ * @prop {string} name
+ * @prop {boolean} required
+ * @prop {string} label
+ * @prop {function} onChange
+ * @prop {string} value
+ * @prop {string} type
+ * @prop {string} placeholder
+ * @prop {string} icon
+ * @prop {string} labelInputClassname
+ * @prop {jsx} children
+ * @returns {jsx}
+ */
 const LabelInput = ({
   name,
   required,

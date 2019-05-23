@@ -47,6 +47,13 @@ const socialLinks = [
   },
 ];
 
+/**
+ * Footer component
+ *
+ * @name Footer
+ * @function
+ * @returns {jsx}
+ */
 const Footer = () => {
   return (
     <footer className="flex footer">

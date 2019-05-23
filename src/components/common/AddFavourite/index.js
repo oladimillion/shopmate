@@ -4,6 +4,15 @@ import { Icon } from "semantic-ui-react";
 import "./index.css";
 
 
+/**
+ * PanelSection
+ *
+ * @name PanelSection
+ * @function
+ * @prop {string} name
+ * @prop {string} iconClassName - sematic ui icon name
+ * @returns {jsx}
+ */
 const PanelSection = ({name, iconClassName}) => {
   return (
     <button className="unset__properties flex">

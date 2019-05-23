@@ -56,6 +56,13 @@ const squareButtonList = [
 ];
 
 
+/**
+ * ViewItem
+ * @name ViewItem
+ * @class
+ *
+ * @extends {Component}
+ */
 class ViewItem extends Component {
 
   requestSent = false;
@@ -66,6 +73,12 @@ class ViewItem extends Component {
     color: "red",
   }
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     if(!/[\d]+/.test(this.getParams)){
       this.props.history.push("/");
@@ -74,10 +87,25 @@ class ViewItem extends Component {
     this.getProductAndReview();
   }
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   * @param {object} prevProps
+   * @param {object} prevState
+   */
   componentDidUpdate(prevProps, prevState) {
     this.getProductAndReview();
   }
 
+  /**
+   * makes request to add item to cart endpoint
+   *
+   * @name addCart
+   * @function
+   * @param {object} item
+   */
   addCart = (item) => {
     const { user, cart, addCart } = this.props;
     const { customer_id } = user.customer;
@@ -90,27 +118,68 @@ class ViewItem extends Component {
     });
   }
 
+  /**
+   * gets product id from the url params
+   *
+   * @name getParams
+   * @function
+   * @returns {number} product id
+   */
   get getParams() {
     return this.props.match.params.id;
   }
 
+  /**
+   * makes request to get product by id endpoint
+   *
+   * @name getProductById
+   * @function
+   * @param {number} id - product id
+   */
   getProductById = (id) => {
     this.props.getProductById(id);
   }
 
+  /**
+   * makes request to get product's review endpoint
+   *
+   * @name getProductReview
+   * @function
+   * @param {number} id - product id
+   */
   getProductReview = (id) => {
     this.props.getProductReview(id);
   }
 
+  /**
+   * gets image link from image name
+   *
+   * @name getImageLink
+   * @function
+   * @param {string} imageName
+   * @returns {string} image link
+   */
   getImageLink(imageName) {
     return imageName ? `${API}/images/products/${imageName}` : "";
   }
 
+  /**
+   * makes request to get product review and detail endpoints
+   *
+   * @name makeRequest
+   * @function
+   */
   makeRequest() {
     this.getProductById(this.getParams);
     this.getProductReview(this.getParams);
   }
 
+  /**
+   * calls makeRequest function
+   *
+   * @name getProductAndReview
+   * @function
+   */
   getProductAndReview() {
     const { productById } = this.props;
     const { data, error } = productById;
@@ -126,14 +195,35 @@ class ViewItem extends Component {
     }
   }
 
+  /**
+   * updates state with color and size attribute
+   *
+   * @name setAttribute
+   * @function
+   * @param {object} data
+   */
   setAttribute = (data) => {
     this.setState(data);
   }
 
+  /**
+   * updates state with product image name
+   *
+   * @name setProductImage
+   * @function
+   * @param {string} imageName
+   */
   setProductImage = (imageName) => {
     this.setState({ productImage: imageName });
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
 
     const { productById, productReview, user } = this.props;

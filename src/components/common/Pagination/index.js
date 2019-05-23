@@ -5,6 +5,18 @@ import "./index.css";
 import "./index.md.css";
 
 
+/**
+ * Pagination
+ *
+ * @name Pagination
+ * @function
+ * @prop {number} {page
+ * @prop {number} pageCount
+ * @prop {function} gotoPage
+ * @prop {function} prevPage
+ * @prop {function} nextPage}
+ * @returns {jsx}
+ */
 const Pagination = ({ page, pageCount, gotoPage, prevPage, nextPage }) => {
 
   return (

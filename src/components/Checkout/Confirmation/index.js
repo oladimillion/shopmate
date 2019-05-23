@@ -10,19 +10,20 @@ import "./index.sm.css";
  *
  * @name DeliverySection
  * @function
- * @param {object} props
+ * @prop {sting} title
+ * @prop {sting} body
  * @returns {jsx}
  */
-const DeliverySection = (props) => {
+const DeliverySection = ({ title, body }) => {
   return (
     <div className="delivery__summary section__level">
       <h3 
         className="summary__title gray__color">
-        {props.title}
+        {title}
       </h3>
       <div 
         className="summary__body gray__color">
-        {props.body}
+        {body}
       </div>
     </div>
   )

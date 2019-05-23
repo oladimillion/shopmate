@@ -5,6 +5,13 @@ import FeaturedImage from "../../../assets/images/images-shoe2.png";
 import "./index.css";
 
 
+/**
+ * Featured
+ *
+ * @name Featured
+ * @function
+ * @returns {jsx}
+ */
 const Featured = () => {
   return (
     <div 

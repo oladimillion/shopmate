@@ -20,6 +20,20 @@ const infoLinks = [
 ];
 
 
+/**
+ * NavBarLight
+ *
+ * @name NavBarLight
+ * @function
+ * @prop {function} openLoginModal 
+ * @prop {function} openRegisterModal 
+ * @prop {function} openViewCartModal 
+ * @prop {object} user 
+ * @prop {object} cart 
+ * @prop {number} cartQuantity 
+ * @prop {function} logout 
+ * @returns {jsx}
+ */
 const NavBarLight = ({ 
   openLoginModal,
   openRegisterModal,

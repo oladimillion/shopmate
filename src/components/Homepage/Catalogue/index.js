@@ -19,16 +19,37 @@ import "./index.md.css";
 import "./index.sm.css";
 
 
+/**
+ * Catalogue
+ * @name Catalogue
+ * @class
+ *
+ * @extends {Component}
+ */
 class Catalogue extends Component {
 
   LIMIT = 6;
   requestSent = false;
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     const pageNumber = this.getPageNumber();
     this.getProducts(pageNumber);
   }
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   * @param {object} prevProps
+   * @param {object} prevState
+   */
   componentDidUpdate(prevProps, prevState) {
     const { allProduct } = this.props;
     if (!this.requestSent) {
@@ -40,6 +61,13 @@ class Catalogue extends Component {
     }
   }
 
+  /**
+   * get page number from the url params
+   *
+   * @name getPageNumber
+   * @function
+   * @returns {number}
+   */
   getPageNumber () {
     const { search } = this.props.location;
     const q = queryString.parse(search);
@@ -47,12 +75,26 @@ class Catalogue extends Component {
     return parseInt(pageNumber);
   }
 
+  /**
+   * get total number of pages based on the available products
+   *
+   * @name getPageCount
+   * @function
+   * @returns {number} pages
+   */
   getPageCount() {
     const limit = this.LIMIT;
     const { allProduct } = this.props;
     return allProduct.count > limit ? Math.ceil(allProduct.count/limit) : 1;
   }
 
+  /**
+   * get products batch by batch using calculated page number and limit
+   *
+   * @name getProducts
+   * @function
+   * @param {number} pageNumber
+   */
   getProducts(pageNumber) {
     const query = this.getQuery(pageNumber);
     const { category, department } = this.getQueryParams();
@@ -70,6 +112,13 @@ class Catalogue extends Component {
     }
   }
 
+  /**
+   * get products by page number
+   *
+   * @name gotoPage
+   * @function
+   * @param {number} pageNumber
+   */
   gotoPage = (pageNumber) => {
     const { allProduct } = this.props;
     const query = this.getQuery(pageNumber)
@@ -85,6 +134,14 @@ class Catalogue extends Component {
     }
   }
 
+  /**
+   * convert query_string, category, department and page to url params
+   *
+   * @name getQuery
+   * @function
+   * @param {number} pageNumber
+   * @returns {string} url params
+   */
   getQuery(pageNumber) {
     const limit = this.LIMIT;
     const { query_string, category, department } = this.getQueryParams();
@@ -99,11 +156,24 @@ class Catalogue extends Component {
     return query;
   }
 
+  /**
+   * converts url params to object
+   *
+   * @name getQueryParams
+   * @function
+   * @returns {object}
+   */
   getQueryParams = () => {
     const { search } = this.props.location;
     return queryString.parse(search);
   }
 
+  /**
+   * get the next page products
+   *
+   * @name nextPage
+   * @function
+   */
   nextPage = () => {
     const page = this.getPageNumber();
     const pageCount = this.getPageCount();
@@ -112,6 +182,12 @@ class Catalogue extends Component {
     }
   }
 
+  /**
+   * get the previous page products
+   *
+   * @name prevPage
+   * @function
+   */
   prevPage = () => {
     const page = this.getPageNumber();
     if((page-1) >= 1) {
@@ -119,10 +195,15 @@ class Catalogue extends Component {
     }
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render () {
-
     const { allProduct } = this.props;
-
     return (
       <section className="catalogue inner__container margin__hori__auto flex flex__wrap space__around">
 

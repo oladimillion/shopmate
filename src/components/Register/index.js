@@ -12,6 +12,13 @@ import * as actions from "../../actions";
 
 import './index.css';
 
+/**
+ * Register
+ * @name Register
+ * @class
+ *
+ * @extends {Component}
+ */
 class Register extends Component {
 
   state = {
@@ -23,6 +30,12 @@ class Register extends Component {
 
   requestSent = false;
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   */
   componentDidUpdate() {
     const { 
       user, 
@@ -49,10 +62,24 @@ class Register extends Component {
     }
   }
 
+  /**
+   * update state from the form input fields
+   *
+   * @name onChange
+   * @function
+   * @param {object} e
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * makes request to the signup endpoint
+   *
+   * @name onSubmit
+   * @function
+   * @param {object} e
+   */
   onSubmit = (e) => {
     e.preventDefault();
     const { user, signup, setErrorMessage } = this.props;
@@ -70,6 +97,12 @@ class Register extends Component {
     signup(this.state);
   }
 
+  /**
+   * opens login form modal
+   *
+   * @name openLoginModal
+   * @function
+   */
   openLoginModal = () => {
     const { openLoginModal, closeRegisterModal, setErrorMessage } = this.props;
     closeRegisterModal();
@@ -77,12 +110,25 @@ class Register extends Component {
     setErrorMessage(null);
   }
 
+  /**
+   * closes signup form modal
+   *
+   * @name closeRegisterModal
+   * @function
+   */
   closeRegisterModal = () => {
     const { closeRegisterModal, setErrorMessage } = this.props;
     closeRegisterModal();
     setErrorMessage(null);
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const { open, user } = this.props;
     const { error, message } = user;

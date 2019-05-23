@@ -4,6 +4,21 @@ import "./index.css";
 
 const func = ()=>{};
 
+/**
+ * CheckboxLabel
+ *
+ * @name CheckboxLabel
+ * @function
+ * @prop {string} id
+ * @prop {string} name
+ * @prop {string} label
+ * @prop {string} value
+ * @prop {function} onChange
+ * @prop {string} labelClassName
+ * @prop {string} className
+ * @prop {string} parentClassName
+ * @returns {jsx}
+ */
 const CheckboxLabel = ({
   id, name, label, value, onChange,
   labelClassName, className, parentClassName

@@ -22,7 +22,13 @@ import './index.css';
 import './index.md.css';
 
 
-
+/**
+ * Profile
+ * @name Profile
+ * @class
+ *
+ * @extends {Component}
+ */
 class Profile extends Component {
 
   state = {
@@ -46,6 +52,12 @@ class Profile extends Component {
 
   requestSent = false;
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     const { setErrorMessage, user } = this.props;
     const { customer } = user;
@@ -53,6 +65,12 @@ class Profile extends Component {
     this.setState(customer);
   }
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   */
   componentDidUpdate() {
     const { customer, isLoading, error } = this.props.user;
     if(this.requestSent && !isLoading && !error) {
@@ -65,14 +83,35 @@ class Profile extends Component {
     }
   }
 
+  /**
+   * updates state with the form input values
+   *
+   * @name onChange
+   * @function
+   * @param {object} e
+   */
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  /**
+   * update state with the checkbox input value
+   *
+   * @name onCheck
+   * @function
+   * @param {object} data
+   */
   onCheck = (data) => {
     this.setState(data);
   }
 
+  /**
+   * makes request to the profile and address endpoints
+   *
+   * @name onSubmit
+   * @function
+   * @param {object} e
+   */
   onSubmit = (e) => {
     e.preventDefault();
     const { user, address, profile, setErrorMessage } = this.props;
@@ -97,6 +136,13 @@ class Profile extends Component {
     }
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const { showAddressForm, shipping_region_id } = this.state;
     const { shippingRegion, user } = this.props;

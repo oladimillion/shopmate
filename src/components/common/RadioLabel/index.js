@@ -4,6 +4,19 @@ import "./index.css";
 
 const func = () => {};
 
+/**
+ * RadioButton
+ *
+ * @name RadioButton
+ * @function
+ * @prop {string} {name
+ * @prop {string} id
+ * @prop {string} label
+ * @prop {string} className
+ * @prop {function} onClick
+ * @prop {boolean} checked}
+ * @returns {jsx}
+ */
 const RadioButton = ({ name, id, label, className, onClick, checked }) => {
   return (
     <span 

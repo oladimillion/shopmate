@@ -10,19 +10,46 @@ import Loader from "../Loader"
 import "./index.css";
 
 
+/**
+ * Popular
+ * @name Popular
+ * @class
+ *
+ * @extends {Component}
+ */
 class Popular extends Component {
 
   LIMIT = 6;
   requestSent = false;
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     this.getPopularProducts();
   }
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   * @param {object} prevProps
+   * @param {object} prevState
+   */
   componentDidUpdate(prevProps, prevState) {
     this.getPopularProducts();
   }
 
+  /**
+   * makes request to get product endpoint
+   *
+   * @name getPopularProducts
+   * @function
+   */
   getPopularProducts() {
     const limit = this.LIMIT;
     const { popularProducts } = this.props;
@@ -35,6 +62,13 @@ class Popular extends Component {
     }
   }
 
+  /**
+   * handles smooth horizontal scrolling
+   *
+   * @name horizontalScroll
+   * @function
+   * @param {string} dir - direction
+   */
   horizontalScroll(dir) {
     const SCROLL_DISTANCE = this.props.scrollDistance;
     const scrollElement = document.getElementById("popular");
@@ -51,6 +85,14 @@ class Popular extends Component {
     }
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   *
+   * @returns {jsx}
+   */
   render() {
     const { title, cardClassName, popularProducts } = this.props;
     return (
