@@ -24,8 +24,21 @@ import './index.sm.css';
 
 
 
+/**
+ * ViewCart
+ * @name ViewCart
+ * @class
+ *
+ * @extends {Component}
+ */
 class ViewCart extends Component {
 
+  /**
+   * componentDidMount
+   *
+   * @name componentDidMount
+   * @function
+   */
   componentDidMount() {
     const { user, getCart, getCartAmount } = this.props;
     const { customer_id } = user.customer
@@ -37,22 +50,52 @@ class ViewCart extends Component {
     }
   }
 
+  /**
+   * converts image name to link
+   *
+   * @name getImageLink
+   * @function
+   * @param {string} imageName
+   * @returns {string} image link
+   */
   getImageLink(imageName) {
     return imageName ? `${API}/images/products/${imageName}` : "";
   }
 
+  /**
+   * makes request to the update cart endpoint
+   *
+   * @name updateCart
+   * @function
+   * @param {object} item
+   * @param {number} quantity
+   */
   updateCart = (item, quantity) => {
     const { cart, updateCart } = this.props;
     if(cart.isLoading) return;
     updateCart({...item, quantity});
   }
 
+  /**
+   * makes request to remove item from cart endpoint
+   *
+   * @name removeItemFromCart
+   * @function
+   * @param {object} item
+   */
   removeItemFromCart = (item) => {
     const { cart, deleteCartItem } = this.props;
     if(cart.isLoading) return;
     deleteCartItem(item);
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const { 
       openModal, 

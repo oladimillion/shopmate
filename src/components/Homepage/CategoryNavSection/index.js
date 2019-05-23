@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import CategoryNavSectionBg from "../../../assets/images/Images-modal4.png";
 import "./index.css";
 
+/**
+ * CategoryNavSection
+ *
+ * @name CategoryNavSection
+ * @function
+ * @returns {jsx}
+ */
 const CategoryNavSection = () => {
   return (
     <section className="inner__container category__nav__section flex margin__auto position__rel ">

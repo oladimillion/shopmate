@@ -25,6 +25,17 @@ const categoryLinks = [
   },
 ];
 
+/**
+ * SearchInput
+ *
+ * @name SearchInput
+ * @function
+ * @prop {string} className
+ * @prop {function} onSubmit
+ * @prop {string} search
+ * @prop {object} rest
+ * @returns {jsx}
+ */
 const SearchInput = ({ className, onSubmit, search, ...rest }) => {
   return (
     <div className={`navbar__search ${className || ""}`}>
@@ -49,6 +60,18 @@ const SearchInput = ({ className, onSubmit, search, ...rest }) => {
   )
 };
 
+
+/**
+ * NavBarDark
+ *
+ * @name NavBarLight
+ * @function
+ * @prop {function} openViewCartModal 
+ * @prop {object} user 
+ * @prop {object} cart 
+ * @prop {number} cartQuantity 
+ * @returns {jsx}
+ */
 const NavBarDark = ({ openViewCartModal, user, cartQuantity, ...rest }) => {
   return (
     <React.Fragment>

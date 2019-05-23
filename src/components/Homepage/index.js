@@ -8,7 +8,21 @@ import NewsLetter from "../common/NewsLetter";
 
 import './index.css';
 
+/**
+ * Homepage component
+ * @name Homepage
+ * @class
+ *
+ * @extends {Component}
+ */
 class Homepage extends Component {
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     return (
       <div className="homepage">

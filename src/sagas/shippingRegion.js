@@ -4,6 +4,13 @@ import * as requests from "../requests";
 import connectivityCheck from "../utils/connectivityCheck";
 
 
+/**
+ * get shipping region async
+ *
+ * @name  getShippingRegionAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* getShippingRegionAsync(action) {
   yield put({ type: types.GET_SHIPPING_REGION_LOADING });
   try {
@@ -14,6 +21,13 @@ export function* getShippingRegionAsync(action) {
   }
 }
 
+/**
+ * get shipping region by id async
+ *
+ * @name  getShippingRegionByIdAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* getShippingRegionByIdAsync(action) {
   yield put({ type: types.GET_SHIPPING_REGION_BY_ID_LOADING });
   try {
@@ -24,10 +38,22 @@ export function* getShippingRegionByIdAsync(action) {
   }
 }
 
+/**
+ * get shipping region action watcher
+ *
+ * @name  getShippingRegionWatcher 
+ * @function
+ */
 function* getShippingRegionWatcher() {
   yield takeLatest(types.GET_SHIPPING_REGION_REQUEST, getShippingRegionAsync);
 }
 
+/**
+ * get shipping region by id action watcher
+ *
+ * @name  getShippingRegionByIdWatcher 
+ * @function
+ */
 function* getShippingRegionByIdWatcher() {
   yield takeLatest(types.GET_SHIPPING_REGION_BY_ID_REQUEST, getShippingRegionByIdAsync);
 }

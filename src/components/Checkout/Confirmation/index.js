@@ -5,23 +5,46 @@ import "./index.md.css";
 import "./index.sm.css";
 
 
-const DeliverySection = (props) => {
+/**
+ * delivery subsection
+ *
+ * @name DeliverySection
+ * @function
+ * @prop {sting} title
+ * @prop {sting} body
+ * @returns {jsx}
+ */
+const DeliverySection = ({ title, body }) => {
   return (
     <div className="delivery__summary section__level">
       <h3 
         className="summary__title gray__color">
-        {props.title}
+        {title}
       </h3>
       <div 
         className="summary__body gray__color">
-        {props.body}
+        {body}
       </div>
     </div>
   )
 };
 
+/**
+ * Confirmation component
+ * @name Confirmation
+ * @class
+ *
+ * @extends {Component}
+ */
 class Confirmation extends Component {
 
+  /**
+   * get shipping detail using shipping id
+   *
+   * @name getShippingDetail
+   * @function
+   * @returns {object} shipping detail
+   */
   getShippingDetail() {
     const { shippingRegionById, delivery } = this.props;
     const { shipping_id } = delivery;
@@ -29,6 +52,15 @@ class Confirmation extends Component {
     return shippingDetail || {};
   }
 
+  /**
+   * converts address details to string
+   *
+   * @name getAddressBody
+   * @function
+   * @param {object} {delivery
+   * @param {object} customer}
+   * @returns {string}
+   */
   getAddressBody({delivery, customer}) {
     return [
       delivery.address || customer.address_1 || "",
@@ -40,6 +72,13 @@ class Confirmation extends Component {
       .join(", ") + ".";
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const re = /\([\D\d]+\)/;
     const { user, cart, delivery, tax, confirmation } = this.props;

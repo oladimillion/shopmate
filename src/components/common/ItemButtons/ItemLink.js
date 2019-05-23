@@ -5,6 +5,17 @@ import "./index.css";
 
 const func = () => {};
 
+/**
+ * ItemLink
+ *
+ * @name ItemLink
+ * @function
+ * @param {string} {to
+ * @param {string} name
+ * @param {string} className
+ * @param {function} onClick}
+ * @returns {jsx}
+ */
 const ItemLink = ({ to, name, className, onClick }) => {
   return (
     <Link 

@@ -2,6 +2,17 @@ import React from "react";
 
 import "./index.css";
 
+/**
+ * Modal
+ *
+ * @name Modal
+ * @function
+ * @prop {string} modalClassName
+ * @prop {string} modalInnerClassName
+ * @prop {jsx} children
+ * @prop {boolean} open
+ * @returns {jsx}
+ */
 const Modal = ({ modalClassName, modalInnerClassName, children, open }) => {
   return (
     <div 

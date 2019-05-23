@@ -6,6 +6,13 @@ import connectivityCheck from "../utils/connectivityCheck";
 
 
 
+/**
+ * get departments async
+ *
+ * @name  getDepartmentsAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* getDepartmentsAsync(action) {
   yield put({ type: types.GET_DEPARTMENTS_LOADING });
   try {
@@ -16,6 +23,12 @@ export function* getDepartmentsAsync(action) {
   }
 }
 
+/**
+ * get departments action watcher
+ *
+ * @name  getDepartmentsWatcher 
+ * @function
+ */
 function* getDepartmentsWatcher() {
   yield takeLatest(types.GET_DEPARTMENTS_REQUEST, getDepartmentsAsync);
 }

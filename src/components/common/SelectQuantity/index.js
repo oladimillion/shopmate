@@ -3,12 +3,26 @@ import RoundButton from "../RoundButton";
 
 import "./index.css";
 
+/**
+ * SelectQuantity
+ * @name SelectQuantity
+ * @class
+ *
+ * @extends {Component}
+ */
 class SelectQuantity extends Component {
 
   state = {
     quantity: this.props.quantity,
   }
 
+  /**
+   * updates state quantity value
+   *
+   * @name updateQuantity
+   * @function
+   * @param {number} value
+   */
   updateQuantity (value) {
     let { quantity } = this.state;
     const { onChange } = this.props;
@@ -24,6 +38,13 @@ class SelectQuantity extends Component {
     }
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render () {
     const { quantity } = this.state;
     return (

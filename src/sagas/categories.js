@@ -4,6 +4,13 @@ import * as requests from "../requests";
 import connectivityCheck from "../utils/connectivityCheck";
 
 
+/**
+ * get categories async
+ *
+ * @name getCategoriesAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* getCategoriesAsync(action) {
   yield put({ type: types.GET_CATEGORIES_LOADING });
   try {
@@ -14,6 +21,13 @@ export function* getCategoriesAsync(action) {
   }
 }
 
+
+/**
+ * get categories action watcher
+ *
+ * @name  getCategoriesWatcher 
+ * @function
+ */
 function* getCategoriesWatcher() {
   yield takeLatest(types.GET_CATEGORIES_REQUEST, getCategoriesAsync);
 }

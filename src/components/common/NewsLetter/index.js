@@ -5,6 +5,13 @@ import "./index.css";
 import "./index.md.css";
 
 
+/**
+ * NewsLetter
+ *
+ * @name NewsLetter
+ * @function
+ * @returns {jsx}
+ */
 const NewsLetter = () => {
   return (
     <div 

@@ -13,6 +13,13 @@ import * as actions from "../../actions";
 
 import './index.css';
 
+/**
+ * Login
+ * @name Login
+ * @class
+ *
+ * @extends {Component}
+ */
 class Login extends Component {
 
   state = {
@@ -23,6 +30,12 @@ class Login extends Component {
 
   requestSent = false;
 
+  /**
+   * componentDidUpdate
+   *
+   * @name componentDidUpdate
+   * @function
+   */
   componentDidUpdate() {
     const {
       user, 
@@ -44,14 +57,37 @@ class Login extends Component {
     }
   }
 
+  /**
+   * onChange
+   * update state from field/input values
+   *
+   * @name onChange
+   * @function
+   * @param {object} e
+   */
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  /**
+   * onCheck
+   * update state from checkbox values
+   *
+   * @name onCheck
+   * @function
+   * @param {object} e
+   */
   onCheck = (e) => {
     this.setState({ [e.target.name]: e.target.checked });
   }
 
+  /**
+   * makes request to login endpoint
+   *
+   * @name onSubmit
+   * @function
+   * @param {object} e
+   */
   onSubmit = (e) => {
     const { user, login } = this.props;
     e.preventDefault();
@@ -60,6 +96,12 @@ class Login extends Component {
     login(this.state);
   }
 
+  /**
+   * shows registration form modal
+   *
+   * @name openRegisterModal
+   * @function
+   */
   openRegisterModal = () => {
     const { openRegisterModal, closeLoginModal, setErrorMessage } = this.props;
     closeLoginModal();
@@ -67,12 +109,25 @@ class Login extends Component {
     setErrorMessage(null);
   }
 
+  /**
+   * hides login form modal
+   *
+   * @name closeLoginModal
+   * @function
+   */
   closeLoginModal = () => {
     const { closeLoginModal, setErrorMessage } = this.props;
     setErrorMessage(null);
     closeLoginModal();
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const { open, user } = this.props;
     const { error, message } = user;
@@ -83,9 +138,7 @@ class Login extends Component {
         onCloseModal={this.closeLoginModal}
         open={open}>
         {
-          user.isLoading && (
-            <Loader />
-          )
+          user.isLoading && <Loader />
         }
         <MessageAlert
           message={error ? error.error.message : message}

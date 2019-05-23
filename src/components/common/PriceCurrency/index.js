@@ -2,6 +2,15 @@ import React from 'react';
 
 import "./index.css";
 
+/**
+ * PriceCurrency
+ *
+ * @name PriceCurrency
+ * @function
+ * @prop {string} {className
+ * @prop {number} price}
+ * @returns {jsx}
+ */
 const PriceCurrency = ({ className, price }) => {
   return (
     <span className={`item__price ${className || ""}`}>

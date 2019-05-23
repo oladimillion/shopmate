@@ -12,14 +12,35 @@ import visa from "../../../assets/images/logos-visa.png";
 
 
 
+/**
+ * Payment component
+ * @name Payment
+ * @class
+ *
+ * @extends {Component}
+ */
 class Payment extends Component {
 
   state = {paymentOption: "card"};
 
+  /**
+   * set paymentOption state
+   *
+   * @name setPaymentOption
+   * @function
+   * @param {string} val - option state
+   */
   setPaymentOption = (val) => {
     this.setState({paymentOption: val});
   }
 
+  /**
+   * render
+   *
+   * @name render
+   * @function
+   * @returns {jsx}
+   */
   render() {
     const { paymentOption } = this.state;
     const { payment, paymentRegex, cart } = this.props;

@@ -4,6 +4,15 @@ import "./index.css";
 import "./index.md.css";
 
 
+/**
+ * InputWrapper
+ *
+ * @name InputWrapper
+ * @function
+ * @prop {string} wrapperClassname
+ * @prop {jsx} children
+ * @returns {jsx}
+ */
 export const InputWrapper = ({wrapperClassname, children}) => {
   return (
     <span className={`flex__one ${wrapperClassname || ""}`}>
@@ -12,6 +21,14 @@ export const InputWrapper = ({wrapperClassname, children}) => {
   )
 }
 
+/**
+ * InputGroup
+ *
+ * @name InputGroup
+ * @function
+ * @prop {jsx} children
+ * @returns {jsx}
+ */
 const InputGroup = ({children}) => {
   return (
     <div 

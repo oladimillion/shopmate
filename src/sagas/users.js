@@ -8,6 +8,13 @@ import connectivityCheck from "../utils/connectivityCheck";
 
 
 
+/**
+ * get user async
+ *
+ * @name getUserAsync
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* getUserAsync(action) {
   yield put({ type: types.USER_LOADING });
   try {
@@ -22,6 +29,13 @@ export function* getUserAsync(action) {
   }
 }
 
+/**
+ * profile update async
+ *
+ * @name profileAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* profileAsync(action) {
   yield put({ type: types.USER_LOADING });
   try {
@@ -38,6 +52,13 @@ export function* profileAsync(action) {
   }
 }
 
+/**
+ * user address update async
+ *
+ * @name addressAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* addressAsync(action) {
   yield put({ type: types.USER_LOADING });
   try {
@@ -54,6 +75,13 @@ export function* addressAsync(action) {
   }
 }
 
+/**
+ * user login async
+ *
+ * @name loginAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* loginAsync(action) {
   yield put({ type: types.USER_LOADING });
   try {
@@ -71,6 +99,13 @@ export function* loginAsync(action) {
   }
 }
 
+/**
+ * user signup async
+ *
+ * @name signupAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* signupAsync(action) {
   yield put({ type: types.USER_LOADING });
   try {
@@ -88,22 +123,52 @@ export function* signupAsync(action) {
   }
 }
 
+/**
+ * user login action watcher
+ *
+ * @name loginWatcher
+ * @function
+ */
 function* loginWatcher() {
   yield takeLatest(types.LOGIN_REQUEST, loginAsync);
 }
 
+/**
+ * user signup action watcher
+ *
+ * @name signupWatcher 
+ * @function
+ */
 function* signupWatcher() {
   yield takeLatest(types.SIGNUP_REQUEST, signupAsync);
 }
 
+/**
+ * get user action watcher
+ *
+ * @name getUserWatcher 
+ * @function
+ */
 function* getUserWatcher() {
   yield takeLatest(types.USER_REQUEST, getUserAsync);
 }
 
+/**
+ * profile update action watcher
+ *
+ * @name profileWatcher 
+ * @function
+ */
 function* profileWatcher() {
   yield takeLatest(types.PROFILE_REQUEST, profileAsync);
 }
 
+/**
+ * user address update action watcher
+ *
+ * @name addressWatcher 
+ * @function
+ */
 function* addressWatcher() {
   yield takeLatest(types.ADDRESS_REQUEST, addressAsync);
 }

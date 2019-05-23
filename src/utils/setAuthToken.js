@@ -1,5 +1,13 @@
 import axios from 'axios';
 
+/**
+ * add token to the cookie storage
+ *
+ * @name createCookie
+ * @function
+ * @param {string} {accessToken} token
+ * @param {string} {expires_in} validation period of a token
+ */
 const createCookie = ({ accessToken, expires_in }) => {
   const now = new Date();
   const hours = parseInt(expires_in.slice(0,2));
@@ -7,6 +15,14 @@ const createCookie = ({ accessToken, expires_in }) => {
   document.cookie=`accessToken=${accessToken};expires=${now};`;
 }
 
+/**
+ * adds to Authorization token the axios headers
+ *
+ * @name default
+ * @function
+ * @param {string} {accessToken} authentication token
+ * @param {string} {expires_in} token validity period
+ */
 export default ({ accessToken, expires_in }) => {
   if (accessToken && expires_in) {
     axios.defaults.headers.common['USER-KEY'] = accessToken;

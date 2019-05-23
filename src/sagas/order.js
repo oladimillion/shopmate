@@ -4,6 +4,13 @@ import * as requests from "../requests";
 import connectivityCheck from "../utils/connectivityCheck";
 
 
+/**
+ * create order async
+ *
+ * @name  createOrderAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* createOrderAsync(action) {
   yield put({ type: types.CREATE_ORDER_LOADING });
   try {
@@ -14,6 +21,12 @@ export function* createOrderAsync(action) {
   }
 }
 
+/**
+ * create order action watcher
+ *
+ * @name  createOrderWatcher 
+ * @function
+ */
 function* createOrderWatcher() {
   yield takeLatest(types.CREATE_ORDER_REQUEST, createOrderAsync);
 }

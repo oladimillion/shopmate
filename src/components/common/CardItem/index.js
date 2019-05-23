@@ -12,6 +12,15 @@ import "./index.sm.css";
 
 
 
+/**
+ * CardItem
+ *
+ * @name CardItem
+ * @function
+ * @prop {string} className
+ * @prop {object} product
+ * @returns {jsx}
+ */
 const CardItem = ({ className, product }) => {
   const { name, price, product_id, thumbnail } = product || {};
   return (

@@ -5,6 +5,13 @@ import rocket from "../../../assets/images/icons-rocket.png";
 
 import "./index.css";
 
+/**
+ * Finish component
+ *
+ * @name Finish
+ * @function
+ * @returns {jsx}
+ */
 const Finish = () => {
   return (
     <div className="finish">

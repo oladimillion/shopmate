@@ -4,6 +4,13 @@ import * as requests from "../requests";
 import connectivityCheck from "../utils/connectivityCheck";
 
 
+/**
+ * get tax async
+ *
+ * @name  getTaxAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
 export function* getTaxAsync(action) {
   yield put({ type: types.GET_TAX_LOADING });
   try {
@@ -14,6 +21,12 @@ export function* getTaxAsync(action) {
   }
 }
 
+/**
+ * get taxt action watcher
+ *
+ * @name  getTaxWatcher 
+ * @function
+ */
 function* getTaxWatcher() {
   yield takeLatest(types.GET_TAX_REQUEST, getTaxAsync);
 }

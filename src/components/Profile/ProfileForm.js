@@ -2,6 +2,17 @@ import React from 'react';
 import LabelInput from "../common/LabelInput";
 import InputGroup, { InputWrapper } from "../common/InputGroup";
 
+/**
+ * default
+ *
+ * @name default
+ * @function
+ * @prop {string} title
+ * @prop {array} inputDataArray
+ * @prop {function} onChange
+ * @prop {jsx} children
+ * @returns {jsx}
+ */
 export default ({ title, inputDataArray, onChange, children }) => {
   return (
     <div className=" profile__padding">

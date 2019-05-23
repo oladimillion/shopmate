@@ -2,6 +2,15 @@ import React from "react";
 
 import "./index.css";
 
+/**
+ * MessageAlert
+ *
+ * @name MessageAlert
+ * @function
+ * @prop {string} message
+ * @prop {boolean} hasError
+ * @returns {jsx}
+ */
 const MessageAlert = ({ message, hasError }) => {
   return (
     <React.Fragment>
