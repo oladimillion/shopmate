@@ -31,7 +31,7 @@ import './index.md.css';
  *
  * @extends {Component}
  */
-class Checkout extends Component {
+export class Checkout extends Component {
 
   state = {
     step: 1,
