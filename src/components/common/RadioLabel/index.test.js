@@ -2,7 +2,7 @@ import React from "react";
 import RadioLabel from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<RadioLabel /> ", () => {
   const props = {

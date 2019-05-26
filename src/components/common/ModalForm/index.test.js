@@ -7,7 +7,7 @@ import ModalForm, {
 } from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<ModalFormInput /> ", () => {
   const props = {

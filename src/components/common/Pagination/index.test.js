@@ -2,7 +2,7 @@ import React from "react";
 import Pagination from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<Pagination /> ", () => {
   const props = {

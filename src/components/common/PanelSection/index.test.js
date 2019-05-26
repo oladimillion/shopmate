@@ -2,7 +2,7 @@ import React from "react";
 import PanelSection from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<PanelSection /> ", () => {
   const props = {

@@ -2,7 +2,7 @@ import React from "react";
 import RoundButton from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<RoundButton />", () => {
   const props = {

@@ -2,7 +2,7 @@ import React from "react";
 import { ItemButton, ItemLink } from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<ItemButton /> ", () => {
   const props = {

@@ -2,7 +2,7 @@ import React from "react";
 import SquareButton from ".";
 import { shallow } from 'enzyme';
 
-const func = ()=>{};
+const func = jest.fn();
 
 describe("<SquareButton />", () => {
   const props = {

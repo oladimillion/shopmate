@@ -8,8 +8,6 @@
 
 .flex {
   display: flex;
-  flex-wrap: wrap;
-  min-width: 270px;
 }
 
 .flex__column {
@@ -22,6 +20,7 @@
 
 .flex__wrap {
   flex-wrap: wrap;
+  min-width: 270px;
 }
 
 .flex__nowrap {
@@ -34,6 +33,10 @@
 
 .flex__two {
   flex: 2;
+}
+
+.flex__three {
+  flex: 3;
 }
 
 .float__left {
