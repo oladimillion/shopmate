@@ -19,7 +19,7 @@ import './index.css';
  *
  * @extends {Component}
  */
-class Register extends Component {
+export class Register extends Component {
 
   state = {
     name: "",

@@ -1,13 +1,8 @@
 
 import * as types from "../actions/types";
+import initState from "./initState";
 
-const initState = {
-  isLoading: false,
-  data: {},
-  error: null,
-};
-
-const Order = (state=initState, action) => {
+const Order = (state=initState.order, action) => {
   switch (action.type) {
     case types.CREATE_ORDER_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };
@@ -16,7 +11,7 @@ const Order = (state=initState, action) => {
     case types.CREATE_ORDER_LOADING:
       return { ...state, isLoading: true, error: null };
     case types.USER_LOGOUT:
-      return { ...initState };
+      return { ...initState.order };
     default:
       return state;
   }

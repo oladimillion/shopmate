@@ -30,6 +30,7 @@
     "build": "react-scripts build",
     "prebuild": "rm -rf build",
     "test": "react-scripts test",
+    "coverage": "npm test -- --coverage || true",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -55,9 +56,24 @@
     "collectCoverageFrom": [
       "**/*.{js,jsx}",
       "!**/coverage/**",
-      "!store/index.js",
-      "!reducers/index.js",
-      "!index.js"
-    ]
+      "!**/build/**",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!reducers/**",
+      "!reducers/**",
+      "!server.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "html"
+    ],
+    "snapshotSerializers": []
   }
 }

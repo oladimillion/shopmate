@@ -29,7 +29,7 @@ import './index.md.css';
  *
  * @extends {Component}
  */
-class Profile extends Component {
+export class Profile extends Component {
 
   state = {
     showAddressForm: false,

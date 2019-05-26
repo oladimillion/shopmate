@@ -34,7 +34,7 @@ const Label = ({shippingType, duration}) => {
 };
 
 
-class Delivery extends Component {
+export class Delivery extends Component {
 
 
   /**

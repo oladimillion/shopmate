@@ -21,7 +21,7 @@ import "./index.sm.css";
  *
  * @extends {Component}
  */
-class Review extends Component {
+export class Review extends Component {
 
   state = {
     product_id: this.props.productId,

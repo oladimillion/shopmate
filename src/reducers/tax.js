@@ -1,13 +1,9 @@
 
 import * as types from "../actions/types";
+import initState from "./initState";
 
-const initState = {
-  isLoading: false,
-  data: [],
-  error: null,
-};
 
-const Tax = (state=initState, action) => {
+const Tax = (state=initState.tax, action) => {
   switch (action.type) {
     case types.GET_TAX_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };

@@ -36,7 +36,7 @@ const DeliverySection = ({ title, body }) => {
  *
  * @extends {Component}
  */
-class Confirmation extends Component {
+export class Confirmation extends Component {
 
   /**
    * get shipping detail using shipping id
@@ -155,7 +155,11 @@ class Confirmation extends Component {
                   })
                 }
                 value={confirmation.tax_id}>
-                <option disabled value={0}>Select tax type</option>
+                <option 
+                  disabled 
+                  value={0}>
+                  Select tax type
+                </option>
                 {
                   tax.data.map((data) => {
                     return (

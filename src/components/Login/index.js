@@ -20,7 +20,7 @@ import './index.css';
  *
  * @extends {Component}
  */
-class Login extends Component {
+export class Login extends Component {
 
   state = {
     remember: false,

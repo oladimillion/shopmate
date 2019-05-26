@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Rating } from 'semantic-ui-react'
 
-import { getProductById, getProductReview, addCart } from "../../actions";
+import { 
+  getProductById, 
+  getProductReview, 
+  addCart, 
+} from "../../actions";
 import API from "../../api";
 
 import Review from "./Review";
@@ -63,12 +67,12 @@ const squareButtonList = [
  *
  * @extends {Component}
  */
-class ViewItem extends Component {
+export class ViewItem extends Component {
 
   requestSent = false;
 
   state = {
-    productImage: this.props.productById.data.image,
+    productImage: "",
     size: "L",
     color: "red",
   }
@@ -97,6 +101,27 @@ class ViewItem extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
     this.getProductAndReview();
+  }
+
+  /**
+   * getDerivedStateFromProps
+   *
+   * @name getDerivedStateFromProps
+   * @function
+   * @static
+   * @param {object} nextProps
+   * @param {object} prevState
+   * @returns {object} updated state
+   */
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { image, image_2 } = nextProps.productById.data;
+    const { productImage } = prevState;
+    if(productImage === image || productImage === image_2) {
+      return null;
+    }
+    return {
+      productImage: image,
+    }
   }
 
   /**
@@ -181,16 +206,21 @@ class ViewItem extends Component {
    * @function
    */
   getProductAndReview() {
-    const { productById } = this.props;
+    const { 
+      productById, 
+      productReview, 
+      scrollTo: scrollToProps,
+    } = this.props;
     const { data, error } = productById;
     if (!this.requestSent && 
       (+this.getParams !== data.product_id) && !error) {
       this.makeRequest();
       this.requestSent = true;
-      this.setState({ productImage: "" });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const scrollTo = scrollToProps || window.scrollTo
+      scrollTo({ top: 0, behavior: 'smooth' });
     }
-    if(!productById.isLoading && this.requestSent) {
+    if(!(productById.isLoading && productReview.isLoading) 
+      && this.requestSent) {
       this.requestSent = false;
     }
   }
@@ -226,7 +256,7 @@ class ViewItem extends Component {
    */
   render() {
 
-    const { productById, productReview, user } = this.props;
+    const { productById, user } = this.props;
     const { data } = productById;
     const { productImage } = this.state;
 
@@ -379,8 +409,8 @@ class ViewItem extends Component {
             )
         }
         <Review 
+          {...this.props}
           productId={+this.getParams}
-          productReview={productReview} 
         />
         <HorizontalSpacing />
         <Popular 

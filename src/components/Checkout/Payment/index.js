@@ -19,7 +19,7 @@ import visa from "../../../assets/images/logos-visa.png";
  *
  * @extends {Component}
  */
-class Payment extends Component {
+export class Payment extends Component {
 
   state = {paymentOption: "card"};
 
