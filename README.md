@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/oladimillion/shopmate.svg?token=yCUwzn8wsJHeQbpUgpqS&branch=develop)](https://travis-ci.com/oladimillion/shopmate)
+
 Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) to view the hosted App.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
