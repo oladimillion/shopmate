@@ -3,19 +3,19 @@ import { Icon } from "semantic-ui-react";
 
 import "./index.css";
 
-const func = () => {};
+const func = ()=>{};
 /**
  * RoundButton
  *
  * @name RoundButton
  * @function
- * @param {string} {icon
- * @param {string} className
- * @param {function} onClick
- * @param {string} iconClassName}
+ * @prop {string} icon
+ * @prop {string} className
+ * @prop {function} onClick
+ * @prop {string} iconClassName
  * @returns {jsx}
  */
-const RoundButton = ({icon, className, onClick, iconClassName }) => {
+const RoundButton = ({ icon, className, onClick, iconClassName }) => {
   return (
     <button 
       onClick={ onClick || func }

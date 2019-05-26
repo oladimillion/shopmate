@@ -31,7 +31,7 @@ const Footer = (props) => {
       {
         props.step < 4 && (
           <footer 
-            className={`checkout__footer gray__bg flex flex__wrap space__between ${props.className}`}>
+            className={`checkout__footer gray__bg flex flex__wrap space__between ${props.className || ""}`}>
             <ItemButton 
               name="Back"  
               className="prev__step step__buttons item__button__light" 

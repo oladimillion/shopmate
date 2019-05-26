@@ -15,7 +15,7 @@ describe('<Profile /> ', () => {
     profile: func,
     address: func,
     user: initState.user,
-    shippingRegion: initState.shippingRegion,
+    shippingRegion: initState.shippingRegion.data,
     ...setup,
   };
 
@@ -23,6 +23,9 @@ describe('<Profile /> ', () => {
     <Profile {...props} />
   );
   it('renders Profile component without crashing', () => {
+    wrapper.instance().setState({
+      showAddressForm: true,
+    });
     wrapper.instance().onChange({
       target: {
         name: "city",

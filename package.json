@@ -7,7 +7,6 @@
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "express-favicon": "^2.0.1",
-    "gh-pages": "^2.0.1",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
     "query-string": "^5.1.1",
@@ -21,7 +20,6 @@
     "redux-saga": "^1.0.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.86.0",
-    "stripe-client": "^1.1.5",
     "toastr": "^2.1.4"
   },
   "scripts": {
@@ -32,9 +30,7 @@
     "test": "react-scripts test",
     "coverage": "npm test -- --coverage || true",
     "coveralls": "npm test -- --coverage || true && cat ./coverage/lcov.info | coveralls",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -61,21 +57,14 @@
       "!**/build/**",
       "!**/node_modules/**",
       "!**/vendor/**",
-      "!reducers/**",
-      "!reducers/**",
+      "!**/reducers/index.js",
+      "!**/sagas/index.js",
+      "!**/serviceWorker.js",
+      "!**/index.js",
       "!server.js"
     ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    },
     "coverageReporters": [
       "json", "lcov", "text", "clover"
-    ],
-    "snapshotSerializers": []
+    ]
   }
 }

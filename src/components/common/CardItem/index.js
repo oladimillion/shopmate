@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import PriceCurrency from "../PriceCurrency";
 import AddFavourite from "../../common/AddFavourite";
