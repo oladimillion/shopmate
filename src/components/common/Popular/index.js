@@ -70,9 +70,11 @@ class Popular extends Component {
    * @param {string} dir - direction
    */
   horizontalScroll(dir) {
-    const { SCROLL_DISTANCE, document: propsDocument } = this.props.scrollDistance;
-    const doc = propsDocument || document;
-    const scrollElement = doc.getElementById("popular");
+    const {
+      scrollDistance: SCROLL_DISTANCE, 
+      document: propsDocument,
+    } = this.props;
+    const scrollElement = (propsDocument || document).getElementById("popular");
     switch(dir){
       case "LEFT":
         scrollElement.scrollBy(-1 * SCROLL_DISTANCE, 0);
