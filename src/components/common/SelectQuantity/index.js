@@ -67,6 +67,4 @@ class SelectQuantity extends Component {
   }
 }
 
-
-
 export default SelectQuantity;

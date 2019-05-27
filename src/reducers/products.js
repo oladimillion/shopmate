@@ -1,13 +1,7 @@
 import * as types from "../actions/types";
+import initState from "./initState";
 
-const initState = {
-  isLoading: false,
-  count: 0,
-  data: [],
-  error: null,
-}
-
-const AllProduct = (state=initState, action) => {
+const AllProduct = (state=initState.allProduct, action) => {
   switch (action.type) {
     case types.GET_PRODUCTS_SUCCESS:
       const { rows, count } = action.payload;
@@ -21,7 +15,7 @@ const AllProduct = (state=initState, action) => {
   }
 }
 
-const ProductById = (state={ ...initState, data: {} }, action) => {
+const ProductById = (state=initState.productById, action) => {
   switch (action.type) {
     case types.GET_PRODUCT_BY_ID_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };
@@ -34,7 +28,7 @@ const ProductById = (state={ ...initState, data: {} }, action) => {
   }
 }
 
-const ProductReview = (state=initState, action) => {
+const ProductReview = (state=initState.productReview, action) => {
   switch (action.type) {
     case types.ADD_PRODUCT_REVIEW_SUCCESS:
       return { ...state, isLoading: false, data: [ ...action.payload, ...state.data ] };
@@ -51,7 +45,7 @@ const ProductReview = (state=initState, action) => {
   }
 }
 
-const PopularProducts = (state=initState, action) => {
+const PopularProducts = (state=initState.popularProducts, action) => {
   switch (action.type) {
     case types.GET_POPULAR_PRODUCTS_SUCCESS:
       const { rows, count } = action.payload;

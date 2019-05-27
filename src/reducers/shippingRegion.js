@@ -1,13 +1,8 @@
 
 import * as types from "../actions/types";
+import initState from "./initState";
 
-const initState = {
-  isLoading: false,
-  data: [],
-  error: null,
-};
-
-const ShippingRegion = (state=initState, action) => {
+const ShippingRegion = (state=initState.shippingRegion, action) => {
   switch (action.type) {
     case types.GET_SHIPPING_REGION_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };
@@ -20,7 +15,7 @@ const ShippingRegion = (state=initState, action) => {
   }
 }
 
-const ShippingRegionById = (state=initState, action) => {
+const ShippingRegionById = (state=initState.shippingRegionById, action) => {
   switch (action.type) {
     case types.GET_SHIPPING_REGION_BY_ID_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };

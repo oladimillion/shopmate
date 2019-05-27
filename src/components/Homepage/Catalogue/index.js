@@ -26,7 +26,7 @@ import "./index.sm.css";
  *
  * @extends {Component}
  */
-class Catalogue extends Component {
+export class Catalogue extends Component {
 
   LIMIT = 6;
   requestSent = false;

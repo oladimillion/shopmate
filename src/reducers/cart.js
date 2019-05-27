@@ -1,12 +1,7 @@
 
 import * as types from "../actions/types";
+import initState from "./initState"
 
-const initState = {
-  isLoading: false,
-  data: [],
-  error: null,
-  totalAmount: 0,
-};
 
 const calcTotalAmount = (data) => {
   return data.reduce((accum, item) => {
@@ -15,7 +10,7 @@ const calcTotalAmount = (data) => {
   }, 0).toFixed(2);
 }
 
-const Cart = (state=initState, action) => {
+const Cart = (state=initState.cart, action) => {
   switch (action.type) {
     case types.ADD_CART_SUCCESS:
       return { 
@@ -25,7 +20,7 @@ const Cart = (state=initState, action) => {
         totalAmount: calcTotalAmount(action.payload),
       };
     case types.EMPTY_CART: 
-      return initState;
+      return initState.cart;
     case types.GET_CART_AMOUNT_SUCCESS:
       return { ...state, isLoading: false, totalAmount: action.payload.total_amount || 0 };
     case types.GET_CART_SUCCESS:
@@ -64,7 +59,7 @@ const Cart = (state=initState, action) => {
     case types.UPDATE_CART_LOADING:
       return { ...state, isLoading: true, error: null };
     case types.USER_LOGOUT:
-      return { ...initState };
+      return { ...initState.cart };
     default:
       return state;
   }

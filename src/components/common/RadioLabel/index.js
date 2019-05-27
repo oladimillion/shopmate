@@ -2,12 +2,12 @@ import React from 'react';
 
 import "./index.css";
 
-const func = () => {};
+const func = ()=>{};
 
 /**
- * RadioButton
+ * RadioLabel
  *
- * @name RadioButton
+ * @name RadioLabel
  * @function
  * @prop {string} {name
  * @prop {string} id
@@ -17,7 +17,7 @@ const func = () => {};
  * @prop {boolean} checked}
  * @returns {jsx}
  */
-const RadioButton = ({ name, id, label, className, onClick, checked }) => {
+const RadioLabel = ({ name, id, label, className, onClick, checked }) => {
   return (
     <span 
       onClick={onClick || func}
@@ -41,6 +41,4 @@ const RadioButton = ({ name, id, label, className, onClick, checked }) => {
   )
 }
 
-
-
-export default RadioButton;
+export default RadioLabel;

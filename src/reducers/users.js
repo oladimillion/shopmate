@@ -1,15 +1,8 @@
 
 import * as types from "../actions/types";
+import initState from "./initState"
 
-const initState = {
-  isLoading: false,
-  customer: {},
-  error: null,
-  message: "",
-  isAuth: false,
-};
-
-const User = (state=initState, action) => {
+const User = (state=initState.user, action) => {
   switch (action.type) {
     case types.USER_SUCCESS:
       return { 
@@ -23,7 +16,7 @@ const User = (state=initState, action) => {
     case types.USER_LOADING:
       return { ...state, isLoading: true, error: null, message: "" };
     case types.USER_LOGOUT:
-      return { ...initState };
+      return { ...initState.user };
     default:
       return state;
   }

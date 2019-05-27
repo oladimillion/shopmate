@@ -1,13 +1,8 @@
 
 import * as types from "../actions/types";
+import initState from "./initState";
 
-const initState = {
-  isLoading: false,
-  data: [],
-  error: null,
-};
-
-const Departments = (state=initState, action) => {
+const Departments = (state=initState.departments, action) => {
   switch (action.type) {
     case types.GET_DEPARTMENTS_SUCCESS:
       return { ...state, isLoading: false, data: action.payload };

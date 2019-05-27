@@ -31,7 +31,7 @@ import './index.sm.css';
  *
  * @extends {Component}
  */
-class ViewCart extends Component {
+export class ViewCart extends Component {
 
   /**
    * componentDidMount
@@ -210,6 +210,8 @@ class ViewCart extends Component {
     );
   }
 }
+
+
 
 const mapStateToProps = (state) => {
   return {

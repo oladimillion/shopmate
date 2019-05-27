@@ -8,11 +8,11 @@ import "./index.css";
  * @function
  * @returns {jsx}
  */
-const HorizontalSpacing = () => {
+const HorizontalLine = () => {
   return (
     <div className="section__level horizontal__line"></div>
   )
 }
 
 
-export default HorizontalSpacing;
+export default HorizontalLine;

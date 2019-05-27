@@ -16,7 +16,7 @@ const func = ()=>{};
  * @prop {string} label
  * @returns {jsx}
  */
-const SquareButton = ({ name, id, onClick, className, label }) => {
+const SquareButton = ({ name, id, onClick, className, label })=>{
   return (
     <span className="square__button">
       <input 

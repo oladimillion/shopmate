@@ -20,7 +20,7 @@ import './index.sm.css';
  *
  * @extends {Component}
  */
-class NavBar extends Component {
+export class NavBar extends Component {
 
   state = {
     search: "",

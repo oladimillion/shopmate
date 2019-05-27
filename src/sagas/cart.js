@@ -6,7 +6,7 @@ import connectivityCheck from "../utils/connectivityCheck";
 
 
 /**
- *  add an item to cart async
+ *  add item to cart async
  *
  * @name addCartAsync
  * @function

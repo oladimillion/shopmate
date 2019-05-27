@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -8,8 +8,15 @@ import ProtectRoutes from "./routes/ProtectedRoutes";
 import routes, { components } from "./routes/routes";
 
 import "toastr/build/toastr.min.css";
-import 'semantic-ui-css/semantic.min.css'
+import "semantic-ui-css/semantic.min.css";
 
+/**
+ * App
+ *
+ * @name App
+ * @function
+ * @returns {jsx}
+ */
 const App = () => {
   return (
     <Provider store={store} >

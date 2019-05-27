@@ -1,14 +1,7 @@
-
 import * as types from "../actions/types";
+import initState from "./initState";
 
-const initState = {
-  isLoading: false,
-  data: [],
-  count: 0,
-  error: null,
-};
-
-const Categories = (state=initState, action) => {
+const Categories = (state=initState.categories, action) => {
   switch (action.type) {
     case types.GET_CATEGORIES_SUCCESS:
       const { rows, count } = action.payload;
