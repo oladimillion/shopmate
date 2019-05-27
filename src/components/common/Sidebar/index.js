@@ -35,7 +35,7 @@ const squareButtonList = [
 
 
 
-class Sidebar extends Component {
+export class Sidebar extends Component {
 
   state = {
     departmentId: null,
