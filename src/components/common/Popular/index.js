@@ -17,7 +17,7 @@ import "./index.css";
  *
  * @extends {Component}
  */
-class Popular extends Component {
+export class Popular extends Component {
 
   LIMIT = 6;
   requestSent = false;

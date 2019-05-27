@@ -58,7 +58,7 @@
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/reducers/index.js",
-      "!**/sagas/index.js",
+      "!**/sagas/**",
       "!**/serviceWorker.js",
       "!**/index.js",
       "!server.js"

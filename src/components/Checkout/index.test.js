@@ -18,8 +18,8 @@ describe('<Checkout /> ', () => {
     emptyCart: func,
 
     user: initState.user,
-    stripeToken: initState.user,
-    stripeCharge: initState.user,
+    stripeToken: initState.stripeToken,
+    stripeCharge: initState.stripeCharge,
     order: initState.order,
     cart: initState.cart,
     tax: initState.tax,
