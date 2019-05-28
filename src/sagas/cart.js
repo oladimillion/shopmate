@@ -85,9 +85,13 @@ export function* updateCartAsync(action) {
 export function* deleteCartItemAsync(action) {
   yield put({ type: types.DELETE_CART_ITEM_LOADING });
   try {
-    yield call(requests.deleteCartItem, action.payload);
+    let { data } = yield call(requests.deleteCartItem, action.payload);
     toastr.success("Item successfully removed");
-    yield put({ type: types.DELETE_CART_ITEM_SUCCESS, payload: action.payload });
+    data = action.payload
+    yield put({ 
+      type: types.DELETE_CART_ITEM_SUCCESS, 
+      payload: data,
+    });
   } catch (error) {
     yield put(connectivityCheck(error, types.DELETE_CART_ITEM_FAILURE));
   }

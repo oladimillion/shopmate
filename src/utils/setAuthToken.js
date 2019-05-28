@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 /**
  * add token to the cookie storage
@@ -25,12 +25,12 @@ const createCookie = ({ accessToken, expires_in }) => {
  */
 export default ({ accessToken, expires_in }) => {
   if (accessToken && expires_in) {
-    axios.defaults.headers.common['USER-KEY'] = accessToken;
+    axios.defaults.headers.common["USER-KEY"] = accessToken;
     createCookie({ accessToken, expires_in });
   } else if (accessToken) {
-    axios.defaults.headers.common['USER-KEY'] = accessToken;
+    axios.defaults.headers.common["USER-KEY"] = accessToken;
   } else {
-    delete axios.defaults.headers.common['USER-KEY'];
+    delete axios.defaults.headers.common["USER-KEY"];
     createCookie({ accessToken: "", expires_in: "-1" });
   }
 }
