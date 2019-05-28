@@ -58,7 +58,7 @@
       "!**/node_modules/**",
       "!**/vendor/**",
       "!**/reducers/index.js",
-      "!**/sagas/**",
+      "!**/utils/fetch.js",
       "!**/serviceWorker.js",
       "!**/index.js",
       "!server.js"

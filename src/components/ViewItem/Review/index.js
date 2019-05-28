@@ -108,6 +108,7 @@ export class Review extends Component {
                         className="outline__none" 
                         maxRating={5} 
                         defaultRating={data.rating}
+                        disabled
                         icon='star' 
                         size='huge' 
                       />
