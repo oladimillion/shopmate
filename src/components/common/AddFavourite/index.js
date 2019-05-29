@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Icon } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -27,5 +28,10 @@ const PanelSection = ({name, iconClassName}) => {
     </button>
   )
 }
+
+PanelSection.propTypes = {
+  name: PropTypes.string,
+  iconClassName: PropTypes.string,
+};
 
 export default PanelSection;

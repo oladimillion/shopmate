@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { ItemButton } from "../../common/ItemButtons";
 
 import "./index.css";
@@ -48,5 +49,11 @@ const Footer = (props) => {
     </React.Fragment>
   )
 }
+
+Footer.propTypes = {
+  changeStep: PropTypes.func.isRequired,
+  createOrder: PropTypes.func.isRequired,
+  makePayment: PropTypes.func.isRequired,
+};
 
 export default Footer;

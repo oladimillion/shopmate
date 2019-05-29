@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -40,5 +41,14 @@ const RadioLabel = ({ name, id, label, className, onClick, checked }) => {
     </span>
   )
 }
+
+RadioLabel.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.any.isRequired,
+  label: PropTypes.any.isRequired,
+  checked: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+};
 
 export default RadioLabel;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -23,7 +24,14 @@ const Modal = ({ modalClassName, modalInnerClassName, children, open }) => {
       </div>
     </div>
   )
-}
+};
+
+Modal.propTypes = {
+  modalClassName: PropTypes.string,
+  modalInnerClassName: PropTypes.string,
+  open: PropTypes.bool,
+  children: PropTypes.any,
+};
 
 export default Modal;
  

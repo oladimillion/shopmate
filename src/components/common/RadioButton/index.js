@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -28,6 +29,13 @@ const RadioButton = (props) => {
       </label>
     </span>
   )
-}
+};
+
+RadioButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+};
 
 export default RadioButton;

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
+import PropTypes from "prop-types";
 import { 
   getCart, 
   getCartAmount, 
@@ -212,6 +213,17 @@ export class ViewCart extends Component {
 }
 
 
+
+ViewCart.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  getCart: PropTypes.func.isRequired,
+  getCartAmount: PropTypes.func.isRequired,
+  deleteCartItem: PropTypes.func.isRequired,
+  updateCart: PropTypes.func.isRequired,
+  openModal: PropTypes.bool.isRequired,
+  cart: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+}
 
 const mapStateToProps = (state) => {
   return {

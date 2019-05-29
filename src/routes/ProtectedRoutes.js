@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import { isLoggedIn } from "../utils/auth";
 
@@ -37,4 +38,9 @@ class ProtectedRoutes extends Component {
     )
   }
 }
+
+ProtectedRoutes.propTypes = {
+  component: PropTypes.any.isRequired,
+};
+
 export default ProtectedRoutes;

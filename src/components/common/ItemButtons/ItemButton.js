@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -24,7 +25,14 @@ const ItemButton = ({ name, className, onClick, type }) => {
       {name}
     </button>
   )
-}
+};
+
+ItemButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  onClick: PropTypes.func,
+  type: PropTypes.string,
+};
 
 export { ItemButton };
 

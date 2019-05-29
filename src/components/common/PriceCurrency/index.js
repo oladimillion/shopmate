@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -17,6 +18,11 @@ const PriceCurrency = ({ className, price }) => {
       <span className="block text__center">&#x00024;{price}</span>
     </span>
   )
-}
+};
+
+PriceCurrency.propTypes = {
+  className: PropTypes.string,
+  price: PropTypes.string,
+};
 
 export default PriceCurrency;

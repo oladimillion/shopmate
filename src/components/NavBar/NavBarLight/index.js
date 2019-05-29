@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import USA_FLAG from "../../../assets/images/usa-flag.svg";
 
 
@@ -152,5 +153,15 @@ const NavBarLight = ({
     </section>
   )
 }
+
+NavBarLight.propTypes = {
+  user: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  cartQuantity: PropTypes.string.isRequired,
+  openLoginModal: PropTypes.func.isRequired,
+  openRegisterModal: PropTypes.func.isRequired,
+  openViewCartModal: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+};
 
 export default NavBarLight;

@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";
+import PropTypes from "prop-types";
 
 import { searchProducts, logout, getShippingRegion } from "../../actions";
 import * as actions from "../../actions"
@@ -51,7 +52,7 @@ export class NavBar extends Component {
    */
   cartQuantity() {
     const { data } = this.props.cart;
-    return data.length > 9 ? "9+" : data.length;
+    return data.length > 9 ? "9+" : data.length.toString();
   }
 
   /**
@@ -117,6 +118,18 @@ export class NavBar extends Component {
       </header>
     );
   }
+}
+
+NavBar.propTypes = {
+  allProduct: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  openViewCartModal: PropTypes.func.isRequired,
+  openLoginModal: PropTypes.func.isRequired,
+  openRegisterModal: PropTypes.func.isRequired,
+  searchProducts: PropTypes.func.isRequired,
+  getShippingRegion: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {

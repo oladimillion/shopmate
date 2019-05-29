@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import PriceCurrency from "../PriceCurrency";
 import AddFavourite from "../../common/AddFavourite";
@@ -11,6 +12,7 @@ import "./index.md.css";
 import "./index.sm.css";
 
 
+const func = ()=>{};
 
 /**
  * CardItem
@@ -21,7 +23,7 @@ import "./index.sm.css";
  * @prop {object} product
  * @returns {jsx}
  */
-const CardItem = ({ className, product }) => {
+const CardItem = ({ className, product, onClick }) => {
   const { name, price, product_id, thumbnail } = product || {};
   return (
     <div className={`card position__rel box__shadow__normal card__margin__right card__sm__no__margin__right ${className || ""}`}>
@@ -55,10 +57,18 @@ const CardItem = ({ className, product }) => {
         className="block text__center"
       />
       <span className="block">
-        <ItemButton name="Buy now" className="margin__hori__auto" />
+        <ItemButton 
+          onClick={()=>onClick(product) || func}
+          name="Buy now" className="margin__hori__auto" />
       </span>
     </div>
   )
 }
+
+CardItem.propTypes = {
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  product: PropTypes.object.isRequired,
+};
 
 export default CardItem;

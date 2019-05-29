@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 import { Icon } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 const categoryLinks = [
   {
@@ -58,6 +59,12 @@ const SearchInput = ({ className, onSubmit, search, ...rest }) => {
       </form>
     </div>
   )
+};
+
+SearchInput.propTypes = {
+  className: PropTypes.string,
+  search: PropTypes.string,
+  onSubmit: PropTypes.func.isRequired,
 };
 
 
@@ -177,5 +184,11 @@ const NavBarDark = ({ openViewCartModal, user, cartQuantity, ...rest }) => {
     </React.Fragment>
   )
 }
+
+NavBarDark.propTypes = {
+  openViewCartModal: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  cartQuantity: PropTypes.string.isRequired,
+};
 
 export default NavBarDark;

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import CategoryNavSection from "./CategoryNavSection";
 import Catalogue from "./Catalogue";
 import Popular from "../common/Popular";
@@ -45,5 +46,10 @@ class Homepage extends Component {
     );
   }
 }
+
+Homepage.propTypes = {
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default Homepage;

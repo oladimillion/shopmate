@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -34,6 +35,14 @@ const SquareButton = ({ name, id, onClick, className, label })=>{
     </span>
 
   )
-}
+};
+
+SquareButton.propTypes = {
+  name: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
 
 export default SquareButton;

@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import * as actions from "../../actions";
 import { 
@@ -511,7 +512,6 @@ export class Checkout extends Component {
     );
   }
 
-
   /**
    * render
    *
@@ -554,6 +554,25 @@ export class Checkout extends Component {
     );
   }
 }
+
+Checkout.propTypes = {
+  stripeToken: PropTypes.object.isRequired,
+  stripeCharge: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  order: PropTypes.object.isRequired,
+  tax: PropTypes.object.isRequired,
+  shippingRegion: PropTypes.object.isRequired,
+  shippingRegionById: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  getTax: PropTypes.func.isRequired,
+  createOrder: PropTypes.func.isRequired,
+  createStripeCharge: PropTypes.func.isRequired,
+  genStripeToken: PropTypes.func.isRequired,
+  getShippingRegionById: PropTypes.func.isRequired,
+  setErrorMessage: PropTypes.func.isRequired,
+  emptyCart: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

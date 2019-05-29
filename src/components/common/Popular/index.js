@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { getPopularProducts } from "../../../actions";
 
@@ -145,6 +146,14 @@ export class Popular extends Component {
     )
   }
 }
+
+Popular.propTypes = {
+  document: PropTypes.object,
+  title: PropTypes.string.isRequired,
+  cardClassName: PropTypes.string,
+  popularProducts: PropTypes.object.isRequired,
+  getPopularProducts: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

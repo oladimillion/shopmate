@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { Icon } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -66,5 +67,17 @@ const LabelInput = ({
   )
 };
 
+LabelInput.propTypes = {
+  name: PropTypes.string,
+  labelInputClassname: PropTypes.string,
+  value: PropTypes.string,
+  label: PropTypes.string,
+  required: PropTypes.bool,
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  icon: PropTypes.string,
+  onChange: PropTypes.func,
+  children: PropTypes.object,
+};
 
 export default LabelInput;

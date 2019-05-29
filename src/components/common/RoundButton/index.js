@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Icon } from "semantic-ui-react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -23,6 +24,13 @@ const RoundButton = ({ icon, className, onClick, iconClassName }) => {
       <Icon className={`${iconClassName || ""}`} name={icon} />
     </button>
   )
-}
+};
+
+RoundButton.propTypes = {
+  icon: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+  iconClassName: PropTypes.string,
+};
 
 export default RoundButton;

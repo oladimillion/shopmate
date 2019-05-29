@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 import "./index.md.css";
@@ -80,6 +81,9 @@ const Header = ({ step, className }) => {
   )
 }
 
-
+Header.propTypes = {
+  step: PropTypes.number.isRequired,
+  className: PropTypes.string.isRequired,
+};
 
 export default Header;

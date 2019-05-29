@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import LabelInput from "../common/LabelInput";
 import InputGroup, { InputWrapper } from "../common/InputGroup";
 
@@ -13,7 +14,7 @@ import InputGroup, { InputWrapper } from "../common/InputGroup";
  * @prop {jsx} children
  * @returns {jsx}
  */
-export default ({ title, inputDataArray, onChange, children }) => {
+const ProfileForm = ({ title, inputDataArray, onChange, children }) => {
   return (
     <div className=" profile__padding">
       <header className="section__level">
@@ -55,4 +56,13 @@ export default ({ title, inputDataArray, onChange, children }) => {
       </div>
     </div>
   )
+};
+
+ProfileForm.propTypes = {
+  title: PropTypes.string.isRequired,
+  inputDataArray: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  children: PropTypes.object,
 }
+
+export default ProfileForm;

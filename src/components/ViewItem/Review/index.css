@@ -21,7 +21,11 @@ ul.review__list li:last-child {
 }
 
 ul.review__list li div.reviewer {
-  width: 300px;
+  width: 260px;
+}
+
+div.reviewer div.reviewer__detail {
+  margin-top: 5px;
 }
 
 div.reviewer__detail div.review__text {
