@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import { profile, address } from "../../actions";
 import * as actions from "../../actions";
@@ -237,6 +238,14 @@ export class Profile extends Component {
       </div>
     );
   }
+}
+
+Profile.propTypes = {
+  shippingRegion: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
+  profile: PropTypes.func.isRequired,
+  address: PropTypes.func.isRequired,
+  setErrorMessage: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {

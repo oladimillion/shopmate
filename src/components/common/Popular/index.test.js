@@ -8,6 +8,7 @@ const func = jest.fn();
 describe('<Popular /> ', () => {
 
   const props = {
+    title: "Popular",
     getPopularProducts: func,
     popularProducts: initState.popularProducts,
     scrollDistance: 200,

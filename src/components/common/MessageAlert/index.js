@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -24,6 +25,11 @@ const MessageAlert = ({ message, hasError }) => {
     </React.Fragment>
   )
 }
+
+MessageAlert.propTypes = {
+  message: PropTypes.string,
+  hasError: PropTypes.bool,
+};
 
 export default MessageAlert;
 

@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import RoundButton from "../RoundButton";
 
 import "./index.css";
@@ -51,6 +52,14 @@ const Pagination = ({ page, pageCount, gotoPage, prevPage, nextPage }) => {
       </div>
     </div>
   )
-}
+};
+
+Pagination.propTypes = {
+  page: PropTypes.number.isRequired,
+  pageCount: PropTypes.number.isRequired,
+  gotoPage: PropTypes.func.isRequired,
+  prevPage: PropTypes.func.isRequired,
+  nextPage: PropTypes.func.isRequired,
+};
 
 export default Pagination;

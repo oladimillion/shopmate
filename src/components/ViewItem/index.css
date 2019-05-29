@@ -74,9 +74,7 @@ ul.level__links li.level__link:last-child::after {
   width: 180px;
 }
 
-.viewitem__size__panel__width {
-  width: 220px;
-}
+.viewitem__size__panel__width {  }
 
 .viewitem__size__panel__width span.square__button {
   margin-right: 12px;

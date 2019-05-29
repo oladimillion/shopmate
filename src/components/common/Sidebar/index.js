@@ -1,7 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Icon } from "semantic-ui-react";
 import queryString from "query-string";
+import PropTypes from "prop-types";
 
 import { getDepartments, getCategories } from "../../../actions";
 
@@ -361,6 +362,15 @@ export class Sidebar extends Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  getCategories: PropTypes.func.isRequired,
+  getDepartments: PropTypes.func.isRequired,
+  getQueryParams: PropTypes.func.isRequired,
+  allProduct: PropTypes.object.isRequired,
+  departments: PropTypes.object.isRequired,
+  categories: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

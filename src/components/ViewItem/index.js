@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Rating } from 'semantic-ui-react'
+import PropTypes from "prop-types";
 
 import { 
   getProductById, 
@@ -330,6 +331,7 @@ export class ViewItem extends Component {
                       className="outline__none" 
                       maxRating={5} 
                       defaultRating={5}
+                      disabled
                       icon='star' 
                       size='huge' 
                     />
@@ -365,7 +367,7 @@ export class ViewItem extends Component {
                   <PanelSection 
                     title="Size" 
                     titleClassName="panel__title__style"
-                    className="radio__button__set flex viewitem__size__panel__width">
+                    className="radio__button__set flex flex__wrap viewitem__size__panel__width">
                     {
                       squareButtonList.map((squareData, index) => {
                         return (
@@ -424,6 +426,19 @@ export class ViewItem extends Component {
     );
   }
 }
+
+ViewItem.propTypes = {
+  productById: PropTypes.object.isRequired,
+  productReview: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  getProductById: PropTypes.func.isRequired,
+  getProductReview: PropTypes.func.isRequired,
+  addCart: PropTypes.func.isRequired,
+  scrollTo: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {

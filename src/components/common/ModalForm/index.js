@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 import Modal from "../Modal";
 import CheckboxLabel from "../CheckboxLabel";
 import { ItemButton } from "../ItemButtons";
@@ -37,6 +38,14 @@ export const ModalFormInput = ({ placeholder, name, value, onChange, type}) => {
   )
 };
 
+ModalFormInput.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+  type: PropTypes.string,
+};
+
 /**
  * ModalFormButton
  *
@@ -55,6 +64,10 @@ export const ModalFormButton = ({ name }) => {
       />
     </div>
   )
+};
+
+ModalFormButton.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 /**
@@ -85,6 +98,14 @@ export const ModalFormCheckboxLabel = ({ onChange, id, label, value, name }) => 
   )
 };
 
+ModalFormCheckboxLabel.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.bool.isRequired,
+};
+
 /**
  * ModalFormFooter
  *
@@ -100,6 +121,10 @@ export const ModalFormFooter = ({ children }) => {
       {children}
     </footer>
   )
+};
+
+ModalFormFooter.propTypes = {
+  children: PropTypes.any,
 };
 
 /**
@@ -136,6 +161,14 @@ const ModalForm = ({ title, open, onCloseModal, onSubmit, children }) => {
     </Modal>
 
   )
-}
+};
+
+ModalForm.propTypes = {
+  title: PropTypes.string,
+  onCloseModal: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+  onSubmit: PropTypes.func.isRequired,
+  children: PropTypes.any,
+};
 
 export default ModalForm;

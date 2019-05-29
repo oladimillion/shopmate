@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import queryString from "query-string";
+import PropTypes from "prop-types";
 
 import { 
   getProducts, 
@@ -257,6 +258,16 @@ export class Catalogue extends Component {
   }
 
 }
+
+Catalogue.propTypes = {
+  allProduct: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  match: PropTypes.object.isRequired,
+  getProducts: PropTypes.func.isRequired,
+  searchProducts: PropTypes.func.isRequired,
+  getProductsByCategory: PropTypes.func.isRequired,
+  getProductsByDepartment: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

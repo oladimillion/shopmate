@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 import "./index.md.css";
@@ -19,7 +20,12 @@ export const InputWrapper = ({wrapperClassname, children}) => {
       {children}
     </span>
   )
-}
+};
+
+InputWrapper.propTypes = {
+  wrapperClassname: PropTypes.string,
+  children: PropTypes.any.isRequired,
+};
 
 /**
  * InputGroup
@@ -37,5 +43,9 @@ const InputGroup = ({children}) => {
     </div>
   )
 }
+
+InputGroup.propTypes = {
+  children: PropTypes.any.isRequired,
+};
 
 export default InputGroup;

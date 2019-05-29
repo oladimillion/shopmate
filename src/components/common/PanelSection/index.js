@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -27,6 +28,13 @@ const PanelSection = ({ title, children, className, titleClassName }) => {
       </span>
     </div>
   )
-}
+};
+
+PanelSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
+  titleClassName: PropTypes.string,
+  children: PropTypes.any,
+};
 
 export default PanelSection;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 import "./index.md.css";
@@ -27,6 +28,11 @@ const DeliverySection = ({ title, body }) => {
       </div>
     </div>
   )
+};
+
+DeliverySection.propTypes = {
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string,
 };
 
 /**
@@ -204,8 +210,16 @@ export class Confirmation extends Component {
       </div>
     )
   }
+};
 
-}
-
+Confirmation.propTypes = {
+  shippingRegionById: PropTypes.object.isRequired,
+  confirmation: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  tax: PropTypes.object.isRequired,
+  delivery: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Confirmation;

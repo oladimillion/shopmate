@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import RadioLabel from "../../common/RadioLabel";
 import CheckboxLabel from "../../common/CheckboxLabel";
 import HorizontalLine from "../../common/HorizontalLine";
@@ -31,6 +32,11 @@ const Label = ({shippingType, duration}) => {
       </span> 
     </React.Fragment>
   )
+};
+
+Label.propTypes = {
+  shippingType: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
 };
 
 
@@ -196,7 +202,13 @@ export class Delivery extends Component {
       </div>
     )
   }
-
 }
+
+Delivery.propTypes = {
+  shippingRegion: PropTypes.object.isRequired,
+  shippingRegionById: PropTypes.object.isRequired,
+  delivery: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Delivery;

@@ -5,19 +5,15 @@ import { shallow } from 'enzyme';
 describe("<InputGroup /> ", () => {
   const props = {
     wrapperClassname: "class",
-    children: <div>child</div>,
   };
   it("renders InputGroup component without crashing", () => {
-    shallow(<InputGroup {...props} />);
+    shallow(<InputGroup {...props}><div>child</div></InputGroup>);
   });
 });
 
 describe("<InputWrapper /> ", () => {
-  const props = {
-    children: <div>child</div>,
-  };
   it("renders InputWrapper component without crashing", () => {
-    shallow(<InputWrapper {...props} />);
+    shallow(<InputWrapper><div>child</div></InputWrapper>);
   });
 });
 

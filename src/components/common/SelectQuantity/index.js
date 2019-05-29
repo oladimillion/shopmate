@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import RoundButton from "../RoundButton";
 
 import "./index.css";
@@ -66,5 +67,9 @@ class SelectQuantity extends Component {
     )
   }
 }
+
+SelectQuantity.propTypes = {
+  onChange: PropTypes.func,
+};
 
 export default SelectQuantity;

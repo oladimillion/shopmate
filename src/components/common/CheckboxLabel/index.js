@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import PropTypes from "prop-types";
 
 import "./index.css";
 
@@ -45,5 +46,16 @@ const CheckboxLabel = ({
     </span>
   )
 }
+
+CheckboxLabel.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.bool,
+  onChange: PropTypes.func,
+  className: PropTypes.string,
+  labelClassName: PropTypes.string,
+  parentClassName: PropTypes.string,
+};
 
 export default CheckboxLabel;

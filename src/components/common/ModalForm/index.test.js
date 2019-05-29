@@ -39,9 +39,9 @@ describe("<ModalFormCheckboxLabel /> ", () => {
   const props = {
     name: "submit",
     onChange: func,
-    id: "email",
-    label: "email",
-    value: "email@email.com",
+    id: "size",
+    label: "size",
+    value: false,
   };
   it("renders ModalFormCheckboxLabel component without crashing", () => {
     shallow(

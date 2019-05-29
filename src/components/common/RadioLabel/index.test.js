@@ -10,6 +10,7 @@ describe("<RadioLabel /> ", () => {
     id: "size",
     onClick: func,
     className: "class",
+    label: "size",
     checked: true,
   };
   it("renders RadioLabel component without crashing", () => {

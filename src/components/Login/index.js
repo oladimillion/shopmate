@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 import MessageAlert from "../common/MessageAlert";
 import ModalForm, { 
@@ -181,6 +182,18 @@ export class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  user: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
+  history: PropTypes.object.isRequired,
+  openRegisterModal: PropTypes.func.isRequired,
+  closeLoginModal: PropTypes.func.isRequired,
+  setErrorMessage: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  getCart: PropTypes.func.isRequired,
+  getCartAmount: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => {
   return {

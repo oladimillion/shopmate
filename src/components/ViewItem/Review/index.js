@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Rating } from 'semantic-ui-react'
+import PropTypes from "prop-types";
 import Moment from 'react-moment';
 
 import { addProductReview } from "../../../actions";
@@ -113,7 +114,6 @@ export class Review extends Component {
                         size='huge' 
                       />
                     </div>
-                    <br />
                     <div className="reviewer__detail">
                       <span className="block reviewer__name">
                         {data.name}
@@ -125,7 +125,7 @@ export class Review extends Component {
                   </div>
                   {/* end of reviewer */}
                   <div className="review__detail flex__one">
-                    <div className="review__text">
+                    <div className="review__text md__min__width">
                       {data.review}
                     </div>
                     <br />
@@ -172,7 +172,7 @@ export class Review extends Component {
                     <label 
                       htmlFor="text__input" 
                       className="review__form__label">
-                      Choose a nickname
+                      Your name
                     </label>
                     <span className="form__input__wrapper flex__one">
                       <input 
@@ -246,6 +246,12 @@ export class Review extends Component {
       </div>
     )
   }
+}
+
+Review.propTypes = {
+  user: PropTypes.object.isRequired,
+  productReview: PropTypes.object.isRequired,
+  addProductReview: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {

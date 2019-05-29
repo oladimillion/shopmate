@@ -21,6 +21,7 @@ describe('<Payment /> ', () => {
       card_number: "",
       holder_name: "",
     },
+    onChange: func,
     cart: initState.cart,
   };
 

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import RadioLabel from "../../common/RadioLabel";
 import LabelInput from "../../common/LabelInput";
 import HorizontalSpacing from "../../common/HorizontalSpacing";
@@ -198,5 +199,12 @@ export class Payment extends Component {
     )
   }
 }
+
+Payment.propTypes = {
+  payment: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  paymentRegex: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default Payment;

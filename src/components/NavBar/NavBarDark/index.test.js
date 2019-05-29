@@ -9,13 +9,13 @@ const func = jest.fn();
 describe('<NavBarDark /> ', () => {
   const props = {
     openViewCartModal: func,
-    cartQuantity: func,
     onSubmit: func,
 
     user: initState.user,
     open: false,
     className: "hide",
     search: "italy",
+    cartQuantity: "9+",
     ...setup,
   };
   it('renders NavBarDark component without crashing', () => {
