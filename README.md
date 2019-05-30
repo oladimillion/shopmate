@@ -1,8 +1,14 @@
 [![Build Status](https://travis-ci.com/oladimillion/shopmate.svg?token=yCUwzn8wsJHeQbpUgpqS&branch=develop)](https://travis-ci.com/oladimillion/shopmate)
 
+## Shopmate is an e-commerce application
+
 Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) to view the hosted App.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Tools/Frameworks Used
+- React
+- Redux
+- Redux-saga
+- Sematic-ui-react
 
 ## Available Scripts
 
@@ -20,6 +26,10 @@ You will also see any lint errors in the console.
 
 Launches the test runner in the interactive watch mode.<br>
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run coverage`
+
+Launches the test runner in the interactive watch mode, plus the coverage in table format.<br>
 
 ### `npm run build`
 
@@ -41,32 +51,361 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## The project folder/directory structure
+```
+shopmate
+  ├── src
+      ├── App.js
+      ├── App.test.js
+      ├── __test__
+      │   └── setup
+      │       └── index.js
+      ├── actions
+      │   ├── __test__
+      │   │   ├── cart.test.js
+      │   │   ├── categories.test.js
+      │   │   ├── createAction.test.js
+      │   │   ├── departments.test.js
+      │   │   ├── order.test.js
+      │   │   ├── products.test.js
+      │   │   ├── shippingRegion.test.js
+      │   │   ├── stripe.test.js
+      │   │   ├── tax.test.js
+      │   │   └── users.test.js
+      │   ├── cart.js
+      │   ├── categories.js
+      │   ├── createAction.js
+      │   ├── departments.js
+      │   ├── index.js
+      │   ├── order.js
+      │   ├── products.js
+      │   ├── shippingRegion.js
+      │   ├── stripe.js
+      │   ├── tax.js
+      │   ├── types.js
+      │   └── users.js
+      ├── api
+      │   └── index.js
+      ├── assets
+      │   └── images
+      │       ├── Flag_of_Britain.svg
+      │       ├── Images-modal4.png
+      │       ├── icons-rocket.png
+      │       ├── images-shirt12.png
+      │       ├── images-shirt13.png
+      │       ├── images-shirt14.png
+      │       ├── images-shoe2.png
+      │       ├── logos-PayPal.png
+      │       ├── logos-mastercard.png
+      │       ├── logos-visa.png
+      │       ├── shirt.png
+      │       └── usa-flag.svg
+      ├── common.css
+      ├── components
+      │   ├── Checkout
+      │   │   ├── Confirmation
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   ├── index.md.css
+      │   │   │   ├── index.sm.css
+      │   │   │   └── index.test.js
+      │   │   ├── Delivery
+      │   │   │   ├── deliveryInputData.js
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   └── index.test.js
+      │   │   ├── Finish
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   └── index.test.js
+      │   │   ├── Footer
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   └── index.test.js
+      │   │   ├── Header
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   ├── index.md.css
+      │   │   │   └── index.test.js
+      │   │   ├── Payment
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   ├── index.md.css
+      │   │   │   ├── index.sm.css
+      │   │   │   └── index.test.js
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   ├── index.md.css
+      │   │   └── index.test.js
+      │   ├── Footer
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   ├── index.md.css
+      │   │   └── index.test.js
+      │   ├── Homepage
+      │   │   ├── Catalogue
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   ├── index.md.css
+      │   │   │   ├── index.sm.css
+      │   │   │   └── index.test.js
+      │   │   ├── CategoryNavSection
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   └── index.test.js
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   └── index.test.js
+      │   ├── Login
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   └── index.test.js
+      │   ├── NavBar
+      │   │   ├── NavBarDark
+      │   │   │   ├── index.js
+      │   │   │   └── index.test.js
+      │   │   ├── NavBarLight
+      │   │   │   ├── index.js
+      │   │   │   └── index.test.js
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   ├── index.md.css
+      │   │   ├── index.sm.css
+      │   │   └── index.test.js
+      │   ├── Profile
+      │   │   ├── ProfileForm.js
+      │   │   ├── ProfileForm.test.js
+      │   │   ├── addressInfo.js
+      │   │   ├── basicInfo.js
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   ├── index.md.css
+      │   │   └── index.test.js
+      │   ├── Register
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   └── index.test.js
+      │   ├── ViewCart
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   ├── index.md.css
+      │   │   ├── index.sm.css
+      │   │   └── index.test.js
+      │   ├── ViewItem
+      │   │   ├── Review
+      │   │   │   ├── index.css
+      │   │   │   ├── index.js
+      │   │   │   ├── index.sm.css
+      │   │   │   └── index.test.js
+      │   │   ├── index.css
+      │   │   ├── index.js
+      │   │   ├── index.md.css
+      │   │   └── index.test.js
+      │   └── common
+      │       ├── AddFavourite
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── CardItem
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   ├── index.md.css
+      │       │   ├── index.sm.css
+      │       │   └── index.test.js
+      │       ├── CheckboxLabel
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── Featured
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── HorizontalLine
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── HorizontalSpacing
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── InputGroup
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   ├── index.md.css
+      │       │   └── index.test.js
+      │       ├── ItemButtons
+      │       │   ├── ItemButton.js
+      │       │   ├── ItemLink.js
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── LabelInput
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── Loader
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── MessageAlert
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── Modal
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── ModalForm
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   ├── index.sm.css
+      │       │   └── index.test.js
+      │       ├── NewsLetter
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   ├── index.md.css
+      │       │   └── index.test.js
+      │       ├── Pagination
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   ├── index.md.css
+      │       │   └── index.test.js
+      │       ├── PanelSection
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── Popular
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── PriceCurrency
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── RadioButton
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── RadioLabel
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── RoundButton
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── SelectQuantity
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   └── index.test.js
+      │       ├── Sidebar
+      │       │   ├── index.css
+      │       │   ├── index.js
+      │       │   ├── index.sm.css
+      │       │   └── index.test.js
+      │       └── SquareButton
+      │           ├── index.css
+      │           ├── index.js
+      │           └── index.test.js
+      ├── index.css
+      ├── index.js
+      ├── index.md.css
+      ├── logo.svg
+      ├── reducers
+      │   ├── __test__
+      │   │   ├── cart.test.js
+      │   │   ├── categories.test.js
+      │   │   ├── departments.test.js
+      │   │   ├── loginModal.test.js
+      │   │   ├── order.test.js
+      │   │   ├── products.test.js
+      │   │   ├── registerModal.test.js
+      │   │   ├── shippingRegion.test.js
+      │   │   ├── stripe.test.js
+      │   │   ├── tax.test.js
+      │   │   ├── users.test.js
+      │   │   └── viewCartModal.test.js
+      │   ├── cart.js
+      │   ├── categories.js
+      │   ├── departments.js
+      │   ├── index.js
+      │   ├── initState.js
+      │   ├── loginModal.js
+      │   ├── order.js
+      │   ├── products.js
+      │   ├── registerModal.js
+      │   ├── shippingRegion.js
+      │   ├── stripe.js
+      │   ├── tax.js
+      │   ├── users.js
+      │   └── viewCartModal.js
+      ├── requests
+      │   ├── __test__
+      │   │   ├── cart.test.js
+      │   │   ├── categories.test.js
+      │   │   ├── departments.test.js
+      │   │   ├── order.test.js
+      │   │   ├── products.test.js
+      │   │   ├── shippingRegion.test.js
+      │   │   ├── stripe.test.js
+      │   │   ├── tax.test.js
+      │   │   └── users.test.js
+      │   ├── cart.js
+      │   ├── categories.js
+      │   ├── departments.js
+      │   ├── index.js
+      │   ├── order.js
+      │   ├── products.js
+      │   ├── shippingRegion.js
+      │   ├── stripe.js
+      │   ├── tax.js
+      │   └── users.js
+      ├── routes
+      │   ├── ProtectedRoutes.js
+      │   ├── ProtectedRoutes.test.js
+      │   └── routes.js
+      ├── sagas
+      │   ├── __test__
+      │   │   ├── cart.test.js
+      │   │   ├── categories.test.js
+      │   │   ├── departments.test.js
+      │   │   ├── order.test.js
+      │   │   ├── products.test.js
+      │   │   ├── shippingRegion.test.js
+      │   │   ├── stripe.test.js
+      │   │   ├── tax.test.js
+      │   │   └── users.test.js
+      │   ├── cart.js
+      │   ├── categories.js
+      │   ├── departments.js
+      │   ├── index.js
+      │   ├── order.js
+      │   ├── products.js
+      │   ├── shippingRegion.js
+      │   ├── stripe.js
+      │   ├── tax.js
+      │   └── users.js
+      ├── serviceWorker.js
+      ├── setupTests.js
+      └── utils
+          ├── __test__
+          │   ├── connectivityCheck.test.js
+          │   ├── fetch.test.js
+          │   ├── formatErrorMessage.test.js
+          │   ├── saveUserData.test.js
+          │   └── setAuthToken.test.js
+          ├── auth.js
+          ├── connectivityCheck.js
+          ├── fetch.js
+          ├── formatErrorMessage.js
+          ├── keys.js
+          ├── saveUserData.js
+          ├── setAuthToken.js
+          └── toastr.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+62 directories, 285 files
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
