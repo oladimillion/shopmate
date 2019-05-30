@@ -30,7 +30,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `npm run coverage`
 
-Launches the test runner in the interactive watch mode, plus the coverage in table format.<br>
+Launches the test runner in the interactive watch mode, plus the coverage in tabular format.<br>
 
 ### `npm run build`
 
