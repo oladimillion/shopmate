@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/oladimillion/shopmate.svg?token=yCUwzn8wsJHeQbpUgpqS&branch=develop)](https://travis-ci.com/oladimillion/shopmate)
 
-## Shopmate is an e-commerce application
+# Shopmate
+An e-commerce application
 
 Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) to view the hosted App.
 
