@@ -4,6 +4,7 @@ import queryString from "query-string";
 import PropTypes from "prop-types";
 
 import { 
+  addCart,
   getProducts, 
   searchProducts, 
   getProductsByCategory,
@@ -31,6 +32,7 @@ export class Catalogue extends Component {
 
   LIMIT = 6;
   requestSent = false;
+  buyProductRequestSent = false;
 
   /**
    * componentDidMount
@@ -52,14 +54,37 @@ export class Catalogue extends Component {
    * @param {object} prevState
    */
   componentDidUpdate(prevProps, prevState) {
-    const { allProduct } = this.props;
-    if (!this.requestSent) {
+    const { allProduct, cart, history } = this.props;
+    if (!this.requestSent && !this.buyProductRequestSent) {
       this.requestSent = true;
       this.getProducts(this.getPageNumber());
     }
     if(!allProduct.isLoading && this.requestSent) {
       this.requestSent = false;
     }
+    if(this.buyProductRequestSent && !cart.isLoading && !cart.error) {
+      this.buyProductRequestSent = false;
+      history.push("/checkout");
+    }
+  }
+
+  /**
+   * adds an item to cart and route to checkout page
+   *
+   * @name buyProduct
+   * @function
+   * @param {object} product
+   */
+  buyProduct = (product) => {
+    this.buyProductRequestSent = true;
+    const { user, cart, addCart } = this.props;
+    const { customer_id } = user.customer;
+    if(!user.isAuth || cart.isLoading) return;
+    addCart({ 
+      cart_id: customer_id, 
+      attributes: "L Red",
+      ...product,
+    });
   }
 
   /**
@@ -121,12 +146,12 @@ export class Catalogue extends Component {
    * @param {number} pageNumber
    */
   gotoPage = (pageNumber) => {
-    const { allProduct } = this.props;
+    const { allProduct, history, match } = this.props;
     const query = this.getQuery(pageNumber)
-    const { path } = this.props.match;
+    const { path } = match;
 
     if(!allProduct.isLoading){
-      this.props.history.push({
+      history.push({
         pathname: path,
         search: query.replace(/limit=[\d]+&/, ""),
       });
@@ -236,6 +261,7 @@ export class Catalogue extends Component {
                           <CardItem 
                             key={index}
                             product={product}
+                            onClick={this.buyProduct}
                           />
                         )
                       })
@@ -263,6 +289,8 @@ Catalogue.propTypes = {
   allProduct: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   getProducts: PropTypes.func.isRequired,
   searchProducts: PropTypes.func.isRequired,
   getProductsByCategory: PropTypes.func.isRequired,
@@ -272,10 +300,13 @@ Catalogue.propTypes = {
 const mapStateToProps = (state) => {
   return {
     allProduct: state.AllProduct,
+    cart: state.Cart,
+    user: state.User,
   }
 };
 
 export default connect(mapStateToProps, {
+  addCart,
   getProducts,
   searchProducts,
   getProductsByCategory,

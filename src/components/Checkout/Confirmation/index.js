@@ -151,7 +151,7 @@ export class Confirmation extends Component {
             <div 
               className="bold gray__color flex space__between align__center">
               <select
-                className="tax" 
+                className="tax outline__none" 
                 name="tax_id" 
                 onChange={
                   (e)=> this.props.onChange({

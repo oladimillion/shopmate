@@ -16,7 +16,7 @@ export function* addCartAsync(action) {
   yield put({ type: types.ADD_CART_LOADING });
   try {
     const { data } = yield call(requests.addCart, action.payload);
-    toastr.success("Item successfully added");
+    toastr.success("Item added to cart");
     yield put({ type: types.ADD_CART_SUCCESS, payload: data });
   } catch (error) {
     yield put(connectivityCheck(error, types.ADD_CART_FAILURE));

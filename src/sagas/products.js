@@ -50,7 +50,11 @@ export function* getProductByIdAsync(action) {
   yield put({ type: types.GET_PRODUCT_BY_ID_LOADING });
   try {
     const { data } = yield call(requests.getProductById, action.payload);
-    yield put({ type: types.GET_PRODUCT_BY_ID_SUCCESS, payload: data });
+    if(data) {
+      yield put({ type: types.GET_PRODUCT_BY_ID_SUCCESS, payload: data });
+    } else {
+      throw new Error("Product not found");
+    }
   } catch (error) {
     yield put(connectivityCheck(error, types.GET_PRODUCT_BY_ID_FAILURE));
   }

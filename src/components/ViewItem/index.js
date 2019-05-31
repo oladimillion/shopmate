@@ -201,6 +201,20 @@ export class ViewItem extends Component {
   }
 
   /**
+   * get error messages
+   *
+   * @name getError
+   * @function
+   * @returns {string} error
+   */
+  getError() {
+    const {
+      productById, 
+    } = this.props;
+    return productById.error;
+  }
+
+  /**
    * calls makeRequest function
    *
    * @name getProductAndReview
@@ -210,13 +224,20 @@ export class ViewItem extends Component {
     const { 
       productById, 
       productReview, 
+      history,
       scrollTo: scrollToProps,
     } = this.props;
-    const { data, error } = productById;
+    const { data } = productById;
+    const error = this.getError();
+    if(error) {
+      this.requestSent = false;
+      history.push("/");
+      return;
+    }
     if (!this.requestSent && 
       (+this.getParams !== data.product_id) && !error) {
-      this.makeRequest();
       this.requestSent = true;
+      this.makeRequest();
       const scrollTo = scrollToProps || window.scrollTo
       scrollTo({ top: 0, behavior: 'smooth' });
     }

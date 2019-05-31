@@ -1,9 +1,9 @@
 import React from "react";
 import Finish from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
-describe('<Finish /> ', () => {
-  it('renders Finish component without crashing', () => {
+describe("<Finish /> ", () => {
+  it("renders Finish component without crashing", () => {
     shallow(<Finish />);
   });
 });

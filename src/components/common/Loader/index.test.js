@@ -1,6 +1,6 @@
 import React from "react";
 import Loader from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 describe("<Loader /> ", () => {
   const props = {

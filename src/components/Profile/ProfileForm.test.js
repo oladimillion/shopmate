@@ -1,11 +1,11 @@
 import React from "react";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import ProfileForm from ".";
 
 const func = jest.fn();
 
 
-describe('<ProfileForm /> ', () => {
+describe("<ProfileForm /> ", () => {
 
   const props = {
     title: "",
@@ -14,7 +14,7 @@ describe('<ProfileForm /> ', () => {
     onChange: <div>children</div>,
   };
 
-  it('renders ProfileForm component without crashing', () => {
+  it("renders ProfileForm component without crashing", () => {
     shallow(
       <ProfileForm {...props} />
     );

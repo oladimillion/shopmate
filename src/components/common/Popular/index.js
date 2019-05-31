@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getPopularProducts } from "../../../actions";
+import { 
+  addCart,
+  getPopularProducts,
+} from "../../../actions";
 
 import CardItem from "../CardItem"
 import RoundButton from "../RoundButton"
@@ -22,6 +25,7 @@ export class Popular extends Component {
 
   LIMIT = 6;
   requestSent = false;
+  buyProductRequestSent = false;
 
   /**
    * componentDidMount
@@ -43,6 +47,25 @@ export class Popular extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
     this.getPopularProducts();
+  }
+
+  /**
+   * adds an item to cart and route to checkout page
+   *
+   * @name buyProduct
+   * @function
+   * @param {object} product
+   */
+  buyProduct = (product) => {
+    this.buyProductRequestSent = true;
+    const { user, cart, addCart } = this.props;
+    const { customer_id } = user.customer;
+    if(!user.isAuth || cart.isLoading) return;
+    addCart({ 
+      cart_id: customer_id, 
+      attributes: "L Red",
+      ...product,
+    });
   }
 
   /**
@@ -128,10 +151,11 @@ export class Popular extends Component {
                               <CardItem
                                 className={`card__width ${cardClassName || ""}`}
                                 product={product}
+                                onClick={this.buyProduct}
                               />
                             </div>
                           )
-                        })
+                          })
                       }
                     </div>
                   )
@@ -152,15 +176,19 @@ Popular.propTypes = {
   title: PropTypes.string.isRequired,
   cardClassName: PropTypes.string,
   popularProducts: PropTypes.object.isRequired,
+  addCart: PropTypes.func.isRequired,
   getPopularProducts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     popularProducts: state.PopularProducts,
+    user: state.User,
+    cart: state.Cart,
   }
 };
 
 export default connect(mapStateToProps, {
+  addCart,
   getPopularProducts,
 })(Popular);

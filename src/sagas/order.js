@@ -17,6 +17,7 @@ export function* createOrderAsync(action) {
     const { data } = yield call(requests.createOrder, action.payload);
     yield put({ type: types.CREATE_ORDER_SUCCESS, payload: data });
   } catch (error) {
+  console.log(error)
     yield put(connectivityCheck(error, types.CREATE_ORDER_FAILURE));
   }
 }

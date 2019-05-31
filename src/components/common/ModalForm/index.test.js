@@ -5,7 +5,7 @@ import ModalForm, {
   ModalFormCheckboxLabel,
   ModalFormFooter,
 } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 const func = jest.fn();
 

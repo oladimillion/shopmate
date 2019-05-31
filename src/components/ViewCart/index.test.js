@@ -1,13 +1,12 @@
 import React from "react";
 import { ViewCart } from ".";
-import { shallow } from 'enzyme';
-import ReactRouterEnzymeContext from 'react-router-enzyme-context';
+import { shallow } from "enzyme";
 import initState from "../../reducers/initState";
 import setup from "../../__test__/setup";
 
 const func = jest.fn();
 
-describe('<ViewCart /> ', () => {
+describe("<ViewCart /> ", () => {
 
   const props = {
     closeModal: func,
@@ -22,14 +21,14 @@ describe('<ViewCart /> ', () => {
     ...setup,
   };
 
-
   const wrapper = shallow(
     <ViewCart {...props} />
   );
-  it('renders ViewCart component without crashing', () => {
+  it("renders ViewCart component without crashing", () => {
     wrapper.instance().getImageLink("image.png");
     wrapper.instance().updateCart({}, {});
     wrapper.instance().removeItemFromCart({});
+    wrapper.instance().viewProductDetail({product_id: 1});
   });
 });
 

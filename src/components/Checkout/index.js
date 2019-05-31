@@ -22,8 +22,8 @@ import Confirmation from "./Confirmation";
 import Payment from "./Payment";
 import Finish from "./Finish";
 
-import './index.css';
-import './index.md.css';
+import "./index.css";
+import "./index.md.css";
 
 /**
  * Checkout component
@@ -100,23 +100,23 @@ export class Checkout extends Component {
     } = this.props;
     const { delivery } = this.state;
     if(this.createStripeChargeRequestSent &&
-      !stripeCharge.isLoading && !stripeCharge.error) {
-      this.changeStep(1);
-      this.props.emptyCart();
+      !this.isLoading() && !stripeCharge.error) {
       this.createStripeChargeRequestSent = false;
+      this.props.emptyCart();
+      this.changeStep(1);
     }
     if(this.createOrderRequestSent &&
-      !order.isLoading && !order.error) {
-      this.changeStep(1);
+      !this.isLoading() && !order.error) {
       this.createOrderRequestSent = false;
+      this.changeStep(1);
     }
     if(this.createStripeChargeRequestSent &&
-      !stripeCharge.isLoading && !stripeCharge.error) {
-      this.changeStep(1);
+      !this.isLoading() && !stripeCharge.error) {
       this.createStripeChargeRequestSent = false;
+      this.changeStep(1);
     }
     if(this.genStripeTokenRequestSent &&
-      !stripeToken.isLoading && !stripeToken.error) {
+      !this.isLoading() && !stripeToken.error) {
       this.genStripeTokenRequestSent = false;
       this.createStripeCharge({
         stripeToken: "tok_visa",
