@@ -54,7 +54,20 @@ export class Catalogue extends Component {
    * @param {object} prevState
    */
   componentDidUpdate(prevProps, prevState) {
-    const { allProduct, cart, history } = this.props;
+    const { allProduct, cart, history, location: locationOne } = this.props;
+    const { location: locationTwo } = prevProps;
+    const { pathname: pathnameOne, search: searchOne } = locationOne;
+    const { pathname: pathnameTwo, search: searchTwo } = locationTwo;
+    const boolResult = (
+      !this.buyProductRequestSent &&
+      (pathnameOne === pathnameTwo) &&
+      (searchOne === searchTwo)
+    );
+    if(boolResult) {
+      this.requestSent = false;
+      this.buyProductRequestSent = false;
+      return;
+    }
     if (!this.requestSent && !this.buyProductRequestSent) {
       this.requestSent = true;
       this.getProducts(this.getPageNumber());
@@ -123,6 +136,8 @@ export class Catalogue extends Component {
    */
   getProducts(pageNumber) {
     const query = this.getQuery(pageNumber);
+    const { allProduct } = this.props;
+    if(allProduct.isLoading) return;
     const { category, department } = this.getQueryParams();
     const { path } = this.props.match;
     if(path === "/search") {
@@ -229,7 +244,7 @@ export class Catalogue extends Component {
    * @returns {jsx}
    */
   render () {
-    const { allProduct } = this.props;
+    const { allProduct, user } = this.props;
     return (
       <section className="catalogue inner__container margin__hori__auto flex flex__wrap space__around">
 
@@ -261,6 +276,7 @@ export class Catalogue extends Component {
                           <CardItem 
                             key={index}
                             product={product}
+                            disable={!user.isAuth}
                             onClick={this.buyProduct}
                           />
                         )

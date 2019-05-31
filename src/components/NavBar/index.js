@@ -75,7 +75,10 @@ export class NavBar extends Component {
    */
   clearSearchField = (data) => {
     this.setState(data);
-    this.props.history.push("/");
+    this.props.history.push({
+      pathname: "/",
+      search: "",
+    });
   }
 
   /**

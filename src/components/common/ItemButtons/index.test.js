@@ -6,6 +6,7 @@ const func = jest.fn();
 
 describe("<ItemButton /> ", () => {
   const props = {
+    disable: false,
     name: "submit",
     className: "style",
     onClick: func,
