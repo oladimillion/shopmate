@@ -52,6 +52,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Screenshots of the application
+#### Homepage
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 37 43 PM" src="https://user-images.githubusercontent.com/23438586/58713626-e1fb2880-83ba-11e9-83aa-e34c49a76afc.png">
+
+#### View cart modal
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 38 29 PM" src="https://user-images.githubusercontent.com/23438586/58713865-6cdc2300-83bb-11e9-85b0-bd07212b5c1c.png">
+
+#### View item page
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 38 46 PM" src="https://user-images.githubusercontent.com/23438586/58713973-a44acf80-83bb-11e9-94f4-2d6777ce6d32.png">
+
+#### Signup page
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 50 47 PM" src="https://user-images.githubusercontent.com/23438586/58714558-e294be80-83bc-11e9-863e-be64a6b9bac7.png">
+
 ## The Project Folder/Directory and File Structure
 ```
 shopmate
