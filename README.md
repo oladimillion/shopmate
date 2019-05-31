@@ -62,7 +62,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 #### View item page
 <img width="1440" alt="Screen Shot 2019-05-31 at 3 38 46 PM" src="https://user-images.githubusercontent.com/23438586/58713973-a44acf80-83bb-11e9-94f4-2d6777ce6d32.png">
 
-#### Signup page
+#### Signup modal
 <img width="1440" alt="Screen Shot 2019-05-31 at 3 50 47 PM" src="https://user-images.githubusercontent.com/23438586/58714558-e294be80-83bc-11e9-863e-be64a6b9bac7.png">
 
 ## The Project Folder/Directory and File Structure
