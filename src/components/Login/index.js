@@ -175,7 +175,7 @@ export class Login extends Component {
           <p
             onClick={this.openRegisterModal}
             className="red__color cursor__pointer">
-            Have an account
+            Have no account
           </p>
         </ModalFormFooter>
       </ModalForm>

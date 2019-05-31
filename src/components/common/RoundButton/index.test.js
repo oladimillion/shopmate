@@ -1,6 +1,6 @@
 import React from "react";
 import RoundButton from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 const func = jest.fn();
 

@@ -40,7 +40,7 @@ const Cart = (state=initState.cart, action) => {
         data: state.data.filter(item => {
           return item.item_id !== item_id;
         }),
-        totalAmount: state.totalAmount - (price * quantity),
+        totalAmount: (state.totalAmount - (price * quantity)).toFixed(2),
       };
     case types.GET_CART_FAILURE:
     case types.ADD_CART_FAILURE:

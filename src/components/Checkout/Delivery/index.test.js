@@ -1,11 +1,11 @@
 import React from "react";
 import { Delivery } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../../reducers/initState";
 
 const func = jest.fn();
 
-describe('<Delivery /> ', () => {
+describe("<Delivery /> ", () => {
 
   const props = {
     onChange: func,
@@ -23,7 +23,7 @@ describe('<Delivery /> ', () => {
   const wrapper = shallow(
     <Delivery {...props} />
   );
-  it('renders Delivery component without crashing', () => {
+  it("renders Delivery component without crashing", () => {
     wrapper.instance().onCheck({
       shipping_id: 2,
     });

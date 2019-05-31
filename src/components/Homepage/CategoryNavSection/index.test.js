@@ -1,10 +1,10 @@
 import React from "react";
 import CategoryNavSection from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 
-describe('<CategoryNavSection /> ', () => {
-  it('renders CategoryNavSection component without crashing', () => {
+describe("<CategoryNavSection /> ", () => {
+  it("renders CategoryNavSection component without crashing", () => {
     shallow(<CategoryNavSection />);
   });
 });

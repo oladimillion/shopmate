@@ -9,7 +9,7 @@ export default (error, type) => {
   if(error.response) {
     return { type, payload: error.response.data };
   } else {
-    toastr.error("No internet connectivity");
-    return { type, payload: "No internet connectivity" };
+    toastr.error("No internet connectivity or Unknown error");
+    return { type, payload: "No internet connectivity or Unknown error" };
   }
 };

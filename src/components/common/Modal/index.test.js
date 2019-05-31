@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 describe("<Modal /> ", () => {
   const props = {

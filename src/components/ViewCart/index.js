@@ -91,6 +91,19 @@ export class ViewCart extends Component {
   }
 
   /**
+   * routes to view product page
+   *
+   * @name viewProductDetail
+   * @function
+   * @param {object} product
+   */
+  viewProductDetail = (product) => {
+    const { history, closeModal } = this.props;
+    history.push(`/${product.product_id}`);
+    closeModal();
+  }
+
+  /**
    * render
    *
    * @name render
@@ -138,7 +151,9 @@ export class ViewCart extends Component {
                     className="flex space__between cart__item__list">
                     <td className="item flex__two">
                       <div className="flex">
-                        <div className="cart__photo overflow__hidden">
+                        <div 
+                          onClick={()=>this.viewProductDetail(data)}
+                          className="cart__photo overflow__hidden">
                           <img 
                             className="object__fit" 
                             src={this.getImageLink(data.image)} 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Payment } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../../reducers/initState";
 
 const func = jest.fn();
 
-describe('<Payment /> ', () => {
+describe("<Payment /> ", () => {
 
   const props = {
     paymentRegex: ()=>{
@@ -28,7 +28,7 @@ describe('<Payment /> ', () => {
   const wrapper = shallow(
     <Payment {...props} />
   );
-  it('renders Payment component without crashing', () => {
+  it("renders Payment component without crashing", () => {
     wrapper.instance().setPaymentOption("card");
   });
 });

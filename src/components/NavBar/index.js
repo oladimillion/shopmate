@@ -67,6 +67,18 @@ export class NavBar extends Component {
   }
 
   /**
+   * clears the input field
+   *
+   * @name clearSearchField
+   * @function
+   * @param {object} data
+   */
+  clearSearchField = (data) => {
+    this.setState(data);
+    this.props.history.push("/");
+  }
+
+  /**
    * makes request to search product endpoint
    *
    * @name onSubmit
@@ -111,6 +123,7 @@ export class NavBar extends Component {
           openViewCartModal={this.props.openViewCartModal} 
           onSubmit={this.onSubmit}
           onChange={this.onChange}
+          clearSearchField={this.clearSearchField}
           search={this.state.search}
           user={this.props.user}
           cartQuantity={cartQuantity}

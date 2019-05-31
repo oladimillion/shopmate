@@ -1,6 +1,5 @@
 import React from "react";
-import { MemoryRouter } from 'react-router';
-import { mount } from 'enzyme';
+import { mount } from "enzyme";
 import { Profile } from ".";
 import initState from "../../reducers/initState";
 import setup from "../../__test__/setup";
@@ -8,7 +7,7 @@ import setup from "../../__test__/setup";
 const func = jest.fn();
 
 
-describe('<Profile /> ', () => {
+describe("<Profile /> ", () => {
 
   const props = {
     setErrorMessage: func,
@@ -22,7 +21,7 @@ describe('<Profile /> ', () => {
   const wrapper = mount(
     <Profile {...props} />
   );
-  it('renders Profile component without crashing', () => {
+  it("renders Profile component without crashing", () => {
     wrapper.instance().setState({
       showAddressForm: true,
     });

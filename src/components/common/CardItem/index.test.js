@@ -1,12 +1,13 @@
 import React from "react";
 import CardItem from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 const func = jest.fn();
 
 describe("<CardItem /> ", () => {
 
   const props = {
+    onClick: func,
     product: {
       name: "shirt", 
       price: "13", 

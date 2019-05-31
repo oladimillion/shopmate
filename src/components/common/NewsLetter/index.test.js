@@ -1,6 +1,6 @@
 import React from "react";
 import NewsLetter from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 
 describe("<NewsLetter /> ", () => {

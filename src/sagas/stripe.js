@@ -33,11 +33,8 @@ export function* genStripeTokenAsync(action) {
 export function* createStripeChargeAsync(action) {
   yield put({ type: types.CREATE_STRIPE_CHARGE_LOADING });
   try {
-    const data = yield call(requests.createStripeCharge, action.payload);
-    if(!data) throw new Error("Error occured");
-    else {
-      yield put({ type: types.CREATE_STRIPE_CHARGE_SUCCESS, payload: data });
-    }
+    const { data } = yield call(requests.createStripeCharge, action.payload);
+    yield put({ type: types.CREATE_STRIPE_CHARGE_SUCCESS, payload: data });
   } catch (error) {
     yield put({type: types.CREATE_STRIPE_CHARGE_FAILURE, payload: error });
   }

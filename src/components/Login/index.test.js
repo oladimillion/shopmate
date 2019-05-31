@@ -1,13 +1,12 @@
 import React from "react";
 import { Login } from ".";
-import { shallow } from 'enzyme';
-import ReactRouterEnzymeContext from 'react-router-enzyme-context';
+import { shallow } from "enzyme";
 import initState from "../../reducers/initState";
 import setup from "../../__test__/setup";
 
 const func = jest.fn();
 
-describe('<Login /> ', () => {
+describe("<Login /> ", () => {
 
   const props = {
     closeLoginModal: func,
@@ -25,7 +24,7 @@ describe('<Login /> ', () => {
   const wrapper = shallow(
     <Login {...props} />
   );
-  it('renders Login component without crashing', () => {
+  it("renders Login component without crashing", () => {
     wrapper.instance().onChange({
       target: {
         name: "email",

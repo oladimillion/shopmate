@@ -32,12 +32,18 @@ const categoryLinks = [
  * @name SearchInput
  * @function
  * @prop {string} className
+ * @prop {function} clearSearchField
  * @prop {function} onSubmit
  * @prop {string} search
  * @prop {object} rest
  * @returns {jsx}
  */
-const SearchInput = ({ className, onSubmit, search, ...rest }) => {
+const SearchInput = ({ 
+  className, 
+  onSubmit, 
+  search,
+  clearSearchField,
+  ...rest }) => {
   return (
     <div className={`navbar__search ${className || ""}`}>
       <form onSubmit={onSubmit}>
@@ -53,7 +59,9 @@ const SearchInput = ({ className, onSubmit, search, ...rest }) => {
           value={search}
           placeholder="search anything" 
         />
-        <span className="input__icon input__right__icon cancel__icon">
+        <span 
+          onClick={()=>clearSearchField({search: ""})}
+          className="input__icon input__right__icon cancel__icon">
           <Icon name="x" />
         </span>
       </form>
@@ -64,6 +72,7 @@ const SearchInput = ({ className, onSubmit, search, ...rest }) => {
 SearchInput.propTypes = {
   className: PropTypes.string,
   search: PropTypes.string,
+  clearSearchField: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
@@ -111,11 +120,11 @@ const NavBarDark = ({ openViewCartModal, user, cartQuantity, ...rest }) => {
                       className="cart__icon">
                       <Icon name="shopping cart" />
                       <span 
-                         className="item__count item__count__invert">
-                         {cartQuantity}
+                        className="item__count item__count__invert">
+                        {cartQuantity}
                       </span>
-                      </span>
-                    </div>
+                    </span>
+                  </div>
                 )
               }
             </div>
@@ -141,7 +150,10 @@ const NavBarDark = ({ openViewCartModal, user, cartQuantity, ...rest }) => {
               </label>
               <div className="flex dropdown__items">
                 <span className="bg__image">
-                  <img src="https://images.pexels.com/photos/7432/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="img" />
+                  <img 
+                    src="https://images.pexels.com/photos/7432/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" 
+                    alt="img" 
+                  />
                 </span>
                 <div className="flex__two flex">
                   <div className="item__info margin__auto">

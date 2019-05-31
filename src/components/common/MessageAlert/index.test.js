@@ -1,6 +1,6 @@
 import React from "react";
 import MessageAlert from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 describe("<MessageAlert /> ", () => {
   const props = {

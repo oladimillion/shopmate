@@ -1,6 +1,6 @@
 import React from "react";
 import PriceCurrency from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 describe("<PriceCurrency /> ", () => {
   const props = {
