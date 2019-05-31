@@ -410,22 +410,19 @@ export class ViewItem extends Component {
                     <SelectQuantity quantity="1" />
                   </PanelSection>
                   <br />
-                  {
-                    user.isAuth && (
-                      <div 
-                        className="flex space__between flex__wrap wish__list">
-                        <ItemButton 
-                          name="Add to cart"
-                          onClick={()=>this.addCart(data)}
-                          className="wish__list__button"
-                        />
-                        <AddFavourite 
-                          iconClassName="red__color"
-                          name="Add to Wish List"
-                        />
-                      </div>
-                    )
-                  }
+                  <div 
+                    className="flex space__between flex__wrap wish__list">
+                    <ItemButton 
+                      name="Add to cart"
+                      disable={!user.isAuth}
+                      onClick={()=>this.addCart(data)}
+                      className="wish__list__button"
+                    />
+                    <AddFavourite 
+                      iconClassName="red__color"
+                      name="Add to Wish List"
+                    />
+                  </div>
                 </div>
                 {/*end of viewitem__info*/}
               </div>

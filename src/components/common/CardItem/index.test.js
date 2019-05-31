@@ -8,6 +8,7 @@ describe("<CardItem /> ", () => {
 
   const props = {
     onClick: func,
+    disable: false,
     product: {
       name: "shirt", 
       price: "13", 

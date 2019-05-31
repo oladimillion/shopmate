@@ -28,7 +28,7 @@
     "build": "react-scripts build",
     "prebuild": "rm -rf build",
     "test": "react-scripts test",
-    "coverage": "npm test -- --coverage || true",
+    "coverage": "npm test -- --coverage || true --detectOpenHandles",
     "coveralls": "npm test -- --coverage || true && cat ./coverage/lcov.info | coveralls",
     "eject": "react-scripts eject"
   },

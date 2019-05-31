@@ -14,14 +14,16 @@ const func = () => {};
  * @prop {string} className
  * @prop {function} onClick
  * @prop {string} type
+ * @prop {boolean} disable
  * @returns {jsx}
  */
-const ItemButton = ({ name, className, onClick, type }) => {
+const ItemButton = ({ name, className, onClick, type, disable }) => {
   return (
     <button 
       onClick={onClick || func}
+      disable={`${disable}` || "false"}
       type={type || "button"}
-      className={`item__button block ${className || ""}`}>
+      className={`item__button block ${className || ""} ${disable ? "button__disable" : ""}`}>
       {name}
     </button>
   )

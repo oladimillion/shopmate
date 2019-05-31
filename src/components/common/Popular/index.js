@@ -46,6 +46,11 @@ export class Popular extends Component {
    * @param {object} prevState
    */
   componentDidUpdate(prevProps, prevState) {
+    const { cart, history } = this.props;
+    if(this.buyProductRequestSent && !cart.isLoading && !cart.error) {
+      this.buyProductRequestSent = false;
+      history.push("/checkout");
+    }
     this.getPopularProducts();
   }
 
@@ -121,52 +126,53 @@ export class Popular extends Component {
    * @returns {jsx}
    */
   render() {
-    const { title, cardClassName, popularProducts } = this.props;
+    const { title, cardClassName, popularProducts, user } = this.props;
     return (
-            <div
-              className="inner__container  margin__hori__auto position__rel">
-              <h1>{title}</h1>
-              <div className="scroll scroll__left">
-                <RoundButton
-                  onClick={(e) => this.horizontalScroll("LEFT")}
-                  icon="angle left"
-                />
+      <div
+        className="inner__container  margin__hori__auto position__rel">
+        <h1>{title}</h1>
+        <div className="scroll scroll__left">
+          <RoundButton
+            onClick={(e) => this.horizontalScroll("LEFT")}
+            icon="angle left"
+          />
+        </div>
+        {
+          popularProducts.isLoading ? 
+            (
+              <Loader className="popular__loader__height" />
+            ) :
+            (
+              <div
+                id="popular"
+                className="flex scroll__hori__overflow popular position__rel">
+                {
+                  popularProducts.data
+                    .map((product, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="popular__items">
+                          <CardItem
+                            className={`card__width ${cardClassName || ""}`}
+                            product={product}
+                            disable={!user.isAuth}
+                            onClick={this.buyProduct}
+                          />
+                        </div>
+                      )
+                    })
+                }
               </div>
-              {
-                popularProducts.isLoading ? 
-                  (
-                    <Loader className="popular__loader__height" />
-                  ) :
-                  (
-                    <div
-                      id="popular"
-                      className="flex scroll__hori__overflow popular position__rel">
-                      {
-                        popularProducts.data
-                          .map((product, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className="popular__items">
-                              <CardItem
-                                className={`card__width ${cardClassName || ""}`}
-                                product={product}
-                                onClick={this.buyProduct}
-                              />
-                            </div>
-                          )
-                          })
-                      }
-                    </div>
-                  )
-              }
-              <div className="scroll scroll__right">
-                <RoundButton
-                  onClick={(e) => this.horizontalScroll("RIGHT")}
-                  icon="angle right"
-                />
-              </div>
-            </div>
+            )
+        }
+        <div className="scroll scroll__right">
+          <RoundButton
+            onClick={(e) => this.horizontalScroll("RIGHT")}
+            icon="angle right"
+          />
+        </div>
+      </div>
     )
   }
 }
