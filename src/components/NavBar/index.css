@@ -58,7 +58,7 @@ button.user__option div.user__option__dropdown {
   width: 79px;
 }
 
-button.user__option span.user__option__icon {
+button.user__option > span.user__option__icon {
   display: inline-block;
   position: relative;
   top: 1px;
@@ -93,7 +93,8 @@ button.user__option div.user__option__dropdown::after {
   background: transparent;
 }
 
-div.user__option__dropdown > a {
+div.user__option__dropdown > a,
+div.user__option__dropdown > span {
   margin: 1rem 0;
   font-size: 0.8rem;
   font-weight: normal;
@@ -101,6 +102,7 @@ div.user__option__dropdown > a {
   color: #254565;
 }
 
+div.user__option__dropdown span:hover,
 div.user__option__dropdown a:hover {
   text-decoration: underline;
 }

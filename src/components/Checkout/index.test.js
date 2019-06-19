@@ -16,6 +16,8 @@ describe("<Checkout /> ", () => {
     getShippingRegionById: func,
     setErrorMessage: func,
     emptyCart: func,
+    getOrderItems: func,
+    openViewOrderModal: func,
 
     user: initState.user,
     stripeToken: initState.stripeToken,

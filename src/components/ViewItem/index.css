@@ -64,6 +64,7 @@ ul.level__links li.level__link:last-child::after {
 
 .viewitem__currency {
   font-size: 2rem !important;
+  justify-content: flex-start !important;
 }
 
 .viewitem__currency i {

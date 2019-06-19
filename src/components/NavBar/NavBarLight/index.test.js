@@ -11,6 +11,7 @@ describe("<NavBarLight /> ", () => {
     openViewCartModal: func,
     openRegisterModal: func,
     openLoginModal: func,
+    openViewOrderModal: func,
     logout: func,
     cartQuantity: "9+",
 

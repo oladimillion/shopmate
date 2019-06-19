@@ -12,6 +12,7 @@ describe("<CardItem /> ", () => {
     product: {
       name: "shirt", 
       price: "13", 
+      discounted_price: "10", 
       product_id: 2, 
       thumbnail: "shirt.png"
     },

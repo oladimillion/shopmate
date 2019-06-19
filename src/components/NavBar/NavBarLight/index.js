@@ -39,6 +39,7 @@ const NavBarLight = ({
   openLoginModal,
   openRegisterModal,
   openViewCartModal,
+  openViewOrderModal,
   user,
   logout,
   cart,
@@ -95,6 +96,17 @@ const NavBarLight = ({
                             Profile
                           </span>
                         </Link>
+                        <span 
+                          role="link"
+                          onClick={openViewOrderModal}
+                          className="flex space__between">
+                          <span className="option__icon">
+                            <Icon name="box" /> 
+                          </span>
+                          <span className="option__label">
+                            Orders
+                          </span>
+                        </span>
                         <Link 
                           onClick={logout}
                           className="flex space__between" 
@@ -131,22 +143,18 @@ const NavBarLight = ({
                 &#x00024;USD
               </span>
             </div>
-            {
-              user.isAuth && (
-                <div className="flex space__between">
-                  <span 
-                    onClick={openViewCartModal}
-                    className="cart__icon">
-                    <Icon name="shopping cart" />
-                    <span className="item__count">{cartQuantity}</span>
-                  </span>
-                  <span>
-                    Your bag: &#x00024;
-                    <span>{cart.totalAmount}</span>
-                  </span>
-                </div>
-              )
-            }
+            <div className="flex space__between">
+              <span 
+                onClick={openViewCartModal}
+                className="cart__icon">
+                <Icon name="shopping cart" />
+                <span className="item__count">{cartQuantity}</span>
+              </span>
+              <span>
+                Your bag: &#x00024;
+                <span>{cart.totalAmount}</span>
+              </span>
+            </div>
           </li>
         </ul>
       </div>

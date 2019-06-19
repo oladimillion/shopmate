@@ -23,6 +23,7 @@ describe("<ItemLink /> ", () => {
     name: "profile",
     className: "profile",
     onClick: func,
+    disable: false,
   };
   it("renders ItemLink component without crashing", () => {
     shallow(<ItemLink {...props} />);

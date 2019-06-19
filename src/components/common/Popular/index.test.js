@@ -32,7 +32,7 @@ describe("<Popular /> ", () => {
   it("renders Popular component without crashing", () => {
     wrapper.instance().getPopularProducts();
     wrapper.instance().horizontalScroll();
-    wrapper.instance().buyProduct({ product_id: 1 });
+    wrapper.instance().addCart({ product_id: 1 });
   });
 });
 

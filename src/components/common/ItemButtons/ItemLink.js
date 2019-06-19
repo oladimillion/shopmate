@@ -17,12 +17,12 @@ const func = () => {};
  * @param {function} onClick}
  * @returns {jsx}
  */
-const ItemLink = ({ to, name, className, onClick }) => {
+const ItemLink = ({ to, name, className, onClick, disable }) => {
   return (
     <Link 
       to={to} 
       onClick={onClick || func}
-      className={`item__button block ${className || ""}`}>
+      className={`item__button block ${className || ""} ${disable ? "button__disable" : ""}`}>
       {name}
     </Link> 
   )
@@ -33,6 +33,7 @@ ItemLink.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   to: PropTypes.string.isRequired,
+  disable: PropTypes.bool,
 };
 
 export { ItemLink };

@@ -33,5 +33,6 @@ describe("<Confirmation /> ", () => {
       customer: props.user.customer,
     });
     wrapper.instance().getShippingDetail();
+    wrapper.instance().getGrandTotal("10", "($30)");
   });
 });

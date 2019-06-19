@@ -8,6 +8,11 @@ describe('cart request action test', () => {
       types.ADD_CART_REQUEST,
     );
   });
+  it('should dispatch gen cart request action', () => {
+    expect(actions.genCartID({}).type).toEqual(
+      types.GEN_CART_ID_REQUEST,
+    );
+  });
   it('should dispatch get cart request action', () => {
     expect(actions.getCart({}).type).toEqual(
       types.GET_CART_REQUEST,

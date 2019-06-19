@@ -16,6 +16,7 @@ describe("<NavBar /> ", () => {
     getShippingRegion: func,
     logout: func,
     clearSearchField: func,
+    openViewOrderModal: func,
 
     allProduct: initState.allProduct,
     user: initState.user,

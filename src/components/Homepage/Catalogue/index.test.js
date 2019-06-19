@@ -15,6 +15,8 @@ describe("<Catalogue /> ", () => {
     getProductsByDepartment: func,
     getCategories: func,
     getDepartments: func,
+    addCart: func,
+    genCartID: func,
 
     allProduct: initState.allProduct,
     categories: initState.categories,
@@ -32,12 +34,13 @@ describe("<Catalogue /> ", () => {
     wrapper.instance().getPageNumber();
     wrapper.instance().getPageCount();
     wrapper.instance().getProducts();
-    wrapper.instance().buyProduct({product_id: 2});
+    wrapper.instance().addCart({product_id: 2});
     wrapper.instance().gotoPage(1);
     wrapper.instance().getQuery(1);
     wrapper.instance().getQueryParams();
     wrapper.instance().nextPage();
     wrapper.instance().prevPage();
+    wrapper.instance().genCartID();
   });
 });
 

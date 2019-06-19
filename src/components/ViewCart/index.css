@@ -9,6 +9,7 @@ div.view__cart div.view__cart__inner {
 div.view__cart .view__cart__price {
   color: #000;
   font-size: 1.7rem;
+  justify-content: flex-start;
 }
 
 div.view__cart .view__cart__price__icon {

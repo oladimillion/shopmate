@@ -1,0 +1,6 @@
+@media screen and (max-width: 950px) {
+ div.view__order__inner table tr th.quantity,
+ div.view__order__inner table tr td.quantity {
+   display: none;
+ }
+}

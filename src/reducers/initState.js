@@ -26,6 +26,10 @@ export default {
   order: {
     ...initValue,
   },
+  orderItems: {
+    ...initValue,
+    data: [],
+  },
   tax: {
     ...initValue,
     data: [],

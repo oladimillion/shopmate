@@ -58,8 +58,6 @@ const Cart = (state=initState.cart, action) => {
     case types.DELETE_CART_ITEM_LOADING:
     case types.UPDATE_CART_LOADING:
       return { ...state, isLoading: true, error: null };
-    case types.USER_LOGOUT:
-      return { ...initState.cart };
     default:
       return state;
   }

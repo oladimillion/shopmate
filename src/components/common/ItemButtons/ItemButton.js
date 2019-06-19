@@ -21,7 +21,7 @@ const ItemButton = ({ name, className, onClick, type, disable }) => {
   return (
     <button 
       onClick={onClick || func}
-      disable={`${disable}` || "false"}
+      disabled={ !!disable ? "disabled" : ""}
       type={type || "button"}
       className={`item__button block ${className || ""} ${disable ? "button__disable" : ""}`}>
       {name}
@@ -34,6 +34,7 @@ ItemButton.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   type: PropTypes.string,
+  disable: PropTypes.bool,
 };
 
 export { ItemButton };

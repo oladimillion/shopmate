@@ -10,6 +10,12 @@ span.item__price span {
   display: inline-block;
 }
 
+span.has__discount {
+  font-size: 1rem;
+  color: #000;
+  margin-left: 20px;
+}
+
 
 
 

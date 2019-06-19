@@ -112,21 +112,17 @@ const NavBarDark = ({ openViewCartModal, user, cartQuantity, ...rest }) => {
             </div>
             <div className="flex">
               <SearchInput {...rest} />
-              {
-                user.isAuth && (
-                  <div className="margin__vert__auto">
-                    <span 
-                      onClick={openViewCartModal}
-                      className="cart__icon">
-                      <Icon name="shopping cart" />
-                      <span 
-                        className="item__count item__count__invert">
-                        {cartQuantity}
-                      </span>
-                    </span>
-                  </div>
-                )
-              }
+              <div className="margin__vert__auto">
+                <span 
+                  onClick={openViewCartModal}
+                  className="cart__icon">
+                  <Icon name="shopping cart" />
+                  <span 
+                    className="item__count item__count__invert">
+                    {cartQuantity}
+                  </span>
+                </span>
+              </div>
             </div>
           </div>
         </div>
