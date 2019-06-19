@@ -9,6 +9,21 @@ Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) 
 - Redux-saga
 - Sematic-ui-react
 
+## To run the app locally
+  1. Clone the repository:
+  ```
+  git clone https://github.com/oladimillion/shopmate.git
+  ```
+  2. Navigate into the cloned repository folder
+
+  3. Install dependencies:
+  ```
+  $ npm install
+  ```
+  4. run `npm start` to start the server
+
+  5. visit `http://localhost:3000` in your browser
+
 ## Available Scripts
 
 In the project directory, you can run:
