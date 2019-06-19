@@ -1,0 +1,91 @@
+div.view__order .view__order__hori__padding {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+
+div.view__order__inner header {
+  padding-top: 2.9rem;
+  padding-bottom: 2.8rem;
+  font-size: 1.7rem;
+}
+
+div.view__order__inner header span.order__title {
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+div.view__order__inner table {
+  height: calc(100% - 14rem);
+}
+
+div.view__order__inner table tbody {
+  height: calc(100% - 2.5rem);
+  overflow: auto;
+}
+
+div.view__order__inner table tr th,
+div.view__order__inner table tr td {
+  margin: auto 8px;
+}
+
+div.view__order__inner table tr th:first-child,
+div.view__order__inner table tr td:first-child {
+  margin-left: 0;
+}
+
+div.view__order__inner table tr th:last-child,
+div.view__order__inner table tr td:last-child {
+  margin-right: 0;
+}
+
+table tr.table__column__label {
+  text-align: left;
+  font-size: 1.3rem;
+  padding-bottom: 1rem;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+}
+
+table tr.order__item__list {
+  margin: 2px 0;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  color: #777;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+table tr.order__item__list:last-child {
+  border-bottom: none;
+}
+
+table tr.order__item__list td.quantity {
+  margin-left: 14px;
+}
+
+
+table tr.order__item__list .order__cost {
+  -webkit-justify-content: flex-start !important;
+  justify-content: flex-start !important;
+  color: #777;
+  font-size: 1.1rem;
+  margin-left: 8px;
+}
+
+div.view__order__inner footer.view__order__footer {
+  margin-top: 12px;
+  padding-top: 1.4rem;
+  padding-bottom: 1.4rem;
+  background-color: rgba(0,0,0,0.04);
+}
+
+footer.view__order__footer .close__order__modal__btn {
+  padding-left: 3.6rem;
+  padding-right: 3.6rem;
+  height: 43px;
+  line-height: 2.5;
+  color: #f62f5e;
+  background: #fff;
+  border: 1px solid #eee;
+}
+
+

@@ -11,6 +11,11 @@ describe("Cart requests", () => {
       expect(res).toEqual(Promise({}));
     });
   });
+  it("gen cart id", () => {
+    requests.genCartID({}).then(res => {
+      expect(res).toEqual(Promise({}));
+    });
+  });
   it("get cart amount", () => {
     requests.getCartAmount({}).then(res => {
       expect(res).toEqual(Promise({}));

@@ -12,6 +12,16 @@ describe("Order saga", () => {
       gen.next().value.payload.action.type
     ).toEqual(types.CREATE_ORDER_FAILURE)
   });
+  it("get order items", () => {
+    const gen = order.getOrderItemsAsync({});
+    expect(
+      gen.next().value.payload.action.type
+    ).toEqual(types.GET_ORDER_ITEMS_LOADING)
+    gen.next()
+    expect(
+      gen.next().value.payload.action.type
+    ).toEqual(types.GET_ORDER_ITEMS_FAILURE)
+  });
 });
 
 

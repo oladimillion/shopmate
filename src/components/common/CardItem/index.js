@@ -25,7 +25,7 @@ const func = ()=>{};
  * @returns {jsx}
  */
 const CardItem = ({ className, product, onClick, disable }) => {
-  const { name, price, product_id, thumbnail } = product || {};
+  const { name, price, discounted_price, product_id, thumbnail } = product || {};
   return (
     <div className={`card position__rel box__shadow__normal card__margin__right card__sm__no__margin__right ${className || ""}`}>
       <div className="item__photo margin__auto block">
@@ -55,6 +55,7 @@ const CardItem = ({ className, product, onClick, disable }) => {
       </span>
       <PriceCurrency
         price={price} 
+        discountedPrice={discounted_price}
         className="block text__center"
       />
       <span className="block">

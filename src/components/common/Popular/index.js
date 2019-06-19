@@ -25,7 +25,7 @@ export class Popular extends Component {
 
   LIMIT = 6;
   requestSent = false;
-  buyProductRequestSent = false;
+  addCartRequestSent = false;
 
   /**
    * componentDidMount
@@ -47,8 +47,8 @@ export class Popular extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
     const { cart, history } = this.props;
-    if(this.buyProductRequestSent && !cart.isLoading && !cart.error) {
-      this.buyProductRequestSent = false;
+    if(this.addCartRequestSent && !cart.isLoading && !cart.error) {
+      this.addCartRequestSent = false;
       history.push("/checkout");
     }
     this.getPopularProducts();
@@ -57,17 +57,16 @@ export class Popular extends Component {
   /**
    * adds an item to cart and route to checkout page
    *
-   * @name buyProduct
+   * @name addCart
    * @function
    * @param {object} product
    */
-  buyProduct = (product) => {
-    this.buyProductRequestSent = true;
-    const { user, cart, addCart } = this.props;
-    const { customer_id } = user.customer;
-    if(!user.isAuth || cart.isLoading) return;
+  addCart = (product) => {
+    this.addCartRequestSent = true;
+    const { cart, addCart } = this.props;
+    if(cart.isLoading) return;
     addCart({ 
-      cart_id: customer_id, 
+      cart_id: localStorage.cartID, 
       attributes: "L Red",
       ...product,
     });
@@ -126,7 +125,7 @@ export class Popular extends Component {
    * @returns {jsx}
    */
   render() {
-    const { title, cardClassName, popularProducts, user } = this.props;
+    const { title, cardClassName, popularProducts } = this.props;
     return (
       <div
         className="inner__container  margin__hori__auto position__rel">
@@ -156,8 +155,7 @@ export class Popular extends Component {
                           <CardItem
                             className={`card__width ${cardClassName || ""}`}
                             product={product}
-                            disable={!user.isAuth}
-                            onClick={this.buyProduct}
+                            onClick={this.addCart}
                           />
                         </div>
                       )

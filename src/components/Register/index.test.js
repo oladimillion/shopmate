@@ -14,6 +14,7 @@ describe("<Register /> ", () => {
     setErrorMessage: func,
     signup: func,
     getCart: func,
+    getOrderItems: func,
     getCartAmount: func,
 
     user: initState.user,

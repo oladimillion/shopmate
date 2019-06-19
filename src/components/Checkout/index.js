@@ -97,12 +97,15 @@ export class Checkout extends Component {
       stripeCharge,
       cart,
       order,
+      emptyCart,
+      getOrderItems,
     } = this.props;
     const { delivery } = this.state;
     if(this.createStripeChargeRequestSent &&
       !this.isLoading() && !stripeCharge.error) {
       this.createStripeChargeRequestSent = false;
-      this.props.emptyCart();
+      emptyCart();
+      getOrderItems();
       this.changeStep(1);
     }
     if(this.createOrderRequestSent &&
@@ -154,7 +157,6 @@ export class Checkout extends Component {
       return;
     } 
     let { confirmation, delivery } = this.state;
-    const { user } = this.props;
     if(!confirmation.tax_id) {
       this.setErrorMessage("(Tax type) is required");
       return;
@@ -163,7 +165,7 @@ export class Checkout extends Component {
     this.props.createOrder({
       tax_id: confirmation.tax_id,
       shipping_id: delivery.shipping_id,
-      cart_id: user.customer.customer_id,
+      cart_id: localStorage.cartID,
     });
   }
 
@@ -177,7 +179,11 @@ export class Checkout extends Component {
   renderStepComponent = () => {
     switch(this.state.step) {
       case 4:
-        return <Finish />;
+        return (
+          <Finish 
+            openViewOrderModal={this.props.openViewOrderModal}
+          />
+        );
       case 3:
         return (
           <Payment
@@ -572,6 +578,7 @@ Checkout.propTypes = {
   getShippingRegionById: PropTypes.func.isRequired,
   setErrorMessage: PropTypes.func.isRequired,
   emptyCart: PropTypes.func.isRequired,
+  openViewOrderModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -593,10 +600,14 @@ export default connect(mapStateToProps, {
   createStripeCharge,
   genStripeToken,
   getShippingRegionById,
+  getOrderItems: actions.getOrderItems,
   setErrorMessage: (data) => {
     return actions.createAction(actions.CREATE_ORDER_FAILURE, data);
   },
   emptyCart: (data) => {
     return actions.createAction(actions.EMPTY_CART);
+  },
+  openViewOrderModal: () => {
+    return actions.createAction(actions.SHOW_VIEW_ORDER_MODAL);
   },
 })(Checkout);

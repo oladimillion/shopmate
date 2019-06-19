@@ -9,3 +9,11 @@ describe('create order request action test', () => {
     );
   });
 });
+
+describe('get order items request action test', () => {
+  it('should dispatch get order items request action', () => {
+    expect(actions.getOrderItems({}).type).toEqual(
+      types.GET_ORDER_ITEMS_REQUEST,
+    );
+  });
+});

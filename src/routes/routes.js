@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import ViewCart from "../components/ViewCart";
+import ViewOrder from "../components/ViewOrder";
 import Login from "../components/Login";
 import Register from "../components/Register";
 
@@ -13,6 +14,10 @@ export const components = [
   {
     name: "NavBar",
     component: NavBar,
+  },
+  {
+    name: "ViewOrder",
+    component: ViewOrder,
   },
   {
     name: "ViewCart",
@@ -48,7 +53,7 @@ export default [
     component: Checkout,
     name: "Checkout",
     exact: true,
-    protected: true,
+    protected: false,
     path: "/checkout",
   },
   {

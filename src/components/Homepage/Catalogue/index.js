@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 
 import { 
   addCart,
+  genCartID,
   getProducts, 
   searchProducts, 
   getProductsByCategory,
@@ -32,7 +33,7 @@ export class Catalogue extends Component {
 
   LIMIT = 6;
   requestSent = false;
-  buyProductRequestSent = false;
+  addCartRequestSent = false;
 
   /**
    * componentDidMount
@@ -43,6 +44,7 @@ export class Catalogue extends Component {
   componentDidMount() {
     const pageNumber = this.getPageNumber();
     this.getProducts(pageNumber);
+    this.genCartID();
   }
 
   /**
@@ -54,50 +56,60 @@ export class Catalogue extends Component {
    * @param {object} prevState
    */
   componentDidUpdate(prevProps, prevState) {
-    const { allProduct, cart, history, location: locationOne } = this.props;
+    const { allProduct, cart, location: locationOne } = this.props;
     const { location: locationTwo } = prevProps;
     const { pathname: pathnameOne, search: searchOne } = locationOne;
     const { pathname: pathnameTwo, search: searchTwo } = locationTwo;
     const boolResult = (
-      !this.buyProductRequestSent &&
+      !this.addCartRequestSent &&
       (pathnameOne === pathnameTwo) &&
       (searchOne === searchTwo)
     );
     if(boolResult) {
       this.requestSent = false;
-      this.buyProductRequestSent = false;
+      this.addCartRequestSent = false;
       return;
     }
-    if (!this.requestSent && !this.buyProductRequestSent) {
+    if (!this.requestSent && !this.addCartRequestSent) {
       this.requestSent = true;
       this.getProducts(this.getPageNumber());
     }
     if(!allProduct.isLoading && this.requestSent) {
       this.requestSent = false;
     }
-    if(this.buyProductRequestSent && !cart.isLoading && !cart.error) {
-      this.buyProductRequestSent = false;
-      history.push("/checkout");
+    if(this.addCartRequestSent && !cart.isLoading && !cart.error) {
+      this.addCartRequestSent = false;
     }
   }
 
   /**
    * adds an item to cart and route to checkout page
    *
-   * @name buyProduct
+   * @name addCart
    * @function
    * @param {object} product
    */
-  buyProduct = (product) => {
-    this.buyProductRequestSent = true;
-    const { user, cart, addCart } = this.props;
-    const { customer_id } = user.customer;
-    if(!user.isAuth || cart.isLoading) return;
+  addCart = (product) => {
+    this.addCartRequestSent = true;
+    const { cart, addCart } = this.props;
+    if(cart.isLoading) return;
     addCart({ 
-      cart_id: customer_id, 
+      cart_id: localStorage.cartID, 
       attributes: "L Red",
       ...product,
     });
+  }
+
+  /**
+   * generate cart id
+   *
+   * @name genCartID
+   * @function
+   */
+  genCartID() {
+    if(!localStorage.cartID){
+      this.props.genCartID();
+    }
   }
 
   /**
@@ -244,7 +256,7 @@ export class Catalogue extends Component {
    * @returns {jsx}
    */
   render () {
-    const { allProduct, user } = this.props;
+    const { allProduct } = this.props;
     return (
       <section className="catalogue inner__container margin__hori__auto flex flex__wrap space__around">
 
@@ -276,8 +288,7 @@ export class Catalogue extends Component {
                           <CardItem 
                             key={index}
                             product={product}
-                            disable={!user.isAuth}
-                            onClick={this.buyProduct}
+                            onClick={this.addCart}
                           />
                         )
                       })
@@ -323,6 +334,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   addCart,
+  genCartID,
   getProducts,
   searchProducts,
   getProductsByCategory,

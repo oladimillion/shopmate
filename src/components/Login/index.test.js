@@ -14,6 +14,7 @@ describe("<Login /> ", () => {
     setErrorMessage: func,
     login: func,
     getCart: func,
+    getOrderItems: func,
     getCartAmount: func,
 
     user: initState.user,

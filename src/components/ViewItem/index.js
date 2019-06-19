@@ -133,12 +133,11 @@ export class ViewItem extends Component {
    * @param {object} item
    */
   addCart = (item) => {
-    const { user, cart, addCart } = this.props;
-    const { customer_id } = user.customer;
+    const { cart, addCart } = this.props;
     const { size, color } = this.state;
     if(cart.isLoading) return;
     addCart({ 
-      cart_id: customer_id, 
+      cart_id: localStorage.cartID, 
       attributes: `${size} ${color}`,
       ...item
     });
@@ -278,7 +277,7 @@ export class ViewItem extends Component {
    */
   render() {
 
-    const { productById, user } = this.props;
+    const { productById } = this.props;
     const { data } = productById;
     const { productImage } = this.state;
 
@@ -365,6 +364,7 @@ export class ViewItem extends Component {
                   </div>
                   <PriceCurrency 
                     price={data.price} 
+                    discountedPrice={data.discounted_price}
                     className="block viewitem__currency"
                   />
                   <PanelSection 
@@ -414,7 +414,6 @@ export class ViewItem extends Component {
                     className="flex space__between flex__wrap wish__list">
                     <ItemButton 
                       name="Add to cart"
-                      disable={!user.isAuth}
                       onClick={()=>this.addCart(data)}
                       className="wish__list__button"
                     />

@@ -13,3 +13,16 @@ export const createOrder = (payload) => ({
   payload,
 });
 
+/**
+ * get order items request action
+ *
+ * @name getOrderItems
+ * @function
+ * @param {object} payload
+ * @returns {object} type and payload
+ */
+export const getOrderItems = (payload) => ({
+  type: types.GET_ORDER_ITEMS_REQUEST,
+  payload,
+});
+

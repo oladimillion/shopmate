@@ -38,6 +38,10 @@
   flex: 3;
 }
 
+.flex__start {
+  justify-content: flex-start;
+}
+
 .float__left {
   float: left;
 }
@@ -146,6 +150,10 @@
 
 .list__style__none {
   list-style: none;
+}
+
+.line__through {
+  text-decoration: line-through;
 }
 
 .inline__block {

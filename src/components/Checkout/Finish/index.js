@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemLink } from "../../common/ItemButtons";
+import { ItemButton } from "../../common/ItemButtons";
 
 import rocket from "../../../assets/images/icons-rocket.png";
 
@@ -12,7 +12,7 @@ import "./index.css";
  * @function
  * @returns {jsx}
  */
-const Finish = () => {
+const Finish = ({openViewOrderModal}) => {
   return (
     <div className="finish">
       <div className="finish__inner margin__hori__auto">
@@ -26,13 +26,10 @@ const Finish = () => {
         <small className="block">
           Your item will be shipped shortly,
         </small>
-        <small className="block">
-          you will get email with details.
-        </small>
-        <ItemLink 
-          className="section__level back__to__shop"
-          to="/"
-          name="Back to shop"
+        <ItemButton 
+          onClick={openViewOrderModal}
+          className="section__level back__to__shop full__width"
+          name="Check your orders"
         />
       </div>
     </div>

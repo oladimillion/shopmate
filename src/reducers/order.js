@@ -17,6 +17,22 @@ const Order = (state=initState.order, action) => {
   }
 }
 
+const OrderItems = (state=initState.orderItems, action) => {
+  switch (action.type) {
+    case types.GET_ORDER_ITEMS_SUCCESS:
+      return { ...state, isLoading: false, data: action.payload };
+    case types.GET_ORDER_ITEMS_FAILURE:
+      return { ...state, isLoading: false, error: action.payload };
+    case types.GET_ORDER_ITEMS_LOADING:
+      return { ...state, isLoading: true, error: null };
+    case types.USER_LOGOUT:
+      return { ...initState.order };
+    default:
+      return state;
+  }
+}
+
 export default { 
+  OrderItems,
   Order,
 };

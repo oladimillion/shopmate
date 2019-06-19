@@ -41,6 +41,24 @@ export function* getCartAsync(action) {
 }
 
 /**
+ * generate cart id async
+ *
+ * @name genCartIDAsync
+ * @function
+ * @param {object} action - type and payload
+ */
+export function* genCartIDAsync(action) {
+  yield put({ type: types.GEN_CART_ID_LOADING });
+  try {
+    const { data } = yield call(requests.genCartID, action.payload);
+    localStorage.setItem("cartID", data.cart_id);
+    console.log(data)
+  } catch (error) {
+    yield put(connectivityCheck(error, types.GEN_CART_ID_FAILURE));
+  }
+}
+
+/**
  * get cart total amount async
  *
  * @name getCartAmountAsync
@@ -108,6 +126,16 @@ function* getCartWatcher() {
   yield takeLatest(types.GET_CART_REQUEST, getCartAsync);
 }
 
+/**
+ * generate cart id action watcher
+ *
+ * @name genCartIDWatcher
+ * @function
+ */
+function* genCartIDWatcher() {
+  yield takeLatest(types.GEN_CART_ID_REQUEST, genCartIDAsync);
+}
+
 
 /**
  * get cart total amount action watcher
@@ -153,6 +181,7 @@ function* deleteCartItemWatcher() {
 }
 
 export default [
+  genCartIDWatcher,
   getCartWatcher,
   getCartAmountWatcher,
   updateCartWatcher,

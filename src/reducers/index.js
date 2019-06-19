@@ -20,6 +20,7 @@ import shippingRegion from "./shippingRegion";
 import LoginModal from "./loginModal";
 import RegisterModal from "./registerModal";
 import ViewCartModal from "./viewCartModal";
+import ViewOrderModal from "./viewOrderModal";
 
 
 
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   LoginModal,
   RegisterModal,
   ViewCartModal,
+  ViewOrderModal,
   ...products,
   ...departments,
   ...categories,
