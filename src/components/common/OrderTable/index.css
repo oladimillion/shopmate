@@ -1,0 +1,60 @@
+
+table.order__table {
+  height: 100%;
+}
+
+table.order__table tbody {
+  height: calc(100% - 2.5rem);
+  overflow: auto;
+}
+
+table.order__table tr th,
+table.order__table tr td {
+  margin: auto 8px;
+  text-align: left;
+}
+
+table.order__table tr th:first-child,
+table.order__table tr td:first-child {
+  margin-left: 0;
+}
+
+table.order__table tr th:last-child,
+table.order__table tr td:last-child {
+  margin-right: 0;
+}
+
+table.order__table tr.table__column__label {
+  text-align: left;
+  font-size: 1.3rem;
+  padding-bottom: 1rem;
+  color: #777;
+  border-bottom: 1px solid #ccc;
+}
+
+table.order__table tr.order__item__list {
+  margin: 2px 0;
+  padding: 1rem 0;
+  font-size: 1.1rem;
+  color: #777;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+table.order__table tr.order__item__list:last-child {
+  border-bottom: none;
+}
+
+table.order__table tr.order__item__list td.quantity {
+  margin-left: 14px;
+}
+
+
+table.order__table tr.order__item__list .order__cost {
+  -webkit-justify-content: flex-start !important;
+  justify-content: flex-start !important;
+  color: #777;
+  font-size: 1.1rem;
+  margin-left: 8px;
+}
+
+

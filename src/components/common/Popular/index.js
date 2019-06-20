@@ -46,11 +46,6 @@ export class Popular extends Component {
    * @param {object} prevState
    */
   componentDidUpdate(prevProps, prevState) {
-    const { cart, history } = this.props;
-    if(this.addCartRequestSent && !cart.isLoading && !cart.error) {
-      this.addCartRequestSent = false;
-      history.push("/checkout");
-    }
     this.getPopularProducts();
   }
 

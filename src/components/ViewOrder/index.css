@@ -14,61 +14,9 @@ div.view__order__inner header span.order__title {
   font-weight: 600;
 }
 
-div.view__order__inner table {
+div.view__order__inner main.order__main {
   height: calc(100% - 14rem);
-}
-
-div.view__order__inner table tbody {
-  height: calc(100% - 2.5rem);
-  overflow: auto;
-}
-
-div.view__order__inner table tr th,
-div.view__order__inner table tr td {
-  margin: auto 8px;
-}
-
-div.view__order__inner table tr th:first-child,
-div.view__order__inner table tr td:first-child {
-  margin-left: 0;
-}
-
-div.view__order__inner table tr th:last-child,
-div.view__order__inner table tr td:last-child {
-  margin-right: 0;
-}
-
-table tr.table__column__label {
-  text-align: left;
-  font-size: 1.3rem;
-  padding-bottom: 1rem;
-  color: #777;
-  border-bottom: 1px solid #ccc;
-}
-
-table tr.order__item__list {
-  margin: 2px 0;
-  padding: 1rem 0;
-  font-size: 1.1rem;
-  color: #777;
-  border-bottom: 1px solid #f6f6f6;
-}
-
-table tr.order__item__list:last-child {
-  border-bottom: none;
-}
-
-table tr.order__item__list td.quantity {
-  margin-left: 14px;
-}
-
-
-table tr.order__item__list .order__cost {
-  -webkit-justify-content: flex-start !important;
-  justify-content: flex-start !important;
-  color: #777;
-  font-size: 1.1rem;
-  margin-left: 8px;
+  min-height: 200px;
 }
 
 div.view__order__inner footer.view__order__footer {

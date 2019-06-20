@@ -26,6 +26,10 @@ export default {
   order: {
     ...initValue,
   },
+  orderById: {
+    ...initValue,
+    data: [],
+  },
   orderItems: {
     ...initValue,
     data: [],
