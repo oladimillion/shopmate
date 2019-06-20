@@ -13,15 +13,6 @@
     font-size: 1.3rem;
   }
 
-  div.view__cart__inner table tr th.order__id,
-  div.view__cart__inner table tr td.order__id,
-  div.view__order__inner table tr th.unit__cost,
-  div.view__order__inner table tr td.unit__cost,
-  div.view__order__inner table tr td.subtotal,
-  div.view__order__inner table tr th.subtotal {
-    display: none;
-  }
-
   footer.view__order__footer .close__order__modal__btn {
     max-width: 150px;
   }

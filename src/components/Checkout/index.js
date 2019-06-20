@@ -9,6 +9,8 @@ import {
   genStripeToken,
   createStripeCharge,
   createOrder,
+  getOrderItems,
+  getOrderById,
 } from "../../actions";
 import formatErrorMessage from "../../utils/formatErrorMessage";
 
@@ -98,6 +100,7 @@ export class Checkout extends Component {
       cart,
       order,
       emptyCart,
+      getOrderById,
       getOrderItems,
     } = this.props;
     const { delivery } = this.state;
@@ -106,6 +109,7 @@ export class Checkout extends Component {
       this.createStripeChargeRequestSent = false;
       emptyCart();
       getOrderItems();
+      getOrderById({order_id: order.data.orderId});
       this.changeStep(1);
     }
     if(this.createOrderRequestSent &&
@@ -182,6 +186,7 @@ export class Checkout extends Component {
         return (
           <Finish 
             openViewOrderModal={this.props.openViewOrderModal}
+            orderById={this.props.orderById}
           />
         );
       case 3:
@@ -484,8 +489,8 @@ export class Checkout extends Component {
    * @returns {string}
    */
   getError() {
-    const { order, stripeToken, stripeCharge } = this.props;
-    return order.error || stripeToken.error || stripeCharge.error;
+    const { order, stripeToken, stripeCharge, orderById } = this.props;
+    return order.error || stripeToken.error || stripeCharge.error || orderById.error;
   }
 
   /**
@@ -578,6 +583,7 @@ Checkout.propTypes = {
   getShippingRegionById: PropTypes.func.isRequired,
   setErrorMessage: PropTypes.func.isRequired,
   emptyCart: PropTypes.func.isRequired,
+  getOrderById: PropTypes.func.isRequired,
   openViewOrderModal: PropTypes.func.isRequired,
 };
 
@@ -587,6 +593,7 @@ const mapStateToProps = (state) => {
     stripeToken: state.StripeToken,
     stripeCharge: state.StripeCharge,
     order: state.Order,
+    orderById: state.OrderById,
     cart: state.Cart,
     tax: state.Tax,
     shippingRegionById: state.ShippingRegionById,
@@ -600,7 +607,8 @@ export default connect(mapStateToProps, {
   createStripeCharge,
   genStripeToken,
   getShippingRegionById,
-  getOrderItems: actions.getOrderItems,
+  getOrderItems,
+  getOrderById,
   setErrorMessage: (data) => {
     return actions.createAction(actions.CREATE_ORDER_FAILURE, data);
   },

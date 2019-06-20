@@ -17,3 +17,11 @@ describe('get order items request action test', () => {
     );
   });
 });
+
+describe('get order by id request action test', () => {
+  it('should dispatch get order by id request action', () => {
+    expect(actions.getOrderById({}).type).toEqual(
+      types.GET_ORDER_BY_ID_REQUEST,
+    );
+  });
+});

@@ -43,6 +43,23 @@ export function* getOrderItemsAsync(action) {
 }
 
 /**
+ * get order by id async
+ *
+ * @name getOrderByIdAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
+export function* getOrderByIdAsync(action) {
+  yield put({ type: types.GET_ORDER_BY_ID_LOADING });
+  try {
+    const { data } = yield call(requests.getOrderById, action.payload);
+    yield put({ type: types.GET_ORDER_BY_ID_SUCCESS, payload: data });
+  } catch (error) {
+    yield put(connectivityCheck(error, types.GET_ORDER_BY_ID_FAILURE));
+  }
+}
+
+/**
  * create order action watcher
  *
  * @name  createOrderWatcher 
@@ -50,6 +67,16 @@ export function* getOrderItemsAsync(action) {
  */
 function* createOrderWatcher() {
   yield takeLatest(types.CREATE_ORDER_REQUEST, createOrderAsync);
+}
+
+/**
+ * get order by id action watcher
+ *
+ * @name  getOrderByIdWatcher 
+ * @function
+ */
+function* getOrderByIdWatcher() {
+  yield takeLatest(types.GET_ORDER_BY_ID_REQUEST, getOrderByIdAsync);
 }
 
 /**
@@ -65,5 +92,6 @@ function* getOrderItemsWatcher() {
 export default [
   createOrderWatcher,
   getOrderItemsWatcher,
+  getOrderByIdWatcher,
 ];
 
