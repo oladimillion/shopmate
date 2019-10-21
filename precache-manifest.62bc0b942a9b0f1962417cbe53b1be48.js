@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "9c74e172f87984c48ddf5c8108cabe67",
-    "url": "/shopmate/static/media/flags.9c74e172.png"
+    "revision": "ad97afd3337e8cda302d10ff5a4026b8",
+    "url": "/shopmate/static/media/outline-icons.ad97afd3.ttf"
   },
   {
-    "revision": "aacb6d7b0d829b5bb7e8",
+    "revision": "77d57dcafbc000f428aa",
     "url": "/shopmate/static/css/main.9102521d.chunk.css"
   },
   {
@@ -25,11 +25,11 @@ self.__precacheManifest = [
   },
   {
     "revision": "294e063695792e06a6ac35d1127509ab",
-    "url": "/shopmate/static/media/Images-modal4.294e0636.png"
+    "url": "/shopmate/static/media/images-modal.294e0636.png"
   },
   {
     "revision": "502184ca941d6fa1e9f75118b67896a8",
-    "url": "/shopmate/static/media/images-shoe2.502184ca.png"
+    "url": "/shopmate/static/media/images-shoe.502184ca.png"
   },
   {
     "revision": "c8fb042114c5ed9e44f01325d28010c7",
@@ -48,36 +48,36 @@ self.__precacheManifest = [
     "url": "/shopmate/static/media/outline-icons.701ae6ab.eot"
   },
   {
-    "revision": "ad97afd3337e8cda302d10ff5a4026b8",
-    "url": "/shopmate/static/media/outline-icons.ad97afd3.ttf"
+    "revision": "9c74e172f87984c48ddf5c8108cabe67",
+    "url": "/shopmate/static/media/flags.9c74e172.png"
   },
   {
-    "revision": "aacb6d7b0d829b5bb7e8",
-    "url": "/shopmate/static/js/main.ed677035.chunk.js"
+    "revision": "77d57dcafbc000f428aa",
+    "url": "/shopmate/static/js/main.21499459.chunk.js"
   },
   {
     "revision": "0ab54153eeeca0ce03978cc463b257f7",
     "url": "/shopmate/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "faff92145777a3cbaf8e7367b4807987",
-    "url": "/shopmate/static/media/icons.faff9214.woff"
-  },
-  {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "/shopmate/static/media/brand-icons.e8c322de.woff2"
+  },
+  {
+    "revision": "faff92145777a3cbaf8e7367b4807987",
+    "url": "/shopmate/static/media/icons.faff9214.woff"
   },
   {
     "revision": "a046592bac8f2fd96e994733faf3858c",
     "url": "/shopmate/static/media/brand-icons.a046592b.woff"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "/shopmate/static/media/icons.8e3c7f55.eot"
-  },
-  {
     "revision": "b87b9ba532ace76ae9f6edfe9f72ded2",
     "url": "/shopmate/static/media/icons.b87b9ba5.ttf"
+  },
+  {
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "/shopmate/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
@@ -100,7 +100,7 @@ self.__precacheManifest = [
     "url": "/shopmate/static/css/2.050057ac.chunk.css"
   },
   {
-    "revision": "e8e9c7bc3a6fee40650ffc7f5a3a5f3d",
+    "revision": "6e513633c8578a6049730d9af6d01a87",
     "url": "/shopmate/index.html"
   }
 ];
