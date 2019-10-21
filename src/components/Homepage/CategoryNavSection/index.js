@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import CategoryNavSectionBg from "../../../assets/images/Images-modal4.png";
+import CategoryNavSectionBg from "../../../assets/images/images-modal.png";
 import "./index.css";
 
 /**

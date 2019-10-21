@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import FeaturedImage from "../../../assets/images/images-shoe2.png";
+import FeaturedImage from "../../../assets/images/images-shoe.png";
 
 import "./index.css";
 
