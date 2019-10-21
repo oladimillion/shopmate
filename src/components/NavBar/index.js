@@ -67,6 +67,21 @@ export class NavBar extends Component {
   }
 
   /**
+   * clears the input field
+   *
+   * @name clearSearchField
+   * @function
+   * @param {object} data
+   */
+  clearSearchField = (data) => {
+    this.setState(data);
+    this.props.history.push({
+      pathname: "/",
+      search: "",
+    });
+  }
+
+  /**
    * makes request to search product endpoint
    *
    * @name onSubmit
@@ -76,9 +91,11 @@ export class NavBar extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { search } = this.state;
+    const { search: propsSearch } = this.props.location;
     const { isLoading } = this.props.allProduct;
     if(!isLoading && search) {
-      const query = `?query_string=${search}`;
+      const queryString = `query_string=${search}`;
+      const query = propsSearch ? `${propsSearch}&${queryString}` : `?${queryString}`;
       this.props.searchProducts(query);
       this.props.history.push({
         pathname: "/search",
@@ -102,6 +119,7 @@ export class NavBar extends Component {
           openLoginModal={this.props.openLoginModal} 
           openRegisterModal={this.props.openRegisterModal} 
           openViewCartModal={this.props.openViewCartModal} 
+          openViewOrderModal={this.props.openViewOrderModal} 
           user={this.props.user}
           cartQuantity={cartQuantity}
           cart={this.props.cart}
@@ -111,6 +129,7 @@ export class NavBar extends Component {
           openViewCartModal={this.props.openViewCartModal} 
           onSubmit={this.onSubmit}
           onChange={this.onChange}
+          clearSearchField={this.clearSearchField}
           search={this.state.search}
           user={this.props.user}
           cartQuantity={cartQuantity}
@@ -125,6 +144,7 @@ NavBar.propTypes = {
   user: PropTypes.object.isRequired,
   cart: PropTypes.object.isRequired,
   openViewCartModal: PropTypes.func.isRequired,
+  openViewOrderModal: PropTypes.func.isRequired,
   openLoginModal: PropTypes.func.isRequired,
   openRegisterModal: PropTypes.func.isRequired,
   searchProducts: PropTypes.func.isRequired,
@@ -150,6 +170,9 @@ export default connect(mapStateToProps,
     },
     openRegisterModal: () => {
       return actions.createAction(actions.SHOW_REGISTER_MODAL,);
+    },
+    openViewOrderModal: () => {
+      return actions.createAction(actions.SHOW_VIEW_ORDER_MODAL);
     },
     searchProducts,
     getShippingRegion,

@@ -34,12 +34,6 @@ describe("Cart reducer", () => {
         payload: initState.cart,
       }).totalAmount,
     ).toEqual(0);
-    expect(
-      cart.Cart(initState.cart, {
-        type: types.USER_LOGOUT,
-        payload: initState.cart,
-      }).totalAmount,
-    ).toEqual(0);
   });
   it("should update the store isLoading", () => {
     expect(

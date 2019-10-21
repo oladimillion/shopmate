@@ -16,7 +16,7 @@ import SelectQuantity from "../common/SelectQuantity";
 import PriceCurrency from "../common/PriceCurrency";
 import Modal from "../common/Modal";
 import Loader from "../common/Loader";
-import { ItemButton, ItemLink } from "../common/ItemButtons";
+import { ItemButton } from "../common/ItemButtons";
 
 
 import './index.css';
@@ -41,12 +41,12 @@ export class ViewCart extends Component {
    * @function
    */
   componentDidMount() {
-    const { user, getCart, getCartAmount } = this.props;
-    const { customer_id } = user.customer
-    if(customer_id) {
+    const { getCart, getCartAmount } = this.props;
+    const { cartID } = localStorage;
+    if(cartID) {
       Promise.all([
-        getCart({ cartId: customer_id }),
-        getCartAmount({ cartId: customer_id }),
+        getCart({ cartID }),
+        getCartAmount({ cartID }),
       ]);
     }
   }
@@ -61,6 +61,18 @@ export class ViewCart extends Component {
    */
   getImageLink(imageName) {
     return imageName ? `${API}/images/products/${imageName}` : "";
+  }
+
+  /**
+   * nav to checkout
+   *
+   * @name gotoCheckout 
+   * @function
+   */
+  gotoCheckout = () => {
+    const { history, closeModal } = this.props;
+    history.push("/checkout");
+    closeModal();
   }
 
   /**
@@ -91,6 +103,19 @@ export class ViewCart extends Component {
   }
 
   /**
+   * routes to view product page
+   *
+   * @name viewProductDetail
+   * @function
+   * @param {object} product
+   */
+  viewProductDetail = (product) => {
+    const { history, closeModal } = this.props;
+    history.push(`/${product.product_id}`);
+    closeModal();
+  }
+
+  /**
    * render
    *
    * @name render
@@ -102,6 +127,7 @@ export class ViewCart extends Component {
       openModal, 
       closeModal,
       cart,
+      user,
     } = this.props;
     return (
       <Modal 
@@ -138,7 +164,9 @@ export class ViewCart extends Component {
                     className="flex space__between cart__item__list">
                     <td className="item flex__two">
                       <div className="flex">
-                        <div className="cart__photo overflow__hidden">
+                        <div 
+                          onClick={()=>this.viewProductDetail(data)}
+                          className="cart__photo overflow__hidden">
                           <img 
                             className="object__fit" 
                             src={this.getImageLink(data.image)} 
@@ -182,8 +210,8 @@ export class ViewCart extends Component {
                     </td>
                     <td className="price flex__one">
                       <PriceCurrency 
-                        icon="pound sign" 
                         price={data.price} 
+                        discountedPrice={data.discounted_price} 
                         className="view__cart__price"
                         iconClassName="view__cart__price__icon"
                       />
@@ -200,11 +228,11 @@ export class ViewCart extends Component {
             className="cart__footer__button footer__button__shop" 
             onClick={closeModal}
           />
-          <ItemLink 
+          <ItemButton 
             name="Checkout" 
-            to="/checkout" 
+            disable={!user.isAuth}
             className="cart__footer__button" 
-            onClick={closeModal}
+            onClick={this.gotoCheckout}
           />
         </footer>
       </Modal>

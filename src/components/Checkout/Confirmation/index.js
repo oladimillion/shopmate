@@ -44,6 +44,25 @@ DeliverySection.propTypes = {
  */
 export class Confirmation extends Component {
 
+
+  /**
+   * get grand total
+   *
+   * @name getGrandTotal 
+   * @function
+   * @returns {string} grand total
+   */
+  getGrandTotal(totalAmount, shipping_type) {
+    const re = /\$\d+/;
+    const shippingAmount = shipping_type ? shipping_type.match(re)[0].slice(1) : "0";
+    const { tax, confirmation: { tax_id } } = this.props;
+    const _tax = tax.data.find(data => data.tax_id === +tax_id) || { tax_percentage: "0.00" };
+    const taxPercentage = parseFloat(_tax.tax_percentage);
+    totalAmount = parseFloat(totalAmount);
+    const taxAmount = !!taxPercentage ? (taxPercentage/100 * totalAmount).toFixed(2) : 0;
+    return (parseFloat(taxAmount) + totalAmount + parseFloat(shippingAmount)).toFixed(2);
+  }
+
   /**
    * get shipping detail using shipping id
    *
@@ -151,7 +170,7 @@ export class Confirmation extends Component {
             <div 
               className="bold gray__color flex space__between align__center">
               <select
-                className="tax" 
+                className="tax outline__none" 
                 name="tax_id" 
                 onChange={
                   (e)=> this.props.onChange({
@@ -202,7 +221,7 @@ export class Confirmation extends Component {
                 Grandtotal
               </span>
               <span className="block bold">
-                <h2 className="margin__none">&#x00024;{cart.totalAmount}</h2>
+                <h2 className="margin__none">&#x00024;{this.getGrandTotal(cart.totalAmount, (shipping_type || ""))}</h2>
               </span>
             </div>
           </div>

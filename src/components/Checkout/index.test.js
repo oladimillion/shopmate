@@ -1,12 +1,12 @@
 import React from "react";
 import { Checkout } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../reducers/initState";
 import setup from "../../__test__/setup";
 
 const func = jest.fn();
 
-describe('<Checkout /> ', () => {
+describe("<Checkout /> ", () => {
 
   const props = {
     getTax: func,
@@ -16,11 +16,15 @@ describe('<Checkout /> ', () => {
     getShippingRegionById: func,
     setErrorMessage: func,
     emptyCart: func,
+    getOrderItems: func,
+    getOrderById: func,
+    openViewOrderModal: func,
 
     user: initState.user,
     stripeToken: initState.stripeToken,
     stripeCharge: initState.stripeCharge,
     order: initState.order,
+    orderById: initState.orderById,
     cart: initState.cart,
     tax: initState.tax,
     shippingRegionById: initState.shippingRegionById,
@@ -31,7 +35,7 @@ describe('<Checkout /> ', () => {
   const wrapper = shallow(
     <Checkout {...props} />
   );
-  it('renders Checkout component without crashing', () => {
+  it("renders Checkout component without crashing", () => {
     wrapper.instance().createStripeCharge({});
     wrapper.instance().createOrder(1);
     wrapper.instance().renderStepComponent();

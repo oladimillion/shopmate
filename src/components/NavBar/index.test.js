@@ -1,12 +1,12 @@
 import React from "react";
 import { NavBar } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../reducers/initState";
 import setup from "../../__test__/setup";
 
 const func = jest.fn();
 
-describe('<NavBar /> ', () => {
+describe("<NavBar /> ", () => {
 
   const props = {
     openViewCartModal: func,
@@ -15,6 +15,8 @@ describe('<NavBar /> ', () => {
     searchProducts: func,
     getShippingRegion: func,
     logout: func,
+    clearSearchField: func,
+    openViewOrderModal: func,
 
     allProduct: initState.allProduct,
     user: initState.user,
@@ -25,13 +27,16 @@ describe('<NavBar /> ', () => {
   const wrapper = shallow(
     <NavBar {...props} />
   );
-  it('renders Checkout component without crashing', () => {
+  it("renders Checkout component without crashing", () => {
     wrapper.instance().cartQuantity({});
     wrapper.instance().onChange({
       target: {
         name: "search",
         value: "Dame",
       }
+    });
+    wrapper.instance().clearSearchField({
+      search: "",
     });
     wrapper.instance().onSubmit({
       preventDefault: func

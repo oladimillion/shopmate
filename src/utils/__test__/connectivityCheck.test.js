@@ -21,7 +21,7 @@ describe("connectivityCheck", () => {
         types.USER_LOGOUT,
       ).payload
     ).toEqual(
-      "No internet connectivity"
+      "No internet connectivity or Unknown error"
     );
   });
 });

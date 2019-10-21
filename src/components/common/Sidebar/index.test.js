@@ -1,12 +1,12 @@
 import React from "react";
 import { Sidebar } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../../reducers/initState";
 import setup from "../../../__test__/setup";
 
 const func = jest.fn();
 
-describe('<Sidebar /> ', () => {
+describe("<Sidebar /> ", () => {
 
   const props = {
     getCategories: func,
@@ -27,7 +27,7 @@ describe('<Sidebar /> ', () => {
   const wrapper = shallow(
     <Sidebar {...props} />
   );
-  it('renders Sidebar component without crashing', () => {
+  it("renders Sidebar component without crashing", () => {
     wrapper.instance().getQuery();
     wrapper.instance().clearAll();
     wrapper.instance().getCategoryList(1);

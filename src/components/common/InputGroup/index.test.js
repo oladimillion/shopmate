@@ -1,6 +1,6 @@
 import React from "react";
 import InputGroup, { InputWrapper } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 
 describe("<InputGroup /> ", () => {
   const props = {

@@ -3,13 +3,28 @@
 # Shopmate
 An e-commerce application
 
-Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) to view the hosted App.
+Open [https://oladimillion.github.io/shopmate/](https://oladimillion.github.io/shopmate/) to view the hosted App.
 
 ## Tools/Frameworks Used
 - React
 - Redux
 - Redux-saga
 - Sematic-ui-react
+
+## To run the app locally
+  1. Clone the repository:
+  ```
+  git clone https://github.com/oladimillion/shopmate.git
+  ```
+  2. Navigate into the cloned repository folder
+
+  3. Install dependencies:
+  ```
+  $ npm install
+  ```
+  4. run `npm start` to start the server
+
+  5. visit `http://localhost:3000` in your browser
 
 ## Available Scripts
 
@@ -52,10 +67,23 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## The project folder/directory structure
+## Screenshots of the application
+#### Homepage
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 37 43 PM" src="https://user-images.githubusercontent.com/23438586/58713626-e1fb2880-83ba-11e9-83aa-e34c49a76afc.png">
+
+#### View cart modal
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 38 29 PM" src="https://user-images.githubusercontent.com/23438586/58713865-6cdc2300-83bb-11e9-85b0-bd07212b5c1c.png">
+
+#### View item page
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 38 46 PM" src="https://user-images.githubusercontent.com/23438586/58713973-a44acf80-83bb-11e9-94f4-2d6777ce6d32.png">
+
+#### Signup modal
+<img width="1440" alt="Screen Shot 2019-05-31 at 3 50 47 PM" src="https://user-images.githubusercontent.com/23438586/58714558-e294be80-83bc-11e9-863e-be64a6b9bac7.png">
+
+## The Project Folder/Directory and File Structure
 ```
 shopmate
-  ├── src
+  └── src
       ├── App.js
       ├── App.test.js
       ├── __test__

@@ -1,12 +1,12 @@
 import React from "react";
 import { Register } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../reducers/initState";
 import setup from "../../__test__/setup";
 
 const func = jest.fn();
 
-describe('<Register /> ', () => {
+describe("<Register /> ", () => {
 
   const props = {
     closeRegisterModal: func,
@@ -14,6 +14,7 @@ describe('<Register /> ', () => {
     setErrorMessage: func,
     signup: func,
     getCart: func,
+    getOrderItems: func,
     getCartAmount: func,
 
     user: initState.user,
@@ -24,7 +25,7 @@ describe('<Register /> ', () => {
   const wrapper = shallow(
     <Register {...props} />
   );
-  it('renders Register component without crashing', () => {
+  it("renders Register component without crashing", () => {
     wrapper.instance().onChange({
       target: {
         name: "email",

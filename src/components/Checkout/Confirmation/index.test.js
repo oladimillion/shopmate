@@ -1,11 +1,11 @@
 import React from "react";
 import { Confirmation } from ".";
-import { shallow } from 'enzyme';
+import { shallow } from "enzyme";
 import initState from "../../../reducers/initState";
 
 const func = jest.fn();
 
-describe('<Confirmation /> ', () => {
+describe("<Confirmation /> ", () => {
 
   const props = {
     onChange: func,
@@ -27,11 +27,12 @@ describe('<Confirmation /> ', () => {
   const wrapper = shallow(
     <Confirmation {...props} />
   );
-  it('renders Confirmation component without crashing', () => {
+  it("renders Confirmation component without crashing", () => {
     wrapper.instance().getAddressBody({
       delivery: props.delivery,
       customer: props.user.customer,
     });
     wrapper.instance().getShippingDetail();
+    wrapper.instance().getGrandTotal("10", "($30)");
   });
 });

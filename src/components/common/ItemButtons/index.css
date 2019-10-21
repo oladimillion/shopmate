@@ -1,8 +1,5 @@
-.popular div.popular__items {
-  margin-right: 6rem;
-}
 
-.card__width {
-  width: 300px !important;
-  height: 370px !important;
+a.button__disable,
+button.button__disable {
+  background: #ddd !important;
 }

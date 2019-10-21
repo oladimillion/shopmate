@@ -42,17 +42,19 @@ export class Login extends Component {
       user, 
       closeLoginModal,
       getCart,
+      getOrderItems,
       getCartAmount 
     } = this.props;
-    const { customer_id } = user.customer
+    const { cartID } = localStorage;
     if(!user.error && this.requestSent && !user.isLoading) {
       this.requestSent = false;
       this.setState({ email: "", password: "" });
       closeLoginModal();
-      if(customer_id) {
+      if(cartID) {
         Promise.all([
-          getCart({ cartId: customer_id }),
-          getCartAmount({ cartId: customer_id }),
+          getCart({ cartID }),
+          getCartAmount({ cartID }),
+          getOrderItems(),
         ]);
       }
     }
@@ -175,7 +177,7 @@ export class Login extends Component {
           <p
             onClick={this.openRegisterModal}
             className="red__color cursor__pointer">
-            Have an account
+            Have no account
           </p>
         </ModalFormFooter>
       </ModalForm>
@@ -215,6 +217,7 @@ export default connect(
       return actions.createAction(actions.USER_FAILURE, data);
     },
     login: actions.login, 
+    getOrderItems: actions.getOrderItems, 
     getCart: actions.getCart,
     getCartAmount: actions.getCartAmount,
   }

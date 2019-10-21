@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getPopularProducts } from "../../../actions";
+import { 
+  addCart,
+  getPopularProducts,
+} from "../../../actions";
 
 import CardItem from "../CardItem"
 import RoundButton from "../RoundButton"
@@ -22,6 +25,7 @@ export class Popular extends Component {
 
   LIMIT = 6;
   requestSent = false;
+  addCartRequestSent = false;
 
   /**
    * componentDidMount
@@ -43,6 +47,24 @@ export class Popular extends Component {
    */
   componentDidUpdate(prevProps, prevState) {
     this.getPopularProducts();
+  }
+
+  /**
+   * adds an item to cart and route to checkout page
+   *
+   * @name addCart
+   * @function
+   * @param {object} product
+   */
+  addCart = (product) => {
+    this.addCartRequestSent = true;
+    const { cart, addCart } = this.props;
+    if(cart.isLoading) return;
+    addCart({ 
+      cart_id: localStorage.cartID, 
+      attributes: "L Red",
+      ...product,
+    });
   }
 
   /**
@@ -100,49 +122,50 @@ export class Popular extends Component {
   render() {
     const { title, cardClassName, popularProducts } = this.props;
     return (
-            <div
-              className="inner__container  margin__hori__auto position__rel">
-              <h1>{title}</h1>
-              <div className="scroll scroll__left">
-                <RoundButton
-                  onClick={(e) => this.horizontalScroll("LEFT")}
-                  icon="angle left"
-                />
+      <div
+        className="inner__container  margin__hori__auto position__rel">
+        <h1>{title}</h1>
+        <div className="scroll scroll__left">
+          <RoundButton
+            onClick={(e) => this.horizontalScroll("LEFT")}
+            icon="angle left"
+          />
+        </div>
+        {
+          popularProducts.isLoading ? 
+            (
+              <Loader className="popular__loader__height" />
+            ) :
+            (
+              <div
+                id="popular"
+                className="flex scroll__hori__overflow popular position__rel">
+                {
+                  popularProducts.data
+                    .map((product, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="popular__items">
+                          <CardItem
+                            className={`card__width ${cardClassName || ""}`}
+                            product={product}
+                            onClick={this.addCart}
+                          />
+                        </div>
+                      )
+                    })
+                }
               </div>
-              {
-                popularProducts.isLoading ? 
-                  (
-                    <Loader className="popular__loader__height" />
-                  ) :
-                  (
-                    <div
-                      id="popular"
-                      className="flex scroll__hori__overflow popular position__rel">
-                      {
-                        popularProducts.data
-                          .map((product, index) => {
-                          return (
-                            <div
-                              key={index}
-                              className="popular__items">
-                              <CardItem
-                                className={`card__width ${cardClassName || ""}`}
-                                product={product}
-                              />
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
-                  )
-              }
-              <div className="scroll scroll__right">
-                <RoundButton
-                  onClick={(e) => this.horizontalScroll("RIGHT")}
-                  icon="angle right"
-                />
-              </div>
-            </div>
+            )
+        }
+        <div className="scroll scroll__right">
+          <RoundButton
+            onClick={(e) => this.horizontalScroll("RIGHT")}
+            icon="angle right"
+          />
+        </div>
+      </div>
     )
   }
 }
@@ -152,15 +175,19 @@ Popular.propTypes = {
   title: PropTypes.string.isRequired,
   cardClassName: PropTypes.string,
   popularProducts: PropTypes.object.isRequired,
+  addCart: PropTypes.func.isRequired,
   getPopularProducts: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     popularProducts: state.PopularProducts,
+    user: state.User,
+    cart: state.Cart,
   }
 };
 
 export default connect(mapStateToProps, {
+  addCart,
   getPopularProducts,
 })(Popular);

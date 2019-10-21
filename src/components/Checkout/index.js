@@ -9,6 +9,8 @@ import {
   genStripeToken,
   createStripeCharge,
   createOrder,
+  getOrderItems,
+  getOrderById,
 } from "../../actions";
 import formatErrorMessage from "../../utils/formatErrorMessage";
 
@@ -22,8 +24,8 @@ import Confirmation from "./Confirmation";
 import Payment from "./Payment";
 import Finish from "./Finish";
 
-import './index.css';
-import './index.md.css';
+import "./index.css";
+import "./index.md.css";
 
 /**
  * Checkout component
@@ -97,26 +99,31 @@ export class Checkout extends Component {
       stripeCharge,
       cart,
       order,
+      emptyCart,
+      getOrderById,
+      getOrderItems,
     } = this.props;
     const { delivery } = this.state;
     if(this.createStripeChargeRequestSent &&
-      !stripeCharge.isLoading && !stripeCharge.error) {
-      this.changeStep(1);
-      this.props.emptyCart();
+      !this.isLoading() && !stripeCharge.error) {
       this.createStripeChargeRequestSent = false;
+      emptyCart();
+      getOrderItems();
+      getOrderById({order_id: order.data.orderId});
+      this.changeStep(1);
     }
     if(this.createOrderRequestSent &&
-      !order.isLoading && !order.error) {
-      this.changeStep(1);
+      !this.isLoading() && !order.error) {
       this.createOrderRequestSent = false;
+      this.changeStep(1);
     }
     if(this.createStripeChargeRequestSent &&
-      !stripeCharge.isLoading && !stripeCharge.error) {
-      this.changeStep(1);
+      !this.isLoading() && !stripeCharge.error) {
       this.createStripeChargeRequestSent = false;
+      this.changeStep(1);
     }
     if(this.genStripeTokenRequestSent &&
-      !stripeToken.isLoading && !stripeToken.error) {
+      !this.isLoading() && !stripeToken.error) {
       this.genStripeTokenRequestSent = false;
       this.createStripeCharge({
         stripeToken: "tok_visa",
@@ -154,7 +161,6 @@ export class Checkout extends Component {
       return;
     } 
     let { confirmation, delivery } = this.state;
-    const { user } = this.props;
     if(!confirmation.tax_id) {
       this.setErrorMessage("(Tax type) is required");
       return;
@@ -163,7 +169,7 @@ export class Checkout extends Component {
     this.props.createOrder({
       tax_id: confirmation.tax_id,
       shipping_id: delivery.shipping_id,
-      cart_id: user.customer.customer_id,
+      cart_id: localStorage.cartID,
     });
   }
 
@@ -177,7 +183,12 @@ export class Checkout extends Component {
   renderStepComponent = () => {
     switch(this.state.step) {
       case 4:
-        return <Finish />;
+        return (
+          <Finish 
+            openViewOrderModal={this.props.openViewOrderModal}
+            orderById={this.props.orderById}
+          />
+        );
       case 3:
         return (
           <Payment
@@ -478,8 +489,8 @@ export class Checkout extends Component {
    * @returns {string}
    */
   getError() {
-    const { order, stripeToken, stripeCharge } = this.props;
-    return order.error || stripeToken.error || stripeCharge.error;
+    const { order, stripeToken, stripeCharge, orderById } = this.props;
+    return order.error || stripeToken.error || stripeCharge.error || orderById.error;
   }
 
   /**
@@ -572,6 +583,8 @@ Checkout.propTypes = {
   getShippingRegionById: PropTypes.func.isRequired,
   setErrorMessage: PropTypes.func.isRequired,
   emptyCart: PropTypes.func.isRequired,
+  getOrderById: PropTypes.func.isRequired,
+  openViewOrderModal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
@@ -580,6 +593,7 @@ const mapStateToProps = (state) => {
     stripeToken: state.StripeToken,
     stripeCharge: state.StripeCharge,
     order: state.Order,
+    orderById: state.OrderById,
     cart: state.Cart,
     tax: state.Tax,
     shippingRegionById: state.ShippingRegionById,
@@ -593,10 +607,15 @@ export default connect(mapStateToProps, {
   createStripeCharge,
   genStripeToken,
   getShippingRegionById,
+  getOrderItems,
+  getOrderById,
   setErrorMessage: (data) => {
     return actions.createAction(actions.CREATE_ORDER_FAILURE, data);
   },
   emptyCart: (data) => {
     return actions.createAction(actions.EMPTY_CART);
+  },
+  openViewOrderModal: () => {
+    return actions.createAction(actions.SHOW_VIEW_ORDER_MODAL);
   },
 })(Checkout);

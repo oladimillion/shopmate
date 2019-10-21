@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Rating } from 'semantic-ui-react'
+import { Rating } from "semantic-ui-react"
 import PropTypes from "prop-types";
-import Moment from 'react-moment';
+import Moment from "react-moment";
 
 import { addProductReview } from "../../../actions";
+import * as actions from "../../../actions";
+
+import formatErrorMessage from "../../../utils/formatErrorMessage";
 
 import HorizontalSpacing from "../../common/HorizontalSpacing";
 import RoundButton from "../../common/RoundButton";
 import Loader from "../../common/Loader";
+import MessageAlert from "../../common/MessageAlert";
 
 import "./index.css";
 import "./index.sm.css";
@@ -27,7 +31,7 @@ export class Review extends Component {
   state = {
     product_id: this.props.productId,
     review: "",
-    rating: 0,
+    rating: 1,
   }
 
   requestSent = false;
@@ -43,7 +47,7 @@ export class Review extends Component {
     if(!productReview.isLoading && this.requestSent) {
       this.requestSent = false;
       this.setState({
-        rating: 0,
+        rating: 1,
         review: ""
       });
     }
@@ -70,9 +74,40 @@ export class Review extends Component {
   onSubmit = (e) => {
     e.preventDefault();
     const { productReview, addProductReview } = this.props;
-    if(productReview.isLoading) return;
+    if(productReview.isLoading || !this.isValidData()) return;
     this.requestSent = true;
     addProductReview(this.state);
+  }
+
+  /**
+   * dispatch error message to the store
+   *
+   * @name setErrorMessage
+   * @function
+   * @param {string} message
+   */
+  setErrorMessage(message) {
+    this.props.setErrorMessage({
+      error: {
+        message,
+      }
+    })
+  }
+
+  /**
+   * checks whether review data is valid
+   *
+   * @name isValidData
+   * @function
+   * @returns {boolean}
+   */
+  isValidData() {
+    const { review } = this.state;
+    if(review.trim().length < 5){
+      this.setErrorMessage("Review must be at least 5 characters");
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -86,6 +121,7 @@ export class Review extends Component {
 
     const { productReview, user } = this.props;
     const { review, rating } = this.state;
+    const { error, message } = productReview;
 
     return (
       <div className="review inner__container margin__hori__auto border__bottom">
@@ -110,8 +146,8 @@ export class Review extends Component {
                         maxRating={5} 
                         defaultRating={data.rating}
                         disabled
-                        icon='star' 
-                        size='huge' 
+                        icon="star" 
+                        size="huge" 
                       />
                     </div>
                     <div className="reviewer__detail">
@@ -201,7 +237,7 @@ export class Review extends Component {
                         className="review__form__input text__area">
                       </textarea>
                       <span className="tiny__info flex flex__wrap">
-                        <span>Your review must be at least 50 characters</span>
+                        <span>Your review must be at least 5 characters</span>
                         <span className="red__color">Full review guideline</span>
                       </span>
                     </span>
@@ -219,8 +255,8 @@ export class Review extends Component {
                         onRate={
                           (e,{rating})=>this.onChange({rating})
                         }
-                        icon='star' 
-                        size='huge' 
+                        icon="star" 
+                        size="huge" 
                       />
                     </span>
                   </li>
@@ -236,6 +272,14 @@ export class Review extends Component {
                         Submit
                       </button>
                     </span>
+                  </li>
+                  <li>
+                    <br />
+                    <MessageAlert
+                      message={error ? formatErrorMessage(error.error) : message}
+                      hasError={!!error}
+                    />
+                    <br />
                   </li>
                 </ul>
               </form>
@@ -262,4 +306,7 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   addProductReview,
+  setErrorMessage: (data) => {
+    return actions.createAction(actions.ADD_PRODUCT_REVIEW_FAILURE, data);
+  },
 })(Review);

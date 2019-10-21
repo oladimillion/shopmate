@@ -22,6 +22,16 @@ describe("Cart saga", () => {
       gen.next().value.payload.action.type
     ).toEqual(types.GET_CART_FAILURE)
   });
+  it("gen cart id", () => {
+    const gen = cart.genCartIDAsync({})
+    expect(
+      gen.next().value.payload.action.type
+    ).toEqual(types.GEN_CART_ID_LOADING)
+    gen.next()
+    expect(
+      gen.next().value.payload.action.type
+    ).toEqual(types.GEN_CART_ID_FAILURE)
+  });
   it("get cart amount", () => {
     const gen = cart.getCartAmountAsync({})
     expect(

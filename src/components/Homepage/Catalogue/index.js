@@ -4,6 +4,8 @@ import queryString from "query-string";
 import PropTypes from "prop-types";
 
 import { 
+  addCart,
+  genCartID,
   getProducts, 
   searchProducts, 
   getProductsByCategory,
@@ -31,6 +33,7 @@ export class Catalogue extends Component {
 
   LIMIT = 6;
   requestSent = false;
+  addCartRequestSent = false;
 
   /**
    * componentDidMount
@@ -41,6 +44,7 @@ export class Catalogue extends Component {
   componentDidMount() {
     const pageNumber = this.getPageNumber();
     this.getProducts(pageNumber);
+    this.genCartID();
   }
 
   /**
@@ -52,13 +56,59 @@ export class Catalogue extends Component {
    * @param {object} prevState
    */
   componentDidUpdate(prevProps, prevState) {
-    const { allProduct } = this.props;
-    if (!this.requestSent) {
+    const { allProduct, cart, location: locationOne } = this.props;
+    const { location: locationTwo } = prevProps;
+    const { pathname: pathnameOne, search: searchOne } = locationOne;
+    const { pathname: pathnameTwo, search: searchTwo } = locationTwo;
+    const boolResult = (
+      !this.addCartRequestSent &&
+      (pathnameOne === pathnameTwo) &&
+      (searchOne === searchTwo)
+    );
+    if(boolResult) {
+      this.requestSent = false;
+      this.addCartRequestSent = false;
+      return;
+    }
+    if (!this.requestSent && !this.addCartRequestSent) {
       this.requestSent = true;
       this.getProducts(this.getPageNumber());
     }
     if(!allProduct.isLoading && this.requestSent) {
       this.requestSent = false;
+    }
+    if(this.addCartRequestSent && !cart.isLoading && !cart.error) {
+      this.addCartRequestSent = false;
+    }
+  }
+
+  /**
+   * adds an item to cart and route to checkout page
+   *
+   * @name addCart
+   * @function
+   * @param {object} product
+   */
+  addCart = (product) => {
+    this.addCartRequestSent = true;
+    const { cart, addCart } = this.props;
+    if(cart.isLoading) return;
+    addCart({ 
+      cart_id: localStorage.cartID, 
+      attributes: "L Red",
+      ...product,
+    });
+  }
+
+  /**
+   * generate cart id
+   *
+   * @name genCartID
+   * @function
+   */
+  genCartID() {
+    if(!localStorage.cartID){
+      this.props.genCartID();
     }
   }
 
@@ -98,6 +148,8 @@ export class Catalogue extends Component {
    */
   getProducts(pageNumber) {
     const query = this.getQuery(pageNumber);
+    const { allProduct } = this.props;
+    if(allProduct.isLoading) return;
     const { category, department } = this.getQueryParams();
     const { path } = this.props.match;
     if(path === "/search") {
@@ -121,12 +173,12 @@ export class Catalogue extends Component {
    * @param {number} pageNumber
    */
   gotoPage = (pageNumber) => {
-    const { allProduct } = this.props;
+    const { allProduct, history, match } = this.props;
     const query = this.getQuery(pageNumber)
-    const { path } = this.props.match;
+    const { path } = match;
 
     if(!allProduct.isLoading){
-      this.props.history.push({
+      history.push({
         pathname: path,
         search: query.replace(/limit=[\d]+&/, ""),
       });
@@ -236,6 +288,7 @@ export class Catalogue extends Component {
                           <CardItem 
                             key={index}
                             product={product}
+                            onClick={this.addCart}
                           />
                         )
                       })
@@ -263,6 +316,8 @@ Catalogue.propTypes = {
   allProduct: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
+  cart: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
   getProducts: PropTypes.func.isRequired,
   searchProducts: PropTypes.func.isRequired,
   getProductsByCategory: PropTypes.func.isRequired,
@@ -272,10 +327,14 @@ Catalogue.propTypes = {
 const mapStateToProps = (state) => {
   return {
     allProduct: state.AllProduct,
+    cart: state.Cart,
+    user: state.User,
   }
 };
 
 export default connect(mapStateToProps, {
+  addCart,
+  genCartID,
   getProducts,
   searchProducts,
   getProductsByCategory,

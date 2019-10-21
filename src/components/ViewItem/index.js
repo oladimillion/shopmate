@@ -133,12 +133,11 @@ export class ViewItem extends Component {
    * @param {object} item
    */
   addCart = (item) => {
-    const { user, cart, addCart } = this.props;
-    const { customer_id } = user.customer;
+    const { cart, addCart } = this.props;
     const { size, color } = this.state;
     if(cart.isLoading) return;
     addCart({ 
-      cart_id: customer_id, 
+      cart_id: localStorage.cartID, 
       attributes: `${size} ${color}`,
       ...item
     });
@@ -201,6 +200,20 @@ export class ViewItem extends Component {
   }
 
   /**
+   * get error messages
+   *
+   * @name getError
+   * @function
+   * @returns {string} error
+   */
+  getError() {
+    const {
+      productById, 
+    } = this.props;
+    return productById.error;
+  }
+
+  /**
    * calls makeRequest function
    *
    * @name getProductAndReview
@@ -210,13 +223,20 @@ export class ViewItem extends Component {
     const { 
       productById, 
       productReview, 
+      history,
       scrollTo: scrollToProps,
     } = this.props;
-    const { data, error } = productById;
+    const { data } = productById;
+    const error = this.getError();
+    if(error) {
+      this.requestSent = false;
+      history.push("/");
+      return;
+    }
     if (!this.requestSent && 
       (+this.getParams !== data.product_id) && !error) {
-      this.makeRequest();
       this.requestSent = true;
+      this.makeRequest();
       const scrollTo = scrollToProps || window.scrollTo
       scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -257,7 +277,7 @@ export class ViewItem extends Component {
    */
   render() {
 
-    const { productById, user } = this.props;
+    const { productById } = this.props;
     const { data } = productById;
     const { productImage } = this.state;
 
@@ -344,6 +364,7 @@ export class ViewItem extends Component {
                   </div>
                   <PriceCurrency 
                     price={data.price} 
+                    discountedPrice={data.discounted_price}
                     className="block viewitem__currency"
                   />
                   <PanelSection 
@@ -389,22 +410,18 @@ export class ViewItem extends Component {
                     <SelectQuantity quantity="1" />
                   </PanelSection>
                   <br />
-                  {
-                    user.isAuth && (
-                      <div 
-                        className="flex space__between flex__wrap wish__list">
-                        <ItemButton 
-                          name="Add to cart"
-                          onClick={()=>this.addCart(data)}
-                          className="wish__list__button"
-                        />
-                        <AddFavourite 
-                          iconClassName="red__color"
-                          name="Add to Wish List"
-                        />
-                      </div>
-                    )
-                  }
+                  <div 
+                    className="flex space__between flex__wrap wish__list">
+                    <ItemButton 
+                      name="Add to cart"
+                      onClick={()=>this.addCart(data)}
+                      className="wish__list__button"
+                    />
+                    <AddFavourite 
+                      iconClassName="red__color"
+                      name="Add to Wish List"
+                    />
+                  </div>
                 </div>
                 {/*end of viewitem__info*/}
               </div>

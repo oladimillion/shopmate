@@ -14,6 +14,19 @@ export const addCart = (payload) => ({
 });
 
 /**
+ * generate cart ID request action
+ *
+ * @name genCartID
+ * @function
+ * @param {object} payload
+ * @returns {object} type and payload
+ */
+export const genCartID = (payload) => ({
+  type: types.GEN_CART_ID_REQUEST,
+  payload,
+});
+
+/**
  * get cart request action
  *
  * @name getCart

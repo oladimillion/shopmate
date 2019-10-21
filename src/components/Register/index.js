@@ -42,9 +42,10 @@ export class Register extends Component {
       user, 
       closeRegisterModal,
       getCart,
+      getOrderItems,
       getCartAmount 
     } = this.props;
-    const { customer_id } = user.customer
+    const { cartID } = localStorage;
     if(!user.error && this.requestSent && !user.isLoading) {
       this.requestSent = false;
       this.setState({ 
@@ -53,10 +54,11 @@ export class Register extends Component {
         password: "",
         confirmPassword: "",
       });
-      if(customer_id) {
+      if(cartID) {
         Promise.all([
-          getCart({ cartId: customer_id }),
-          getCartAmount({ cartId: customer_id }),
+          getCart({ cartID }),
+          getCartAmount({ cartID }),
+          getOrderItems(),
         ]);
       }
       closeRegisterModal();
@@ -220,6 +222,7 @@ export default connect(
       return actions.createAction(actions.USER_FAILURE, data);
     },
     signup: actions.signup, 
+    getOrderItems: actions.getOrderItems, 
     getCart: actions.getCart,
     getCartAmount: actions.getCartAmount,
   }

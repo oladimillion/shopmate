@@ -25,7 +25,19 @@ export const addCart = (payload) => {
  * @returns {promise}
  */
 export const getCart = (payload) => {
-  return axios.get(`${basePath}/${payload.cartId}`);
+  return axios.get(`${basePath}/${payload.cartID}`);
+};
+
+/**
+ * generate cart id endpoint
+ *
+ * @name genCartID
+ * @function
+ * @param {object} payload - item detail
+ * @returns {promise}
+ */
+export const genCartID = (payload) => {
+  return axios.get(`${basePath}/generateUniqueId`);
 };
 
 
@@ -38,7 +50,7 @@ export const getCart = (payload) => {
  * @returns {promise}
  */
 export const getCartAmount = (payload) => {
-  return axios.get(`${basePath}/totalAmount/${payload.cartId}`);
+  return axios.get(`${basePath}/totalAmount/${payload.cartID}`);
 };
 
 

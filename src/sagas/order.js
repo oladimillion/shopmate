@@ -1,4 +1,4 @@
-import { put, takeLatest, call } from "redux-saga/effects";
+import { put, takeLatest, call, all } from "redux-saga/effects";
 import * as types from "../actions/types";
 import * as requests from "../requests";
 import connectivityCheck from "../utils/connectivityCheck";
@@ -22,6 +22,44 @@ export function* createOrderAsync(action) {
 }
 
 /**
+ * get order items async
+ *
+ * @name getOrderItemsAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
+export function* getOrderItemsAsync(action) {
+  yield put({ type: types.GET_ORDER_ITEMS_LOADING });
+  try {
+    const { data: orders } = yield call(requests.getCustomerOrder, action.payload);
+    const response = yield all(orders.map(data => call(requests.getOrderById, data)));
+    const data = response.reduce((accum, { data }) => {
+      return [...accum, ...data];
+    }, []);
+    yield put({ type: types.GET_ORDER_ITEMS_SUCCESS, payload: data });
+  } catch (error) {
+    yield put(connectivityCheck(error, types.GET_ORDER_ITEMS_FAILURE));
+  }
+}
+
+/**
+ * get order by id async
+ *
+ * @name getOrderByIdAsync 
+ * @function
+ * @param {object} action - type and payload
+ */
+export function* getOrderByIdAsync(action) {
+  yield put({ type: types.GET_ORDER_BY_ID_LOADING });
+  try {
+    const { data } = yield call(requests.getOrderById, action.payload);
+    yield put({ type: types.GET_ORDER_BY_ID_SUCCESS, payload: data });
+  } catch (error) {
+    yield put(connectivityCheck(error, types.GET_ORDER_BY_ID_FAILURE));
+  }
+}
+
+/**
  * create order action watcher
  *
  * @name  createOrderWatcher 
@@ -31,7 +69,29 @@ function* createOrderWatcher() {
   yield takeLatest(types.CREATE_ORDER_REQUEST, createOrderAsync);
 }
 
+/**
+ * get order by id action watcher
+ *
+ * @name  getOrderByIdWatcher 
+ * @function
+ */
+function* getOrderByIdWatcher() {
+  yield takeLatest(types.GET_ORDER_BY_ID_REQUEST, getOrderByIdAsync);
+}
+
+/**
+ * get order items action watcher
+ *
+ * @name  getOrderItemsWatcher 
+ * @function
+ */
+function* getOrderItemsWatcher() {
+  yield takeLatest(types.GET_ORDER_ITEMS_REQUEST, getOrderItemsAsync);
+}
+
 export default [
   createOrderWatcher,
+  getOrderItemsWatcher,
+  getOrderByIdWatcher,
 ];
 
