@@ -1,6 +1,0 @@
-@media screen and (max-width: 950px) {
-table.order__table tr th.quantity,
-table.order__table tr td.quantity {
-   display: none;
- }
-}

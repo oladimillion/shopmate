@@ -1,8 +1,0 @@
-@media screen and (max-width: 950px) {
- div.view__cart__inner table tr th.size,
- div.view__cart__inner table tr th.quantity,
- div.view__cart__inner table tr td.size,
- div.view__cart__inner table tr td.quantity {
-   display: none;
- }
-}

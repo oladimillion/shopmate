@@ -1,7 +1,0 @@
-@media screen and (max-width: 550px) {
-  div.payment .payment__part {
-    width: 100%;
-    max-width: 100%;
-    margin: 1rem 0;
-  }
-}
