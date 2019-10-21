@@ -27,6 +27,8 @@
     "start-server": "node server.js",
     "build": "react-scripts build",
     "prebuild": "rm -rf build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test",
     "coverage": "npm test -- --coverage || true --detectOpenHandles",
     "coveralls": "npm test -- --coverage || true && cat ./coverage/lcov.info | coveralls",
@@ -46,6 +48,7 @@
     "coveralls": "^3.0.3",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
+    "gh-pages": "^2.1.1",
     "jest": "^23.6.0",
     "jest-enzyme": "^7.0.2",
     "react-router-enzyme-context": "^1.2.0"
@@ -64,7 +67,10 @@
       "!server.js"
     ],
     "coverageReporters": [
-      "json", "lcov", "text", "clover"
+      "json",
+      "lcov",
+      "text",
+      "clover"
     ]
   }
 }

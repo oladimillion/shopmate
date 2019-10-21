@@ -1,7 +1,9 @@
 [![Build Status](https://travis-ci.com/oladimillion/shopmate.svg?token=yCUwzn8wsJHeQbpUgpqS&branch=develop)](https://travis-ci.com/oladimillion/shopmate)
 
 # Shopmate
-Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) to view the hosted App.
+An e-commerce application
+
+Open [https://oladimillion.github.io/shopmate/](https://oladimillion.github.io/shopmate/) to view the hosted App.
 
 ## Tools/Frameworks Used
 - React
