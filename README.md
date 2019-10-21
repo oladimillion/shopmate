@@ -3,7 +3,7 @@
 # Shopmate
 An e-commerce application
 
-Open [https://shopmate-ola.herokuapp.com/](https://shopmate-ola.herokuapp.com/) to view the hosted App.
+Open [https://oladimillion.github.io/shopmate/](https://oladimillion.github.io/shopmate/) to view the hosted App.
 
 ## Tools/Frameworks Used
 - React
