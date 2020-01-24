@@ -1,5 +1,8 @@
 [![Build Status](https://travis-ci.com/oladimillion/shopmate.svg?token=yCUwzn8wsJHeQbpUgpqS&branch=develop)](https://travis-ci.com/oladimillion/shopmate)
 
+# Credit
+[Turing](https://www.turing.com)
+
 # Shopmate
 An e-commerce application
 
